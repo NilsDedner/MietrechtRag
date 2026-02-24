@@ -1,0 +1,61 @@
+# -----------------------------
+# Data (sehr wichtig!)
+# -----------------------------
+data/
+*.jsonl.gz
+
+# Falls du den Ordner behalten willst aber ohne Inhalt:
+# data/*
+# !data/.gitkeep
+
+# -----------------------------
+# Python
+# -----------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+*.egg
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# -----------------------------
+# Environment / Secrets
+# -----------------------------
+.env
+.env.*
+*.env
+
+# -----------------------------
+# IDE
+# -----------------------------
+.vscode/
+.idea/
+
+# -----------------------------
+# OS
+# -----------------------------
+.DS_Store
+Thumbs.db
+
+# -----------------------------
+# Logs
+# -----------------------------
+*.log
+
+# -----------------------------
+# Coverage / Testing
+# -----------------------------
+.coverage
+htmlcov/
+.pytest_cache/data/
