@@ -4,7 +4,7 @@ import os
 
 @dataclass
 class PgConfig:
-    host: str = os.getenv("PGHOST", "localhost")
+    host: str = os.getenv("PGHOST", "192.168.0.100")
     port: int = int(os.getenv("PGPORT", "5432"))
     dbname: str = os.getenv("PGDATABASE", "")
     user: str = os.getenv("PGUSER", "")

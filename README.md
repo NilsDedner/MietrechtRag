@@ -74,16 +74,42 @@ Optional:
 	  --server-filter \
 	  --checkpoint checkpoint.json
 
+3.6 ETL -> RAG Pipeline ausführen
+	python -m etl.transform_text --batch 2000
+	python -m etl.chunk --batch 1000 --chunk-size 1200 --overlap 150
+	python -m etl.embed_pgvector --batch 1500 --encode-batch 512 --normalize --index hnsw --only-missing
+
+3.7 Retrieval testen
+	python -m etl.retrieve "Wann ist eine Eigenbedarfskündigung wirksam?" --k 10 --pretty
+
+3.8 Echte RAG-Antwort erzeugen (Retrieve + Generate)
+	# OpenAI-kompatibler Endpoint (oder lokaler v1/chat/completions Endpoint)
+	export RAG_LLM_API_URL=https://api.openai.com/v1/chat/completions
+	export RAG_LLM_API_KEY=<dein_key>
+	export RAG_LLM_MODEL=gpt-4o-mini
+	python -m etl.rag_answer "Wann ist eine Eigenbedarfskündigung wirksam?" --k 10 --pretty
+
+	# Nur Retrieval/Context (ohne LLM-Call)
+	python -m etl.rag_answer "Frage" --k 10 --no-generate --pretty
+
 4. PostgreSQL Konfiguration
 
 Die Verbindung erfolgt über ENV-Variablen:
-	export PGHOST=localhost
+	export PGHOST=192.168.0.100
 	export PGPORT=5432
 	export PGDATABASE=mietrecht
 	export PGUSER=postgres
 	export PGPASSWORD=secret
 Optional:
 	export PGSSLMODE=prefer
+
+PowerShell (Windows):
+	$env:PGHOST="192.168.0.100"
+	$env:PGPORT="5432"
+	$env:PGDATABASE="mietrecht"
+	$env:PGUSER="postgres"
+	$env:PGPASSWORD="secret"
+	$env:PGSSLMODE="prefer"
 
 5. Typischer Workflow
 
@@ -103,8 +129,8 @@ Aktuell implementiert:
 	Idempotenter Raw-Load nach PostgreSQL
 	Delta-Resume via loader_state
 	Retry / Backoff / Timeout Handling
-	Nächster Schritt im Projekt:
 	Transform (HTML → Text)
 	Chunking
 	Embedding & Vektorindex
 	RAG Retrieval Layer
+	RAG Answering Layer (Retrieve + Generate mit Quellen)

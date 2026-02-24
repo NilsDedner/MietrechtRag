@@ -6,7 +6,7 @@ include $(ENV_FILE)
 export
 
 .PHONY: db-up db-down db-reset db-logs psql pgadmin-url etl-env db-smoke vector-enable
-.PHONY: transform chunk embed counts
+.PHONY: transform chunk embed counts retrieve rag
 
 db-up:
 	docker compose -f $(COMPOSE_FILE) --env-file $(ENV_FILE) up -d
@@ -29,11 +29,18 @@ pgadmin-url:
 	@echo "pgAdmin: http://localhost:$(PGADMIN_PORT)"
 
 etl-env:
-	@echo "export PGHOST=localhost"
+	@echo "export PGHOST=192.168.0.100"
 	@echo "export PGPORT=$(PG_PORT)"
 	@echo "export PGDATABASE=$(POSTGRES_DB)"
 	@echo "export PGUSER=$(POSTGRES_USER)"
 	@echo "export PGPASSWORD=$(POSTGRES_PASSWORD)"
+	@echo ""
+	@echo "# PowerShell"
+	@echo "$${env:PGHOST}=\"192.168.0.100\""
+	@echo "$${env:PGPORT}=\"$(PG_PORT)\""
+	@echo "$${env:PGDATABASE}=\"$(POSTGRES_DB)\""
+	@echo "$${env:PGUSER}=\"$(POSTGRES_USER)\""
+	@echo "$${env:PGPASSWORD}=\"$(POSTGRES_PASSWORD)\""
 
 db-smoke:
 	docker exec -it mietrecht_pg psql -U $(POSTGRES_USER) -d $(POSTGRES_DB) -c "SELECT version();"
@@ -63,3 +70,6 @@ counts:
 
 retrieve:
 	python -m etl.retrieve "$(Q)" --k 10 --pretty
+
+rag:
+	python -m etl.rag_answer "$(Q)" --k 10 --pretty
