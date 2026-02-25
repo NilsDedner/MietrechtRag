@@ -92,6 +92,59 @@ Optional:
 	# Nur Retrieval/Context (ohne LLM-Call)
 	python -m etl.rag_answer "Frage" --k 10 --no-generate --pretty
 
+3.9 OpenWebUI anbinden (schönes Frontend)
+	# 1) Linux ENV setzen (DB + OpenAI upstream)
+	export PGHOST=192.168.0.100
+	export PGPORT=5432
+	export PGDATABASE=mietrecht
+	export PGUSER=postgres
+	export PGPASSWORD=secret
+	export RAG_LLM_API_URL=https://api.openai.com/v1/chat/completions
+	export RAG_LLM_API_KEY=<dein_openai_key>
+	export RAG_LLM_MODEL=gpt-4o-mini
+
+	# 2) Adapter starten (OpenAI-kompatible API)
+	python -m etl.rag_openai_api --host 0.0.0.0 --port 8010
+
+	# 3) OpenWebUI -> Einstellungen -> Connections -> OpenAI API
+	#    Base URL: http://<dein-server>:8010/v1
+	#    API Key: beliebiger String (Adapter prüft ihn nicht)
+	#    Model: mietrecht-rag
+
+	# 4) Optional Healthcheck
+	curl http://<dein-server>:8010/healthz
+
+3.10 OpenWebUI auf Linux neu installieren (Schritt-für-Schritt)
+	# 0) Docker + Compose Plugin installieren (Ubuntu/Debian)
+	sudo apt update
+	sudo apt install -y docker.io docker-compose-v2
+	sudo systemctl enable --now docker
+
+	# 1) Im Projekt die OpenWebUI-ENV anlegen
+	cp docker/openwebui/.env.example docker/openwebui/.env
+
+	# 2) Optional Port ändern (Default 3000)
+	#    OPENWEBUI_PORT=3001 in docker/openwebui/.env setzen
+
+	# 3) RAG Adapter starten (Host-Prozess, nicht im Container)
+	#    (in separater Shell mit gesetzten PG* und RAG_LLM_* Variablen)
+	python -m etl.rag_openai_api --host 0.0.0.0 --port 8010
+
+	# 4) OpenWebUI starten
+	docker compose -f docker/openwebui/docker-compose.yml --env-file docker/openwebui/.env up -d
+
+	# 5) Logs prüfen
+	docker compose -f docker/openwebui/docker-compose.yml --env-file docker/openwebui/.env logs -f --tail=100
+
+	# 6) Browser öffnen
+	#    http://<dein-linux-server>:3000
+
+	# 7) In OpenWebUI Modell auswählen: "mietrecht-rag"
+	#    Falls nicht sichtbar: Settings -> Connections prüfen (OpenAI endpoint via compose gesetzt)
+
+	# 8) Stoppen
+	docker compose -f docker/openwebui/docker-compose.yml --env-file docker/openwebui/.env down
+
 4. PostgreSQL Konfiguration
 
 Die Verbindung erfolgt über ENV-Variablen:

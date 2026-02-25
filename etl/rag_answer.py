@@ -5,6 +5,7 @@ import argparse
 import datetime as dt
 import json
 import os
+import time
 from typing import Any, Dict, List, Optional
 
 import psycopg2.extras as pgx
@@ -143,6 +144,8 @@ def call_chat_completion(
     messages: List[Dict[str, str]],
     timeout: int,
     temperature: float,
+    max_retries: int,
+    initial_backoff: float,
 ) -> str:
     headers = {"Content-Type": "application/json"}
     if api_key:
@@ -154,8 +157,39 @@ def call_chat_completion(
         "temperature": temperature,
     }
 
-    r = requests.post(api_url, headers=headers, json=payload, timeout=timeout)
-    r.raise_for_status()
+    backoff = max(0.5, float(initial_backoff))
+    retries = max(0, int(max_retries))
+    last_err: Optional[Exception] = None
+
+    for attempt in range(retries + 1):
+        try:
+            r = requests.post(api_url, headers=headers, json=payload, timeout=timeout)
+
+            if r.status_code in (429, 500, 502, 503, 504) and attempt < retries:
+                retry_after = r.headers.get("Retry-After")
+                wait_s = backoff
+                if retry_after:
+                    try:
+                        wait_s = max(wait_s, float(retry_after))
+                    except Exception:
+                        pass
+                time.sleep(wait_s)
+                backoff = min(backoff * 2.0, 60.0)
+                continue
+
+            r.raise_for_status()
+            break
+        except requests.exceptions.RequestException as e:
+            last_err = e
+            if attempt >= retries:
+                raise
+            time.sleep(backoff)
+            backoff = min(backoff * 2.0, 60.0)
+    else:
+        if last_err:
+            raise last_err
+        raise RuntimeError("LLM request failed without specific error")
+
     data = r.json()
     choices = data.get("choices") or []
     if not choices:
@@ -190,8 +224,11 @@ def main():
     ap.add_argument("--llm-model", default=os.getenv("RAG_LLM_MODEL", "gpt-4o-mini"), help="LLM model id")
     ap.add_argument("--llm-timeout", type=int, default=90, help="LLM request timeout seconds")
     ap.add_argument("--temperature", type=float, default=0.2, help="LLM temperature")
+    ap.add_argument("--llm-max-retries", type=int, default=5, help="Retries for LLM 429/5xx/network (Default 5)")
+    ap.add_argument("--llm-initial-backoff", type=float, default=2.0, help="Initial retry backoff seconds (Default 2.0)")
 
     ap.add_argument("--no-generate", action="store_true", help="Nur Retrieval/Context ausgeben, kein LLM Call")
+    ap.add_argument("--strict-llm", action="store_true", help="Bei LLM-Fehler mit Exception abbrechen")
     ap.add_argument("--pretty", action="store_true", help="JSON pretty-print")
     ap.add_argument("--out", help="Optional: JSON in Datei schreiben")
     args = ap.parse_args()
@@ -229,16 +266,24 @@ def main():
         sources.append(source)
 
     answer = None
+    generation_error = None
     if not args.no_generate:
         messages = build_messages(args.question, context)
-        answer = call_chat_completion(
-            api_url=args.llm_api_url,
-            api_key=args.llm_api_key,
-            model=args.llm_model,
-            messages=messages,
-            timeout=args.llm_timeout,
-            temperature=args.temperature,
-        )
+        try:
+            answer = call_chat_completion(
+                api_url=args.llm_api_url,
+                api_key=args.llm_api_key,
+                model=args.llm_model,
+                messages=messages,
+                timeout=args.llm_timeout,
+                temperature=args.temperature,
+                max_retries=args.llm_max_retries,
+                initial_backoff=args.llm_initial_backoff,
+            )
+        except Exception as e:
+            generation_error = f"{type(e).__name__}: {e}"
+            if args.strict_llm:
+                raise
 
     out_obj = {
         "question": args.question,
@@ -257,8 +302,11 @@ def main():
             "llm_api_url": args.llm_api_url,
             "llm_model": args.llm_model,
             "temperature": args.temperature,
+            "llm_max_retries": args.llm_max_retries,
+            "llm_initial_backoff": args.llm_initial_backoff,
         },
         "answer": answer,
+        "generation_error": generation_error,
         "sources": sources,
         "context": context,
     }

@@ -1,12 +1,14 @@
 COMPOSE_DIR := docker/postgres
 COMPOSE_FILE := $(COMPOSE_DIR)/docker-compose.yml
 ENV_FILE := $(COMPOSE_DIR)/.env
+OPENWEBUI_COMPOSE_FILE := docker/openwebui/docker-compose.yml
+OPENWEBUI_ENV_FILE := docker/openwebui/.env
 
-include $(ENV_FILE)
+-include $(ENV_FILE)
 export
 
 .PHONY: db-up db-down db-reset db-logs psql pgadmin-url etl-env db-smoke vector-enable
-.PHONY: transform chunk embed counts retrieve rag
+.PHONY: transform chunk embed counts retrieve rag rag-api openwebui-up openwebui-down openwebui-logs
 
 db-up:
 	docker compose -f $(COMPOSE_FILE) --env-file $(ENV_FILE) up -d
@@ -73,3 +75,15 @@ retrieve:
 
 rag:
 	python -m etl.rag_answer "$(Q)" --k 10 --pretty
+
+rag-api:
+	python -m etl.rag_openai_api --host 0.0.0.0 --port 8010
+
+openwebui-up:
+	docker compose -f $(OPENWEBUI_COMPOSE_FILE) --env-file $(OPENWEBUI_ENV_FILE) up -d
+
+openwebui-down:
+	docker compose -f $(OPENWEBUI_COMPOSE_FILE) --env-file $(OPENWEBUI_ENV_FILE) down
+
+openwebui-logs:
+	docker compose -f $(OPENWEBUI_COMPOSE_FILE) --env-file $(OPENWEBUI_ENV_FILE) logs -f --tail=200
