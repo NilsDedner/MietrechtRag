@@ -31,8 +31,11 @@ ENABLE_PASSTHROUGH = os.getenv("RAG_API_ENABLE_PASSTHROUGH", "1") not in ("0", "
 EMBED_MODEL_NAME = os.getenv("RAG_EMBED_MODEL", "sentence-transformers/all-MiniLM-L6-v2")
 
 UPSTREAM_API_URL = os.getenv("RAG_LLM_API_URL", "https://api.openai.com/v1/chat/completions")
-UPSTREAM_API_KEY = os.getenv("RAG_LLM_API_KEY")
-UPSTREAM_MODEL = os.getenv("RAG_LLM_MODEL", "gpt-4o-mini")
+if not os.getenv("RAG_LLM_API_URL"):
+    UPSTREAM_API_URL = os.getenv("OPENAI_API_BASE_URL", UPSTREAM_API_URL)
+
+UPSTREAM_API_KEY = os.getenv("RAG_LLM_API_KEY") or os.getenv("OPENAI_API_KEY")
+UPSTREAM_MODEL = os.getenv("RAG_LLM_MODEL") or os.getenv("OPENAI_MODEL", "gpt-4o-mini")
 
 TOP_K = int(os.getenv("RAG_TOP_K", "10"))
 MAX_CONTEXT_CHARS = int(os.getenv("RAG_MAX_CONTEXT_CHARS", "12000"))
@@ -106,6 +109,9 @@ def healthz() -> Dict[str, Any]:
         "model": DEFAULT_MODEL_ID,
         "passthrough_enabled": ENABLE_PASSTHROUGH,
         "passthrough_model": PASSTHROUGH_MODEL_ID,
+        "upstream_api_url": UPSTREAM_API_URL,
+        "upstream_model": UPSTREAM_MODEL,
+        "upstream_api_key_set": bool(UPSTREAM_API_KEY),
     }
 
 
@@ -183,7 +189,12 @@ def chat_completions(req: ChatCompletionRequest) -> Dict[str, Any]:
             initial_backoff=LLM_INITIAL_BACKOFF,
         )
     except Exception as e:
-        raise HTTPException(status_code=502, detail=f"Upstream LLM error: {type(e).__name__}: {e}")
+        detail = f"Upstream LLM error: {type(e).__name__}: {e}"
+        resp = getattr(e, "response", None)
+        if resp is not None:
+            body = (resp.text or "")[:1500]
+            detail = f"{detail}; status={resp.status_code}; body={body}"
+        raise HTTPException(status_code=502, detail=detail)
 
     final_text = (answer or "").strip()
     if use_rag:
@@ -265,7 +276,7 @@ def main() -> None:
 
     import uvicorn
 
-    uvicorn.run("etl.rag_openai_api:app", host=args.host, port=args.port, reload=False)
+    uvicorn.run(app, host=args.host, port=args.port, reload=False)
 
 
 if __name__ == "__main__":

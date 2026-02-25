@@ -102,6 +102,8 @@ Optional:
 	export RAG_LLM_API_URL=https://api.openai.com/v1/chat/completions
 	export RAG_LLM_API_KEY=<dein_openai_key>
 	export RAG_LLM_MODEL=gpt-4o-mini
+	# Alternativ akzeptiert der Adapter auch Standard-Variablen:
+	# OPENAI_API_BASE_URL, OPENAI_API_KEY, OPENAI_MODEL
 
 	# 2) Adapter starten (OpenAI-kompatible API)
 	python -m etl.rag_openai_api --host 0.0.0.0 --port 8010
@@ -119,6 +121,7 @@ Optional:
 
 	# 4) Optional Healthcheck
 	curl http://<dein-server>:8010/healthz
+	# Zeigt u.a. upstream_api_key_set=true/false für schnelle Diagnose
 
 3.10 OpenWebUI auf Linux neu installieren (Schritt-für-Schritt)
 	# 0) Docker + Compose Plugin installieren (Ubuntu/Debian)
