@@ -44,6 +44,8 @@ class FeatureConfig:
     max_features: int
     ngram_max: int
     token_min_chars: int
+    min_df: float | int
+    max_df: float | int
     stopwords: str
     legal_refs: bool
 
@@ -151,6 +153,32 @@ def _token_pattern(min_chars: int) -> str:
     return rf"(?u)\b\w{{{m},}}\b"
 
 
+def _parse_df_value(raw: str) -> float | int:
+    s = str(raw).strip()
+    if "." in s:
+        v = float(s)
+        if not (0.0 < v <= 1.0):
+            raise ValueError("float min_df must be in (0, 1]")
+        return v
+    v = int(s)
+    if v < 1:
+        raise ValueError("integer min_df must be >= 1")
+    return v
+
+
+def _parse_max_df_value(raw: str) -> float | int:
+    s = str(raw).strip()
+    if "." in s:
+        v = float(s)
+        if not (0.0 < v <= 1.0):
+            raise ValueError("float max_df must be in (0, 1]")
+        return v
+    v = int(s)
+    if v < 1:
+        raise ValueError("integer max_df must be >= 1")
+    return v
+
+
 def main() -> None:
     ap = argparse.ArgumentParser(description="Build analysis features from cases_text")
     ap.add_argument("--out-dir", required=True, help="Output directory for artifacts")
@@ -164,6 +192,8 @@ def main() -> None:
     ap.add_argument("--max-features", type=int, default=50000, help="Max vectorizer features")
     ap.add_argument("--ngram-max", type=int, default=2, help="Max ngram range (default 2)")
     ap.add_argument("--token-min-chars", type=int, default=2, help="Minimum token length (default 2)")
+    ap.add_argument("--min-df", default="1", help="Minimum document frequency, e.g. 5 or 0.01 (default 1)")
+    ap.add_argument("--max-df", default="1.0", help="Maximum document frequency, e.g. 0.4 or 100000 (default 1.0)")
     ap.add_argument("--stopwords", default="german", help="Stopword mode: german|none")
     ap.add_argument("--legal-refs", dest="legal_refs", action="store_true", help="Extract legal references and inject canonical tokens")
     ap.add_argument("--no-legal-refs", dest="legal_refs", action="store_false", help="Disable legal reference extraction")
@@ -178,6 +208,19 @@ def main() -> None:
         raise SystemExit("--ngram-max must be >= 1")
     if args.token_min_chars < 1:
         raise SystemExit("--token-min-chars must be >= 1")
+    try:
+        min_df_val = _parse_df_value(args.min_df)
+    except Exception as e:
+        raise SystemExit(f"invalid --min-df: {e}")
+    try:
+        max_df_val = _parse_max_df_value(args.max_df)
+    except Exception as e:
+        raise SystemExit(f"invalid --max-df: {e}")
+
+    if isinstance(min_df_val, float) != isinstance(max_df_val, float):
+        raise SystemExit("--min-df and --max-df must use same type style (both int or both float)")
+    if max_df_val < min_df_val:
+        raise SystemExit("--max-df must be >= --min-df")
 
     os.makedirs(args.out_dir, exist_ok=True)
 
@@ -240,6 +283,8 @@ def main() -> None:
         max_features=int(args.max_features),
         ngram_range=(1, int(args.ngram_max)),
         lowercase=True,
+        min_df=min_df_val,
+        max_df=max_df_val,
         stop_words=_select_stopwords(args.stopwords),
         token_pattern=_token_pattern(args.token_min_chars),
     )
@@ -255,6 +300,8 @@ def main() -> None:
             max_features=int(args.max_features),
             ngram_range=(1, int(args.ngram_max)),
             lowercase=True,
+            min_df=min_df_val,
+            max_df=max_df_val,
             stop_words=None,
             token_pattern=_token_pattern(args.token_min_chars),
         )
@@ -284,6 +331,8 @@ def main() -> None:
         max_features=int(args.max_features),
         ngram_max=int(args.ngram_max),
         token_min_chars=int(args.token_min_chars),
+        min_df=min_df_val,
+        max_df=max_df_val,
         stopwords=str(args.stopwords),
         legal_refs=bool(args.legal_refs),
     )

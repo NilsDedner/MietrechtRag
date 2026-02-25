@@ -216,6 +216,8 @@ Ziel: Themen/Cluster aus `cases_text` erzeugen und report-fähig exportieren.
 	  --max-features 50000 \
 	  --ngram-max 2 \
 	  --token-min-chars 2 \
+	  --min-df 1 \
+	  --max-df 1.0 \
 	  --stopwords german
 
 	# erzeugt u.a.: docs.csv, counts.npz, tfidf.npz, vocab.json, config.json
@@ -260,6 +262,9 @@ Ziel: Themen/Cluster aus `cases_text` erzeugen und report-fähig exportieren.
 
 	# Kürzere Wörter filtern (z.B. nur Tokens mit mind. 4 Zeichen)
 	make analysis-all-with-cluster ANALYSIS_RUN_ID=analysis_20260225 ANALYSIS_TOKEN_MIN_CHARS=4
+
+	# Sehr häufige Wörter stärker filtern (z.B. max. in 40% der Dokumente)
+	make analysis-all-with-cluster ANALYSIS_RUN_ID=analysis_20260225 ANALYSIS_MIN_DF=5 ANALYSIS_MAX_DF=0.4
 
 8. RAG-Pipeline (Modul Big Data Analytics)
 
