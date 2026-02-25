@@ -154,11 +154,24 @@ def main() -> None:
         ngram_range=(1, int(args.ngram_max)),
         lowercase=True,
         stop_words=_select_stopwords(args.stopwords),
-        token_pattern=r"(?u)\\b\\w\\w+\\b",
+        token_pattern=r"(?u)\b\w\w+\b",
     )
 
     print("features: vectorizing counts ...")
-    counts = vectorizer.fit_transform(texts)
+    try:
+        counts = vectorizer.fit_transform(texts)
+    except ValueError as e:
+        if "empty vocabulary" not in str(e):
+            raise
+        print("features: warning empty vocabulary with current stopword config; retrying with stopwords=none ...")
+        vectorizer = CountVectorizer(
+            max_features=int(args.max_features),
+            ngram_range=(1, int(args.ngram_max)),
+            lowercase=True,
+            stop_words=None,
+            token_pattern=r"(?u)\b\w\w+\b",
+        )
+        counts = vectorizer.fit_transform(texts)
     sparse.save_npz(os.path.join(args.out_dir, "counts.npz"), counts)
 
     if args.use_tfidf:
