@@ -13,6 +13,11 @@ ANALYSIS_STOPWORDS ?= german
 ANALYSIS_N_TOPICS ?= 15
 ANALYSIS_TOP_TERMS ?= 15
 ANALYSIS_CLUSTER_K ?= 30
+ANALYSIS_NO_PROGRESS ?= 0
+ANALYSIS_RESUME ?= 0
+
+ANALYSIS_PROGRESS_FLAG := $(if $(filter 1 true TRUE yes YES,$(ANALYSIS_NO_PROGRESS)),--no-progress,)
+ANALYSIS_RESUME_FLAG := $(if $(filter 1 true TRUE yes YES,$(ANALYSIS_RESUME)),--resume,)
 
 -include $(ENV_FILE)
 export
@@ -104,27 +109,36 @@ openwebui-logs:
 
 analysis-features:
 	@echo "Running analysis.features (out=$(ANALYSIS_OUT_DIR))"
+	@echo "Estimated runtime: ~2-15 min (depends on docs/CPU/RAM)"
 	python -m analysis.features \
 	  --out-dir "$(ANALYSIS_OUT_DIR)" \
 	  --min-chars $(ANALYSIS_MIN_CHARS) \
 	  --max-features $(ANALYSIS_MAX_FEATURES) \
 	  --ngram-max $(ANALYSIS_NGRAM_MAX) \
-	  --stopwords "$(ANALYSIS_STOPWORDS)"
+	  --stopwords "$(ANALYSIS_STOPWORDS)" \
+	  $(ANALYSIS_RESUME_FLAG) \
+	  $(ANALYSIS_PROGRESS_FLAG)
 
 analysis-topics:
 	@echo "Running analysis.topic_modeling (run_id=$(ANALYSIS_RUN_ID))"
+	@echo "Estimated runtime: ~5-40 min (depends on corpus size & n_topics)"
 	python -m analysis.topic_modeling \
 	  --run-id "$(ANALYSIS_RUN_ID)" \
 	  --in-dir "$(ANALYSIS_OUT_DIR)" \
 	  --n-topics $(ANALYSIS_N_TOPICS) \
-	  --top-terms $(ANALYSIS_TOP_TERMS)
+	  --top-terms $(ANALYSIS_TOP_TERMS) \
+	  $(ANALYSIS_RESUME_FLAG) \
+	  $(ANALYSIS_PROGRESS_FLAG)
 
 analysis-cluster:
 	@echo "Running analysis.clustering (run_id=$(ANALYSIS_RUN_ID), k=$(ANALYSIS_CLUSTER_K))"
+	@echo "Estimated runtime: ~2-20 min (depends on docs/features/k)"
 	python -m analysis.clustering \
 	  --run-id "$(ANALYSIS_RUN_ID)" \
 	  --in-dir "$(ANALYSIS_OUT_DIR)" \
-	  --k $(ANALYSIS_CLUSTER_K)
+	  --k $(ANALYSIS_CLUSTER_K) \
+	  $(ANALYSIS_RESUME_FLAG) \
+	  $(ANALYSIS_PROGRESS_FLAG)
 
 analysis-export:
 	@echo "Running analysis.export (run_id=$(ANALYSIS_RUN_ID))"

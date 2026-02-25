@@ -247,6 +247,16 @@ Ziel: Themen/Cluster aus `cases_text` erzeugen und report-fähig exportieren.
 	  --include-topics \
 	  --include-clusters
 
+7.6 Makefile-Komfort (inkl. Resume/Progress)
+	# Komplettlauf mit Clustering
+	make analysis-all-with-cluster ANALYSIS_RUN_ID=analysis_20260225
+
+	# Nach Abbruch fortsetzen (überspringt vorhandene Artefakte)
+	make analysis-all-with-cluster ANALYSIS_RUN_ID=analysis_20260225 ANALYSIS_RESUME=1
+
+	# Progress ausblenden (z.B. CI/Logs)
+	make analysis-all-with-cluster ANALYSIS_RUN_ID=analysis_20260225 ANALYSIS_NO_PROGRESS=1
+
 8. RAG-Pipeline (Modul Big Data Analytics)
 
 Ziel: Retrieve + Generate auf Embeddings in `case_chunks`.

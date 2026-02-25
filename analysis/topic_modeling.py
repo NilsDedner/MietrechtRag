@@ -7,11 +7,13 @@ import argparse
 import csv
 import json
 import os
+import time
 from typing import Any, Dict, List
 
 import numpy as np
 from scipy import sparse
 from sklearn.decomposition import LatentDirichletAllocation
+from tqdm import tqdm
 
 from etl.config import PgConfig
 from etl.pg_db import ensure_out_db, pg_connect
@@ -63,10 +65,23 @@ def main() -> None:
     ap.add_argument("--no-db-write", dest="db_write", action="store_false")
     ap.set_defaults(db_write=True)
     ap.add_argument("--out-dir", default=None, help="Output directory (defaults to --in-dir)")
+    ap.add_argument("--resume", action="store_true", help="Skip step if expected output artifacts already exist")
+    ap.add_argument("--no-progress", action="store_true", help="Disable progress bars")
     args = ap.parse_args()
+
+    t0 = time.perf_counter()
 
     out_dir = args.out_dir or args.in_dir
     os.makedirs(out_dir, exist_ok=True)
+
+    expected = [
+        os.path.join(out_dir, "topics.csv"),
+        os.path.join(out_dir, "case_topics.csv"),
+        os.path.join(out_dir, "run.json"),
+    ]
+    if args.resume and all(os.path.exists(p) for p in expected):
+        print(f"topic_modeling: resume active, artifacts already exist -> skip ({out_dir})")
+        return
 
     docs = _load_docs(os.path.join(args.in_dir, "docs.csv"))
     vocab = _load_vocab(os.path.join(args.in_dir, "vocab.json"))
@@ -88,6 +103,7 @@ def main() -> None:
         n_jobs=1,
     )
 
+    print("topic_modeling: fitting LDA ...")
     doc_topic = lda.fit_transform(counts)
 
     idx_to_term = {idx: term for term, idx in vocab.items()}
@@ -95,7 +111,13 @@ def main() -> None:
     top_terms_db_rows: List[tuple[int, str, float]] = []
     topic_top_terms: List[List[str]] = []
 
-    for topic_id, weights in enumerate(lda.components_):
+    for topic_id, weights in tqdm(
+        enumerate(lda.components_),
+        total=lda.components_.shape[0],
+        desc="topic_modeling: extract topic terms",
+        unit="topic",
+        disable=args.no_progress,
+    ):
         top_idx = np.argsort(weights)[::-1][: int(args.top_terms)]
         tterms: List[str] = []
         for ix in top_idx:
@@ -108,7 +130,13 @@ def main() -> None:
 
     case_topic_rows: List[Dict[str, Any]] = []
     case_topic_db_rows: List[tuple[int, int, float]] = []
-    for i, d in enumerate(docs):
+    for i, d in tqdm(
+        enumerate(docs),
+        total=len(docs),
+        desc="topic_modeling: build case-topic rows",
+        unit="doc",
+        disable=args.no_progress,
+    ):
         case_id = int(d["case_id"])
         probs = doc_topic[i]
         for topic_id, prob in enumerate(probs):
@@ -154,9 +182,10 @@ def main() -> None:
         conn.commit()
         conn.close()
 
+    elapsed = time.perf_counter() - t0
     print(
         f"topic_modeling done. run_id={args.run_id} docs={counts.shape[0]} topics={args.n_topics} "
-        f"perplexity={perplexity_val:.3f} diversity={diversity:.3f}"
+        f"perplexity={perplexity_val:.3f} diversity={diversity:.3f} elapsed_s={elapsed:.2f}"
     )
 
 

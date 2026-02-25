@@ -7,10 +7,12 @@ import argparse
 import csv
 import json
 import os
+import time
 from typing import Any, Dict, List
 
 from scipy import sparse
 from sklearn.cluster import KMeans
+from tqdm import tqdm
 
 from etl.config import PgConfig
 from etl.pg_db import ensure_out_db, pg_connect
@@ -64,10 +66,22 @@ def main() -> None:
     ap.add_argument("--no-db-write", dest="db_write", action="store_false")
     ap.set_defaults(db_write=True)
     ap.add_argument("--out-dir", default=None)
+    ap.add_argument("--resume", action="store_true", help="Skip step if expected output artifacts already exist")
+    ap.add_argument("--no-progress", action="store_true", help="Disable progress bars")
     args = ap.parse_args()
+
+    t0 = time.perf_counter()
 
     out_dir = args.out_dir or args.in_dir
     os.makedirs(out_dir, exist_ok=True)
+
+    expected = [
+        os.path.join(out_dir, "clusters.csv"),
+        os.path.join(out_dir, "run.json"),
+    ]
+    if args.resume and all(os.path.exists(p) for p in expected):
+        print(f"clustering: resume active, artifacts already exist -> skip ({out_dir})")
+        return
 
     docs = _load_docs(os.path.join(args.in_dir, "docs.csv"))
 
@@ -91,12 +105,19 @@ def main() -> None:
         n_init=10,
         max_iter=300,
     )
+    print("clustering: fitting k-means ...")
     labels = km.fit_predict(matrix)
     dists = km.transform(matrix)
 
     rows: List[Dict[str, Any]] = []
     db_rows: List[tuple[int, int, float]] = []
-    for i, d in enumerate(docs):
+    for i, d in tqdm(
+        enumerate(docs),
+        total=len(docs),
+        desc="clustering: build cluster rows",
+        unit="doc",
+        disable=args.no_progress,
+    ):
         case_id = int(d["case_id"])
         cluster_id = int(labels[i])
         score = float(dists[i, cluster_id])
@@ -131,9 +152,10 @@ def main() -> None:
         conn.commit()
         conn.close()
 
+    elapsed = time.perf_counter() - t0
     print(
         f"clustering done. run_id={args.run_id} k={args.k} docs={matrix.shape[0]} "
-        f"silhouette={sil if sil is not None else 'n/a'}"
+        f"silhouette={sil if sil is not None else 'n/a'} elapsed_s={elapsed:.2f}"
     )
 
 

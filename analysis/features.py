@@ -7,11 +7,13 @@ import argparse
 import csv
 import json
 import os
+import time
 from dataclasses import asdict, dataclass
 from typing import Any, Dict, List, Optional
 
 from scipy import sparse
 from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
+from tqdm import tqdm
 
 from etl.config import PgConfig
 from etl.pg_db import pg_connect
@@ -72,7 +74,7 @@ def _select_stopwords(name: str):
     if name.lower() == "none":
         return None
     if name.lower() == "german":
-        return GERMAN_STOPWORDS
+        return sorted(GERMAN_STOPWORDS)
     return None
 
 
@@ -89,12 +91,29 @@ def main() -> None:
     ap.add_argument("--max-features", type=int, default=50000, help="Max vectorizer features")
     ap.add_argument("--ngram-max", type=int, default=2, help="Max ngram range (default 2)")
     ap.add_argument("--stopwords", default="german", help="Stopword mode: german|none")
+    ap.add_argument("--resume", action="store_true", help="Skip step if expected output artifacts already exist")
+    ap.add_argument("--no-progress", action="store_true", help="Disable progress bars")
     args = ap.parse_args()
+
+    t0 = time.perf_counter()
 
     if args.ngram_max < 1:
         raise SystemExit("--ngram-max must be >= 1")
 
     os.makedirs(args.out_dir, exist_ok=True)
+
+    expected = [
+        os.path.join(args.out_dir, "docs.csv"),
+        os.path.join(args.out_dir, "counts.npz"),
+        os.path.join(args.out_dir, "vocab.json"),
+        os.path.join(args.out_dir, "config.json"),
+    ]
+    if args.use_tfidf:
+        expected.append(os.path.join(args.out_dir, "tfidf.npz"))
+
+    if args.resume and all(os.path.exists(p) for p in expected):
+        print(f"features: resume active, artifacts already exist -> skip ({args.out_dir})")
+        return
 
     conn = pg_connect(PgConfig())
     sql, params = _build_sql(args.min_year, args.max_year, args.limit)
@@ -104,7 +123,13 @@ def main() -> None:
 
     with conn.cursor() as cur:
         cur.execute(sql, params)
-        for case_id, decision_date, clean_text in cur.fetchall():
+        fetched = cur.fetchall()
+        for case_id, decision_date, clean_text in tqdm(
+            fetched,
+            desc="features: load docs",
+            unit="doc",
+            disable=args.no_progress,
+        ):
             text = (clean_text or "").strip()
             if len(text) < args.min_chars:
                 continue
@@ -132,10 +157,12 @@ def main() -> None:
         token_pattern=r"(?u)\\b\\w\\w+\\b",
     )
 
+    print("features: vectorizing counts ...")
     counts = vectorizer.fit_transform(texts)
     sparse.save_npz(os.path.join(args.out_dir, "counts.npz"), counts)
 
     if args.use_tfidf:
+        print("features: building tfidf ...")
         tfidf = TfidfTransformer(norm="l2", use_idf=True, smooth_idf=True, sublinear_tf=False).fit_transform(counts)
         sparse.save_npz(os.path.join(args.out_dir, "tfidf.npz"), tfidf)
 
@@ -169,7 +196,8 @@ def main() -> None:
     with open(os.path.join(args.out_dir, "config.json"), "w", encoding="utf-8") as fh:
         json.dump(config_obj, fh, ensure_ascii=False, indent=2)
 
-    print(f"features done. docs={len(texts)} vocab={len(vocab)} out_dir={args.out_dir}")
+    elapsed = time.perf_counter() - t0
+    print(f"features done. docs={len(texts)} vocab={len(vocab)} out_dir={args.out_dir} elapsed_s={elapsed:.2f}")
 
 
 if __name__ == "__main__":
