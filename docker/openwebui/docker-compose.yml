@@ -8,6 +8,7 @@ services:
     environment:
       OPENAI_API_BASE_URL: ${RAG_ADAPTER_BASE_URL:-http://host.docker.internal:8010/v1}
       OPENAI_API_KEY: ${RAG_ADAPTER_API_KEY:-dummy-key}
+      ENABLE_OLLAMA_API: "False"
     extra_hosts:
       - "host.docker.internal:host-gateway"
     volumes:

@@ -2,11 +2,13 @@
 # -*- coding: utf-8 -*-
 
 import argparse
+import json
 import os
 import time
 from typing import Any, Dict, List, Optional
 
 from fastapi import FastAPI, HTTPException
+from fastapi.responses import StreamingResponse
 from pydantic import BaseModel
 from sentence_transformers import SentenceTransformer
 
@@ -136,9 +138,6 @@ def list_models() -> Dict[str, Any]:
 
 @app.post("/v1/chat/completions")
 def chat_completions(req: ChatCompletionRequest) -> Dict[str, Any]:
-    if req.stream:
-        raise HTTPException(status_code=400, detail="stream=true is not supported by this adapter")
-
     requested_model = (req.model or DEFAULT_MODEL_ID).strip()
     use_rag = requested_model == DEFAULT_MODEL_ID
     if not use_rag and not (ENABLE_PASSTHROUGH and requested_model == PASSTHROUGH_MODEL_ID):
@@ -191,6 +190,27 @@ def chat_completions(req: ChatCompletionRequest) -> Dict[str, Any]:
         final_text = final_text + "\n" + _source_list_markdown(rows)
 
     now = int(time.time())
+
+    if req.stream:
+        def event_stream():
+            chunk = {
+                "id": f"chatcmpl-rag-{now}",
+                "object": "chat.completion.chunk",
+                "created": now,
+                "model": requested_model,
+                "choices": [
+                    {
+                        "index": 0,
+                        "delta": {"role": "assistant", "content": final_text},
+                        "finish_reason": "stop",
+                    }
+                ],
+            }
+            yield f"data: {json.dumps(chunk, ensure_ascii=False)}\n\n"
+            yield "data: [DONE]\n\n"
+
+        return StreamingResponse(event_stream(), media_type="text/event-stream")
+
     resp = {
         "id": f"chatcmpl-rag-{now}",
         "object": "chat.completion",
