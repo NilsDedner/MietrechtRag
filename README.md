@@ -109,7 +109,13 @@ Optional:
 	# 3) OpenWebUI -> Einstellungen -> Connections -> OpenAI API
 	#    Base URL: http://<dein-server>:8010/v1
 	#    API Key: beliebiger String (Adapter prüft ihn nicht)
-	#    Model: mietrecht-rag
+	#    Models:
+	#      - mietrecht-rag   => mit Retrieval + Quellen
+	#      - openai-direct   => normales Modell (ohne RAG)
+	#    Optional via ENV konfigurierbar:
+	#      export RAG_API_MODEL_ID=mietrecht-rag
+	#      export RAG_API_PASSTHROUGH_MODEL_ID=openai-direct
+	#      export RAG_API_ENABLE_PASSTHROUGH=1
 
 	# 4) Optional Healthcheck
 	curl http://<dein-server>:8010/healthz
@@ -139,7 +145,9 @@ Optional:
 	# 6) Browser öffnen
 	#    http://<dein-linux-server>:3000
 
-	# 7) In OpenWebUI Modell auswählen: "mietrecht-rag"
+	# 7) In OpenWebUI Modell auswählen:
+	#    - "mietrecht-rag" für RAG-Antworten
+	#    - "openai-direct" für normalen Chat ohne Retrieval
 	#    Falls nicht sichtbar: Settings -> Connections prüfen (OpenAI endpoint via compose gesetzt)
 
 	# 8) Stoppen

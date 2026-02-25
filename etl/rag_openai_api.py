@@ -24,6 +24,8 @@ from .rag_answer import (
 
 
 DEFAULT_MODEL_ID = os.getenv("RAG_API_MODEL_ID", "mietrecht-rag")
+PASSTHROUGH_MODEL_ID = os.getenv("RAG_API_PASSTHROUGH_MODEL_ID", "openai-direct")
+ENABLE_PASSTHROUGH = os.getenv("RAG_API_ENABLE_PASSTHROUGH", "1") not in ("0", "false", "False")
 EMBED_MODEL_NAME = os.getenv("RAG_EMBED_MODEL", "sentence-transformers/all-MiniLM-L6-v2")
 
 UPSTREAM_API_URL = os.getenv("RAG_LLM_API_URL", "https://api.openai.com/v1/chat/completions")
@@ -75,6 +77,13 @@ def _last_user_question(messages: List[ChatMessage]) -> str:
     return ""
 
 
+def _normalize_messages(messages: List[ChatMessage]) -> List[Dict[str, str]]:
+    out: List[Dict[str, str]] = []
+    for m in messages:
+        out.append({"role": m.role, "content": _content_to_text(m.content)})
+    return out
+
+
 def _source_list_markdown(rows: List[Dict[str, Any]]) -> str:
     lines = ["", "Quellen:"]
     for i, r in enumerate(rows, 1):
@@ -90,22 +99,38 @@ def _source_list_markdown(rows: List[Dict[str, Any]]) -> str:
 
 @app.get("/healthz")
 def healthz() -> Dict[str, Any]:
-    return {"ok": True, "model": DEFAULT_MODEL_ID}
+    return {
+        "ok": True,
+        "model": DEFAULT_MODEL_ID,
+        "passthrough_enabled": ENABLE_PASSTHROUGH,
+        "passthrough_model": PASSTHROUGH_MODEL_ID,
+    }
 
 
 @app.get("/v1/models")
 def list_models() -> Dict[str, Any]:
     now = int(time.time())
-    return {
-        "object": "list",
-        "data": [
+    data = [
+        {
+            "id": DEFAULT_MODEL_ID,
+            "object": "model",
+            "created": now,
+            "owned_by": "mietrecht-rag",
+        }
+    ]
+    if ENABLE_PASSTHROUGH:
+        data.append(
             {
-                "id": DEFAULT_MODEL_ID,
+                "id": PASSTHROUGH_MODEL_ID,
                 "object": "model",
                 "created": now,
-                "owned_by": "mietrecht-rag",
+                "owned_by": "openai-upstream",
             }
-        ],
+        )
+
+    return {
+        "object": "list",
+        "data": data,
     }
 
 
@@ -114,26 +139,38 @@ def chat_completions(req: ChatCompletionRequest) -> Dict[str, Any]:
     if req.stream:
         raise HTTPException(status_code=400, detail="stream=true is not supported by this adapter")
 
-    question = _last_user_question(req.messages)
-    if not question:
-        raise HTTPException(status_code=400, detail="No user message content found")
-
-    q_emb = embedder.encode([question], convert_to_numpy=True, normalize_embeddings=True)[0]
-    q_vec = vec_to_pgvector_str(q_emb)
-
-    conn = pg_connect(PgConfig())
-    try:
-        rows = retrieve_chunks(
-            conn=conn,
-            q_vec=q_vec,
-            k=TOP_K,
-            chunk_chars=CHUNK_CHARS,
+    requested_model = (req.model or DEFAULT_MODEL_ID).strip()
+    use_rag = requested_model == DEFAULT_MODEL_ID
+    if not use_rag and not (ENABLE_PASSTHROUGH and requested_model == PASSTHROUGH_MODEL_ID):
+        raise HTTPException(
+            status_code=400,
+            detail=f"Unknown model '{requested_model}'. Available: {DEFAULT_MODEL_ID}" + (f", {PASSTHROUGH_MODEL_ID}" if ENABLE_PASSTHROUGH else ""),
         )
-    finally:
-        conn.close()
 
-    context = format_context(rows, max_context_chars=MAX_CONTEXT_CHARS)
-    messages = build_messages(question, context)
+    rows: List[Dict[str, Any]] = []
+    if use_rag:
+        question = _last_user_question(req.messages)
+        if not question:
+            raise HTTPException(status_code=400, detail="No user message content found")
+
+        q_emb = embedder.encode([question], convert_to_numpy=True, normalize_embeddings=True)[0]
+        q_vec = vec_to_pgvector_str(q_emb)
+
+        conn = pg_connect(PgConfig())
+        try:
+            rows = retrieve_chunks(
+                conn=conn,
+                q_vec=q_vec,
+                k=TOP_K,
+                chunk_chars=CHUNK_CHARS,
+            )
+        finally:
+            conn.close()
+
+        context = format_context(rows, max_context_chars=MAX_CONTEXT_CHARS)
+        messages = build_messages(question, context)
+    else:
+        messages = _normalize_messages(req.messages)
 
     try:
         answer = call_chat_completion(
@@ -149,13 +186,16 @@ def chat_completions(req: ChatCompletionRequest) -> Dict[str, Any]:
     except Exception as e:
         raise HTTPException(status_code=502, detail=f"Upstream LLM error: {type(e).__name__}: {e}")
 
-    final_text = (answer or "").strip() + "\n" + _source_list_markdown(rows)
+    final_text = (answer or "").strip()
+    if use_rag:
+        final_text = final_text + "\n" + _source_list_markdown(rows)
+
     now = int(time.time())
-    return {
+    resp = {
         "id": f"chatcmpl-rag-{now}",
         "object": "chat.completion",
         "created": now,
-        "model": req.model or DEFAULT_MODEL_ID,
+        "model": requested_model,
         "choices": [
             {
                 "index": 0,
@@ -168,7 +208,10 @@ def chat_completions(req: ChatCompletionRequest) -> Dict[str, Any]:
             "completion_tokens": 0,
             "total_tokens": 0,
         },
-        "rag": {
+    }
+
+    if use_rag:
+        resp["rag"] = {
             "retrieved": len(rows),
             "top_k": TOP_K,
             "upstream_model": UPSTREAM_MODEL,
@@ -184,8 +227,14 @@ def chat_completions(req: ChatCompletionRequest) -> Dict[str, Any]:
                 }
                 for i, r in enumerate(rows, 1)
             ],
-        },
-    }
+        }
+    else:
+        resp["routing"] = {
+            "mode": "passthrough",
+            "upstream_model": UPSTREAM_MODEL,
+        }
+
+    return resp
 
 
 def main() -> None:
