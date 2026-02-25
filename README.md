@@ -198,3 +198,71 @@ Aktuell implementiert:
 	Embedding & Vektorindex
 	RAG Retrieval Layer
 	RAG Answering Layer (Retrieve + Generate mit Quellen)
+
+7. Analyse-Pipeline (Modul Analyse semi- & unstrukturierter Daten)
+
+Ziel: Themen/Cluster aus `cases_text` erzeugen und report-fähig exportieren.
+
+7.1 Voraussetzungen
+	# cases_text muss vorhanden sein
+	python -m etl.transform_text --batch 2000
+
+7.2 Features erzeugen
+	RUN_ID=analysis_2026_02_25
+	OUT_DIR=artifacts/analysis/$RUN_ID
+	python -m analysis.features \
+	  --out-dir "$OUT_DIR" \
+	  --min-chars 800 \
+	  --max-features 50000 \
+	  --ngram-max 2 \
+	  --stopwords german
+
+	# erzeugt u.a.: docs.csv, counts.npz, tfidf.npz, vocab.json, config.json
+
+7.3 Topic Modeling (LDA)
+	python -m analysis.topic_modeling \
+	  --run-id "$RUN_ID" \
+	  --in-dir "$OUT_DIR" \
+	  --n-topics 15 \
+	  --top-terms 15 \
+	  --random-state 42 \
+	  --max-iter 20 \
+	  --learning-method batch
+
+	# erzeugt u.a.: topics.csv, case_topics.csv, run.json
+
+7.4 Clustering (optional)
+	python -m analysis.clustering \
+	  --run-id "$RUN_ID" \
+	  --in-dir "$OUT_DIR" \
+	  --k 30 \
+	  --random-state 42
+
+	# erzeugt: clusters.csv (und ergänzt run.json)
+
+7.5 Export aus DB (für Bericht)
+	python -m analysis.export \
+	  --run-id "$RUN_ID" \
+	  --out-dir "$OUT_DIR" \
+	  --include-topics \
+	  --include-clusters
+
+8. RAG-Pipeline (Modul Big Data Analytics)
+
+Ziel: Retrieve + Generate auf Embeddings in `case_chunks`.
+
+8.1 ETL + Embedding
+	python -m etl.cli --server-filter
+	python -m etl.transform_text --batch 2000
+	python -m etl.chunk --batch 1000 --chunk-size 1200 --overlap 150
+	python -m etl.embed_pgvector --batch 1500 --encode-batch 512 --normalize --index hnsw --only-missing
+
+8.2 Retrieval
+	python -m etl.retrieve "Wann ist eine Eigenbedarfskündigung wirksam?" --k 10 --pretty
+
+8.3 RAG CLI
+	python -m etl.rag_answer "Wann ist eine Eigenbedarfskündigung wirksam?" --k 10 --pretty
+
+8.4 RAG via OpenWebUI
+	python -m etl.rag_openai_api --host 0.0.0.0 --port 8010
+	docker compose -f docker/openwebui/docker-compose.yml --env-file docker/openwebui/.env up -d
