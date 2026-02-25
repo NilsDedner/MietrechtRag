@@ -7,6 +7,7 @@ import argparse
 import csv
 import json
 import os
+import re
 import time
 from dataclasses import asdict, dataclass
 from typing import Any, Dict, List, Optional
@@ -43,6 +44,34 @@ class FeatureConfig:
     max_features: int
     ngram_max: int
     stopwords: str
+    legal_refs: bool
+
+
+LAW_CODES = [
+    "BGB", "ZPO", "GG", "BetrKV", "BGBEG", "WEG", "StGB", "StPO", "VwGO", "SGB", "HGB",
+]
+
+LAW_ALT = "|".join(sorted(LAW_CODES, key=len, reverse=True))
+
+PARA_RE = re.compile(
+    rf"§{{1,2}}\s*(\d+[a-zA-Z]?)"
+    rf"(?:\s*Abs\.\s*\d+[a-zA-Z]?)?"
+    rf"(?:\s*S\.\s*\d+)?"
+    rf"(?:\s*Nr\.\s*\d+)?"
+    rf"(?:\s*(?:des|der|dem))?"
+    rf"(?:\s*({LAW_ALT}))?",
+    flags=re.IGNORECASE,
+)
+
+ART_RE = re.compile(
+    rf"Art\.\s*(\d+[a-zA-Z]?)"
+    rf"(?:\s*Abs\.\s*\d+[a-zA-Z]?)?"
+    rf"(?:\s*S\.\s*\d+)?"
+    rf"(?:\s*Nr\.\s*\d+)?"
+    rf"(?:\s*(?:des|der|dem))?"
+    rf"\s*({LAW_ALT})",
+    flags=re.IGNORECASE,
+)
 
 
 def _build_sql(min_year: Optional[int], max_year: Optional[int], limit: Optional[int]) -> tuple[str, list[Any]]:
@@ -78,6 +107,44 @@ def _select_stopwords(name: str):
     return None
 
 
+def _extract_legal_reference_tokens(text: str) -> List[str]:
+    if not text:
+        return []
+
+    out: List[str] = []
+
+    for m in PARA_RE.finditer(text):
+        para = (m.group(1) or "").strip().lower()
+        law = (m.group(2) or "").strip().upper()
+        if not para:
+            continue
+
+        para_clean = re.sub(r"[^0-9a-z]", "", para)
+        if not para_clean:
+            continue
+
+        out.append(f"LEGREF_PAR_{para_clean}")
+        if law:
+            out.append(f"LEGREF_PAR_{para_clean}_{law}")
+
+    for m in ART_RE.finditer(text):
+        article = (m.group(1) or "").strip().lower()
+        law = (m.group(2) or "").strip().upper()
+        if not article or not law:
+            continue
+
+        article_clean = re.sub(r"[^0-9a-z]", "", article)
+        if not article_clean:
+            continue
+
+        out.append(f"LEGREF_ART_{article_clean}_{law}")
+
+    if not out:
+        return out
+
+    return sorted(set(out))
+
+
 def main() -> None:
     ap = argparse.ArgumentParser(description="Build analysis features from cases_text")
     ap.add_argument("--out-dir", required=True, help="Output directory for artifacts")
@@ -91,6 +158,9 @@ def main() -> None:
     ap.add_argument("--max-features", type=int, default=50000, help="Max vectorizer features")
     ap.add_argument("--ngram-max", type=int, default=2, help="Max ngram range (default 2)")
     ap.add_argument("--stopwords", default="german", help="Stopword mode: german|none")
+    ap.add_argument("--legal-refs", dest="legal_refs", action="store_true", help="Extract legal references and inject canonical tokens")
+    ap.add_argument("--no-legal-refs", dest="legal_refs", action="store_false", help="Disable legal reference extraction")
+    ap.set_defaults(legal_refs=True)
     ap.add_argument("--resume", action="store_true", help="Skip step if expected output artifacts already exist")
     ap.add_argument("--no-progress", action="store_true", help="Disable progress bars")
     args = ap.parse_args()
@@ -120,6 +190,7 @@ def main() -> None:
 
     docs_meta: List[Dict[str, Any]] = []
     texts: List[str] = []
+    legal_ref_tokens_total = 0
 
     with conn.cursor() as cur:
         cur.execute(sql, params)
@@ -133,6 +204,13 @@ def main() -> None:
             text = (clean_text or "").strip()
             if len(text) < args.min_chars:
                 continue
+
+            if args.legal_refs:
+                ref_tokens = _extract_legal_reference_tokens(text)
+                if ref_tokens:
+                    legal_ref_tokens_total += len(ref_tokens)
+                    text = text + "\n" + " ".join(ref_tokens)
+
             row_id = len(texts)
             texts.append(text)
             docs_meta.append(
@@ -197,6 +275,7 @@ def main() -> None:
         max_features=int(args.max_features),
         ngram_max=int(args.ngram_max),
         stopwords=str(args.stopwords),
+        legal_refs=bool(args.legal_refs),
     )
 
     config_obj = {
@@ -205,6 +284,7 @@ def main() -> None:
         "vocab_size": len(vocab),
         "counts_shape": list(counts.shape),
         "tfidf_written": bool(args.use_tfidf),
+        "legal_ref_tokens_total": int(legal_ref_tokens_total),
     }
     with open(os.path.join(args.out_dir, "config.json"), "w", encoding="utf-8") as fh:
         json.dump(config_obj, fh, ensure_ascii=False, indent=2)
