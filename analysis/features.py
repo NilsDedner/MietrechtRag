@@ -217,10 +217,6 @@ def main() -> None:
     except Exception as e:
         raise SystemExit(f"invalid --max-df: {e}")
 
-    if isinstance(min_df_val, float) != isinstance(max_df_val, float):
-        raise SystemExit("--min-df and --max-df must use same type style (both int or both float)")
-    if max_df_val < min_df_val:
-        raise SystemExit("--max-df must be >= --min-df")
 
     os.makedirs(args.out_dir, exist_ok=True)
 
@@ -278,6 +274,21 @@ def main() -> None:
 
     if not texts:
         raise SystemExit("No documents passed filters. Adjust --min-chars/--year range.")
+
+    n_docs = len(texts)
+
+    def _to_abs_docs(v: float | int, total_docs: int) -> float:
+        if isinstance(v, float):
+            return v * float(total_docs)
+        return float(v)
+
+    min_abs = _to_abs_docs(min_df_val, n_docs)
+    max_abs = _to_abs_docs(max_df_val, n_docs)
+    if max_abs < min_abs:
+        raise SystemExit(
+            f"invalid df bounds for {n_docs} docs: min_df={min_df_val} (~{min_abs:.2f} docs) > "
+            f"max_df={max_df_val} (~{max_abs:.2f} docs)"
+        )
 
     vectorizer = CountVectorizer(
         max_features=int(args.max_features),
