@@ -48,6 +48,9 @@ class FeatureConfig:
     max_df: float | int
     stopwords: str
     legal_refs: bool
+    filter_topic_run_id: Optional[str]
+    filter_topic_ids: List[int]
+    filter_topic_min_weight: float
 
 
 LAW_CODES = [
@@ -77,7 +80,29 @@ ART_RE = re.compile(
 )
 
 
-def _build_sql(min_year: Optional[int], max_year: Optional[int], limit: Optional[int]) -> tuple[str, list[Any]]:
+def _parse_topic_ids(raw: str) -> List[int]:
+    out: List[int] = []
+    for part in str(raw).split(","):
+        token = part.strip()
+        if not token:
+            continue
+        v = int(token)
+        if v < 0:
+            raise ValueError("topic ids must be >= 0")
+        out.append(v)
+    if not out:
+        raise ValueError("empty topic id list")
+    return sorted(set(out))
+
+
+def _build_sql(
+    min_year: Optional[int],
+    max_year: Optional[int],
+    limit: Optional[int],
+    filter_topic_run_id: Optional[str],
+    filter_topic_ids: Optional[List[int]],
+    filter_topic_min_weight: float,
+) -> tuple[str, list[Any]]:
     where = ["clean_text IS NOT NULL"]
     params: list[Any] = []
 
@@ -87,6 +112,25 @@ def _build_sql(min_year: Optional[int], max_year: Optional[int], limit: Optional
     if max_year is not None:
         where.append("(decision_date IS NULL OR decision_date < make_date(%s,1,1))")
         params.append(int(max_year) + 1)
+
+    if filter_topic_run_id is not None:
+        if not filter_topic_ids:
+            raise ValueError("topic filter requires at least one topic id")
+        where.append(
+            """
+            EXISTS (
+              SELECT 1
+              FROM case_topics ct2
+              WHERE ct2.case_id = cases_text.id
+                AND ct2.run_id = %s
+                AND ct2.topic_id = ANY(%s)
+                AND ct2.weight >= %s
+            )
+            """
+        )
+        params.append(str(filter_topic_run_id))
+        params.append([int(x) for x in filter_topic_ids])
+        params.append(float(filter_topic_min_weight))
 
     sql = f"""
     SELECT id AS case_id, decision_date, clean_text
@@ -198,6 +242,9 @@ def main() -> None:
     ap.add_argument("--legal-refs", dest="legal_refs", action="store_true", help="Extract legal references and inject canonical tokens")
     ap.add_argument("--no-legal-refs", dest="legal_refs", action="store_false", help="Disable legal reference extraction")
     ap.set_defaults(legal_refs=True)
+    ap.add_argument("--filter-topic-run-id", default=None, help="Optional topic run_id to restrict cases by existing case_topics")
+    ap.add_argument("--filter-topic-ids", default=None, help="Comma-separated topic ids, e.g. 2,5,9 (requires --filter-topic-run-id)")
+    ap.add_argument("--filter-topic-min-weight", type=float, default=0.20, help="Minimum topic weight for filter (default 0.20)")
     ap.add_argument("--resume", action="store_true", help="Skip step if expected output artifacts already exist")
     ap.add_argument("--no-progress", action="store_true", help="Disable progress bars")
     args = ap.parse_args()
@@ -217,6 +264,22 @@ def main() -> None:
     except Exception as e:
         raise SystemExit(f"invalid --max-df: {e}")
 
+    if args.filter_topic_run_id and args.filter_topic_min_weight < 0.0:
+        raise SystemExit("--filter-topic-min-weight must be >= 0")
+    if args.filter_topic_run_id and args.filter_topic_min_weight > 1.0:
+        raise SystemExit("--filter-topic-min-weight must be <= 1")
+
+    topic_ids: List[int] = []
+    if args.filter_topic_ids:
+        try:
+            topic_ids = _parse_topic_ids(args.filter_topic_ids)
+        except Exception as e:
+            raise SystemExit(f"invalid --filter-topic-ids: {e}")
+    if args.filter_topic_run_id and not topic_ids:
+        raise SystemExit("--filter-topic-run-id requires --filter-topic-ids")
+    if topic_ids and not args.filter_topic_run_id:
+        raise SystemExit("--filter-topic-ids requires --filter-topic-run-id")
+
 
     os.makedirs(args.out_dir, exist_ok=True)
 
@@ -234,7 +297,18 @@ def main() -> None:
         return
 
     conn = pg_connect(PgConfig())
-    sql, params = _build_sql(args.min_year, args.max_year, args.limit)
+    try:
+        sql, params = _build_sql(
+            args.min_year,
+            args.max_year,
+            args.limit,
+            filter_topic_run_id=args.filter_topic_run_id,
+            filter_topic_ids=topic_ids,
+            filter_topic_min_weight=float(args.filter_topic_min_weight),
+        )
+    except Exception as e:
+        conn.close()
+        raise SystemExit(f"invalid topic filter config: {e}")
 
     docs_meta: List[Dict[str, Any]] = []
     texts: List[str] = []
@@ -346,6 +420,9 @@ def main() -> None:
         max_df=max_df_val,
         stopwords=str(args.stopwords),
         legal_refs=bool(args.legal_refs),
+        filter_topic_run_id=str(args.filter_topic_run_id) if args.filter_topic_run_id else None,
+        filter_topic_ids=[int(x) for x in topic_ids],
+        filter_topic_min_weight=float(args.filter_topic_min_weight),
     )
 
     config_obj = {

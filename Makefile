@@ -18,6 +18,14 @@ ANALYSIS_TOP_TERMS ?= 15
 ANALYSIS_CLUSTER_K ?= 30
 ANALYSIS_NO_PROGRESS ?= 0
 ANALYSIS_RESUME ?= 0
+ANALYSIS_FILTER_TOP_N ?= 5
+ANALYSIS_FILTER_TOPIC_MIN_WEIGHT ?= 0.20
+ANALYSIS_FILTER_TOPIC_IDS ?=
+ANALYSIS_FILTER_SOURCE_RUN_ID ?= $(ANALYSIS_RUN_ID)
+ANALYSIS_FILTERED_RUN_ID ?= $(ANALYSIS_RUN_ID)_mietrecht
+ANALYSIS_FILTERED_OUT_DIR ?= artifacts/analysis/$(ANALYSIS_FILTERED_RUN_ID)
+ANALYSIS_FILTERED_N_TOPICS ?= 10
+ANALYSIS_FILTERED_TOP_TERMS ?= 15
 
 ANALYSIS_PROGRESS_FLAG := $(if $(filter 1 true TRUE yes YES,$(ANALYSIS_NO_PROGRESS)),--no-progress,)
 ANALYSIS_RESUME_FLAG := $(if $(filter 1 true TRUE yes YES,$(ANALYSIS_RESUME)),--resume,)
@@ -28,6 +36,7 @@ export
 .PHONY: db-up db-down db-reset db-logs psql pgadmin-url etl-env db-smoke vector-enable
 .PHONY: transform chunk embed counts retrieve rag rag-api openwebui-up openwebui-down openwebui-logs
 .PHONY: analysis-features analysis-topics analysis-cluster analysis-export analysis-all analysis-all-with-cluster
+.PHONY: analysis-topic-suggest analysis-refine-features analysis-refine-topics analysis-refine-export analysis-topic-refine
 .PHONY: bench-embed bench-retrieve db-stats
 
 db-up:
@@ -159,6 +168,53 @@ analysis-all: analysis-features analysis-topics analysis-export
 
 analysis-all-with-cluster: analysis-features analysis-topics analysis-cluster analysis-export
 	@echo "Analysis pipeline (+cluster) done. run_id=$(ANALYSIS_RUN_ID) out=$(ANALYSIS_OUT_DIR)"
+
+analysis-topic-suggest:
+	@echo "Suggesting topic IDs from $(ANALYSIS_OUT_DIR)/topics.csv (source run_id=$(ANALYSIS_FILTER_SOURCE_RUN_ID))"
+	python -m analysis.topic_filter_suggest \
+	  --topics-csv "$(ANALYSIS_OUT_DIR)/topics.csv" \
+	  --top-n $(ANALYSIS_FILTER_TOP_N) \
+	  --topic-run-id "$(ANALYSIS_FILTER_SOURCE_RUN_ID)" \
+	  --topic-min-weight $(ANALYSIS_FILTER_TOPIC_MIN_WEIGHT) \
+	  --emit-feature-filter-args
+
+analysis-refine-features:
+	@test -n "$(ANALYSIS_FILTER_TOPIC_IDS)" || (echo "ERROR: set ANALYSIS_FILTER_TOPIC_IDS (z.B. 2,5,9)"; exit 2)
+	@echo "Running filtered analysis.features (out=$(ANALYSIS_FILTERED_OUT_DIR), source_run=$(ANALYSIS_FILTER_SOURCE_RUN_ID), topics=$(ANALYSIS_FILTER_TOPIC_IDS))"
+	python -m analysis.features \
+	  --out-dir "$(ANALYSIS_FILTERED_OUT_DIR)" \
+	  --min-chars $(ANALYSIS_MIN_CHARS) \
+	  --max-features $(ANALYSIS_MAX_FEATURES) \
+	  --ngram-max $(ANALYSIS_NGRAM_MAX) \
+	  --token-min-chars $(ANALYSIS_TOKEN_MIN_CHARS) \
+	  --min-df $(ANALYSIS_MIN_DF) \
+	  --max-df $(ANALYSIS_MAX_DF) \
+	  --stopwords "$(ANALYSIS_STOPWORDS)" \
+	  --filter-topic-run-id "$(ANALYSIS_FILTER_SOURCE_RUN_ID)" \
+	  --filter-topic-ids "$(ANALYSIS_FILTER_TOPIC_IDS)" \
+	  --filter-topic-min-weight $(ANALYSIS_FILTER_TOPIC_MIN_WEIGHT) \
+	  $(ANALYSIS_RESUME_FLAG) \
+	  $(ANALYSIS_PROGRESS_FLAG)
+
+analysis-refine-topics:
+	@echo "Running refined analysis.topic_modeling (run_id=$(ANALYSIS_FILTERED_RUN_ID), in=$(ANALYSIS_FILTERED_OUT_DIR))"
+	python -m analysis.topic_modeling \
+	  --run-id "$(ANALYSIS_FILTERED_RUN_ID)" \
+	  --in-dir "$(ANALYSIS_FILTERED_OUT_DIR)" \
+	  --n-topics $(ANALYSIS_FILTERED_N_TOPICS) \
+	  --top-terms $(ANALYSIS_FILTERED_TOP_TERMS) \
+	  $(ANALYSIS_RESUME_FLAG) \
+	  $(ANALYSIS_PROGRESS_FLAG)
+
+analysis-refine-export:
+	@echo "Running analysis.export (run_id=$(ANALYSIS_FILTERED_RUN_ID))"
+	python -m analysis.export \
+	  --run-id "$(ANALYSIS_FILTERED_RUN_ID)" \
+	  --out-dir "$(ANALYSIS_FILTERED_OUT_DIR)" \
+	  --include-topics
+
+analysis-topic-refine: analysis-refine-features analysis-refine-topics analysis-refine-export
+	@echo "Topic refinement done. run_id=$(ANALYSIS_FILTERED_RUN_ID) out=$(ANALYSIS_FILTERED_OUT_DIR)"
 
 # ---- Bench helpers ----
 

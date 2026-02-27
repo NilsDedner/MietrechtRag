@@ -234,6 +234,79 @@ Ziel: Themen/Cluster aus `cases_text` erzeugen und report-fähig exportieren.
 
 	# erzeugt u.a.: topics.csv, case_topics.csv, run.json
 
+7.3.1 Topic-basiert filtern und neu modellieren (2. Pass)
+	# 1) Erstlauf erzeugen (wie oben), dann relevante Topic-IDs aus topics.csv wählen
+	#    Beispiel: Topics 2, 5 und 9 als Mietrechts-nahe Themen
+
+	# Optional: Topic-IDs automatisch vorschlagen lassen
+	python -m analysis.topic_filter_suggest \
+	  --topics-csv "$OUT_DIR/topics.csv" \
+	  --top-n 5 \
+	  --top-terms-per-topic 30
+
+	# Optional: direkt fertige analysis.features-Argumente ausgeben
+	python -m analysis.topic_filter_suggest \
+	  --topics-csv "$OUT_DIR/topics.csv" \
+	  --top-n 5 \
+	  --topic-run-id "$RUN_ID" \
+	  --emit-feature-filter-args
+
+	RUN_ID_FILTERED=${RUN_ID}_mietrecht
+	OUT_DIR_FILTERED=artifacts/analysis/$RUN_ID_FILTERED
+
+	# 2) Features nur für Fälle bauen, die im Erstlauf in den gewählten Topics liegen
+	python -m analysis.features \
+	  --out-dir "$OUT_DIR_FILTERED" \
+	  --min-chars 800 \
+	  --max-features 50000 \
+	  --ngram-max 2 \
+	  --token-min-chars 2 \
+	  --min-df 1 \
+	  --max-df 1.0 \
+	  --stopwords german \
+	  --filter-topic-run-id "$RUN_ID" \
+	  --filter-topic-ids 2,5,9 \
+	  --filter-topic-min-weight 0.20
+
+	# 3) LDA erneut auf dem gefilterten Subset trainieren
+	python -m analysis.topic_modeling \
+	  --run-id "$RUN_ID_FILTERED" \
+	  --in-dir "$OUT_DIR_FILTERED" \
+	  --n-topics 10 \
+	  --top-terms 15 \
+	  --random-state 42 \
+	  --max-iter 20 \
+	  --learning-method batch
+
+7.3.2 Schnellanleitung (End-to-End)
+	# Ziel: Aus allen Fällen zuerst grobe Topics lernen,
+	# dann Mietrechts-nahe Topics auswählen und darauf ein neues, fokussiertes Topic-Modell trainieren.
+
+	# Schritt A: Features auf Gesamtdaten
+	RUN_ID=analysis_2026_02_27
+	OUT_DIR=artifacts/analysis/$RUN_ID
+	python -m analysis.features --out-dir "$OUT_DIR" --min-chars 800 --max-features 50000 --ngram-max 2 --token-min-chars 2 --min-df 1 --max-df 1.0 --stopwords german
+
+	# Schritt B: Erstes Topic-Modell
+	python -m analysis.topic_modeling --run-id "$RUN_ID" --in-dir "$OUT_DIR" --n-topics 15 --top-terms 15 --random-state 42 --max-iter 20 --learning-method batch
+
+	# Schritt C: Relevante Topics automatisch vorschlagen lassen
+	python -m analysis.topic_filter_suggest --topics-csv "$OUT_DIR/topics.csv" --top-n 5 --topic-run-id "$RUN_ID" --emit-feature-filter-args
+	# Ausgabe enthält u.a.:
+	# --filter-topic-run-id <RUN_ID> --filter-topic-ids a,b,c --filter-topic-min-weight 0.20
+
+	# Schritt D: Gefilterte Features nur auf diesen Topics erstellen
+	RUN_ID_FILTERED=${RUN_ID}_mietrecht
+	OUT_DIR_FILTERED=artifacts/analysis/$RUN_ID_FILTERED
+	python -m analysis.features --out-dir "$OUT_DIR_FILTERED" --min-chars 800 --max-features 50000 --ngram-max 2 --token-min-chars 2 --min-df 1 --max-df 1.0 --stopwords german --filter-topic-run-id "$RUN_ID" --filter-topic-ids a,b,c --filter-topic-min-weight 0.20
+
+	# Schritt E: Neues Topic-Modell auf dem gefilterten Subset
+	python -m analysis.topic_modeling --run-id "$RUN_ID_FILTERED" --in-dir "$OUT_DIR_FILTERED" --n-topics 10 --top-terms 15 --random-state 42 --max-iter 20 --learning-method batch
+
+	# Ergebnis:
+	# - OUT_DIR/topics.csv = grobe Themen auf allen Fällen
+	# - OUT_DIR_FILTERED/topics.csv = fokussierte Themen (Mietrecht-Subset)
+
 7.4 Clustering (optional)
 	python -m analysis.clustering \
 	  --run-id "$RUN_ID" \
@@ -256,6 +329,17 @@ Ziel: Themen/Cluster aus `cases_text` erzeugen und report-fähig exportieren.
 
 	# Nach Abbruch fortsetzen (überspringt vorhandene Artefakte)
 	make analysis-all-with-cluster ANALYSIS_RUN_ID=analysis_20260225 ANALYSIS_RESUME=1
+
+	# Topic-Refinement (2. Pass) vorbereiten: Topic-IDs vorschlagen
+	make analysis-topic-suggest ANALYSIS_RUN_ID=analysis_20260225 ANALYSIS_FILTER_SOURCE_RUN_ID=analysis_20260225
+
+	# Topic-Refinement (2. Pass) ausführen (mit gewählten Topic-IDs)
+	make analysis-topic-refine \
+	  ANALYSIS_RUN_ID=analysis_20260225 \
+	  ANALYSIS_FILTER_SOURCE_RUN_ID=analysis_20260225 \
+	  ANALYSIS_FILTER_TOPIC_IDS=2,5,9 \
+	  ANALYSIS_FILTERED_RUN_ID=analysis_20260225_mietrecht \
+	  ANALYSIS_FILTERED_N_TOPICS=10
 
 	# Progress ausblenden (z.B. CI/Logs)
 	make analysis-all-with-cluster ANALYSIS_RUN_ID=analysis_20260225 ANALYSIS_NO_PROGRESS=1
