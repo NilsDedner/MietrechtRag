@@ -22,6 +22,7 @@ ANALYSIS_FILTER_TOP_N ?= 5
 ANALYSIS_FILTER_TOPIC_MIN_WEIGHT ?= 0.20
 ANALYSIS_FILTER_TOPIC_IDS ?=
 ANALYSIS_FILTER_SOURCE_RUN_ID ?= $(ANALYSIS_RUN_ID)
+ANALYSIS_FILTER_SOURCE_OUT_DIR ?= artifacts/analysis/$(ANALYSIS_FILTER_SOURCE_RUN_ID)
 ANALYSIS_FILTERED_RUN_ID ?= $(ANALYSIS_RUN_ID)_mietrecht
 ANALYSIS_FILTERED_OUT_DIR ?= artifacts/analysis/$(ANALYSIS_FILTERED_RUN_ID)
 ANALYSIS_FILTERED_N_TOPICS ?= 10
@@ -170,9 +171,10 @@ analysis-all-with-cluster: analysis-features analysis-topics analysis-cluster an
 	@echo "Analysis pipeline (+cluster) done. run_id=$(ANALYSIS_RUN_ID) out=$(ANALYSIS_OUT_DIR)"
 
 analysis-topic-suggest:
-	@echo "Suggesting topic IDs from $(ANALYSIS_OUT_DIR)/topics.csv (source run_id=$(ANALYSIS_FILTER_SOURCE_RUN_ID))"
+	@test -f "$(ANALYSIS_FILTER_SOURCE_OUT_DIR)/topics.csv" || (echo "ERROR: topics.csv not found: $(ANALYSIS_FILTER_SOURCE_OUT_DIR)/topics.csv"; echo "Hint: set ANALYSIS_FILTER_SOURCE_RUN_ID=<existing run_id>"; exit 2)
+	@echo "Suggesting topic IDs from $(ANALYSIS_FILTER_SOURCE_OUT_DIR)/topics.csv (source run_id=$(ANALYSIS_FILTER_SOURCE_RUN_ID))"
 	python -m analysis.topic_filter_suggest \
-	  --topics-csv "$(ANALYSIS_OUT_DIR)/topics.csv" \
+	  --topics-csv "$(ANALYSIS_FILTER_SOURCE_OUT_DIR)/topics.csv" \
 	  --top-n $(ANALYSIS_FILTER_TOP_N) \
 	  --topic-run-id "$(ANALYSIS_FILTER_SOURCE_RUN_ID)" \
 	  --topic-min-weight $(ANALYSIS_FILTER_TOPIC_MIN_WEIGHT) \
