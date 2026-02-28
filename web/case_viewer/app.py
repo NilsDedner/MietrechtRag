@@ -15,10 +15,10 @@ app = FastAPI(title="Case HTML Viewer", version="1.0.0")
 
 
 def _db_conn():
-  try:
-    import psycopg2  # type: ignore
-  except Exception as exc:
-    raise RuntimeError("psycopg2 is not installed. Install project dependencies first.") from exc
+    try:
+        import psycopg2  # type: ignore
+    except Exception as exc:
+        raise RuntimeError("psycopg2 is not installed. Install project dependencies first.") from exc
 
     return psycopg2.connect(
         host=os.getenv("PGHOST", "localhost"),
