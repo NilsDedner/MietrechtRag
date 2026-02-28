@@ -36,6 +36,7 @@ export
 
 .PHONY: db-up db-down db-reset db-logs psql pgadmin-url etl-env db-smoke vector-enable
 .PHONY: transform chunk embed counts retrieve rag rag-api openwebui-up openwebui-down openwebui-logs
+.PHONY: case-viewer
 .PHONY: analysis-features analysis-topics analysis-cluster analysis-export analysis-all analysis-all-with-cluster
 .PHONY: analysis-topic-suggest analysis-refine-features analysis-refine-topics analysis-refine-export analysis-topic-refine
 .PHONY: bench-embed bench-retrieve db-stats
@@ -117,6 +118,9 @@ openwebui-down:
 
 openwebui-logs:
 	docker compose -f $(OPENWEBUI_COMPOSE_FILE) --env-file $(OPENWEBUI_ENV_FILE) logs -f --tail=200
+
+case-viewer:
+	python -m uvicorn web.case_viewer.app:app --host 0.0.0.0 --port 8050 --reload
 
 # ---- Analysis pipeline helpers ----
 
