@@ -10,6 +10,7 @@ Embedding Step: case_chunks -> embeddings in pgvector
 """
 
 import argparse
+import os
 import datetime as dt
 from typing import Any, Dict, List, Optional, Tuple
 
@@ -105,7 +106,7 @@ def upsert_embeddings(conn, rows: List[Dict[str, Any]], embeddings: np.ndarray) 
 
 def main():
     ap = argparse.ArgumentParser(description="Embed case_chunks -> pgvector (local sentence-transformers)")
-    ap.add_argument("--model", default="sentence-transformers/all-MiniLM-L6-v2", help="SentenceTransformer model name")
+    ap.add_argument("--model", default=os.getenv("RAG_EMBED_MODEL_PATH", "sentence-transformers/all-MiniLM-L6-v2"), help="SentenceTransformer model name")
     ap.add_argument("--batch", type=int, default=256, help="Chunks pro DB-Batch (Default 256)")
     ap.add_argument("--encode-batch", type=int, default=64, help="Batchgröße fürs Encoding (Default 64)")
     ap.add_argument("--normalize", action="store_true", help="Embeddings normalisieren (cosine-friendly)")

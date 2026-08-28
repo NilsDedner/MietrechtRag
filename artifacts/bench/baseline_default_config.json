@@ -1,0 +1,109 @@
+{
+  "run_id": "baseline_default_config",
+  "params": {
+    "k": 10,
+    "repeats": 2,
+    "warmup": true,
+    "queries": 20,
+    "embedding_model": "/home/dedner/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/c9745ed1d9f207416be6d2e6f8de32d1f16199bf",
+    "ef_search_values": [
+      40,
+      100,
+      200,
+      400
+    ],
+    "subcorpus_run_id": null
+  },
+  "environment": {
+    "pg_settings": {
+      "effective_cache_size": "5242888kB",
+      "effective_io_concurrency": "1",
+      "maintenance_work_mem": "65536kB",
+      "max_parallel_workers_per_gather": "2",
+      "random_page_cost": "4",
+      "shared_buffers": "163848kB",
+      "work_mem": "4096kB"
+    },
+    "embedded_chunks": 5001917,
+    "query_encode_ms_total": 118.98
+  },
+  "results": [
+    {
+      "variant": "exact",
+      "ef_search": null,
+      "latency_ms": {
+        "mean": 6891.6,
+        "p50": 6864.268,
+        "p95": 7151.467,
+        "min": 6809.869,
+        "max": 7207.572
+      },
+      "measurements": 40
+    },
+    {
+      "variant": "l2_operator",
+      "ef_search": null,
+      "latency_ms": {
+        "mean": 6911.384,
+        "p50": 6858.052,
+        "p95": 7228.846,
+        "min": 6818.928,
+        "max": 7396.741
+      },
+      "measurements": 40,
+      "recall_at_k": 1.0
+    },
+    {
+      "variant": "hnsw_ef40",
+      "ef_search": 40,
+      "latency_ms": {
+        "mean": 1.632,
+        "p50": 1.5,
+        "p95": 2.64,
+        "min": 0.951,
+        "max": 3.194
+      },
+      "measurements": 40,
+      "recall_at_k": 0.38
+    },
+    {
+      "variant": "hnsw_ef100",
+      "ef_search": 100,
+      "latency_ms": {
+        "mean": 2.531,
+        "p50": 2.361,
+        "p95": 4.133,
+        "min": 1.486,
+        "max": 4.744
+      },
+      "measurements": 40,
+      "recall_at_k": 0.48
+    },
+    {
+      "variant": "hnsw_ef200",
+      "ef_search": 200,
+      "latency_ms": {
+        "mean": 4.192,
+        "p50": 4.106,
+        "p95": 5.702,
+        "min": 2.99,
+        "max": 7.485
+      },
+      "measurements": 40,
+      "recall_at_k": 0.625
+    },
+    {
+      "variant": "hnsw_ef400",
+      "ef_search": 400,
+      "latency_ms": {
+        "mean": 8.121,
+        "p50": 7.24,
+        "p95": 14.252,
+        "min": 4.372,
+        "max": 22.066
+      },
+      "measurements": 40,
+      "recall_at_k": 0.755
+    }
+  ]
+}

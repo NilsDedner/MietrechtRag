@@ -59,3 +59,8 @@ Thumbs.db
 .coverage
 htmlcov/
 .pytest_cache/data/
+
+# -----------------------------
+# Node (nur für das Markdown->Word-Skript)
+# -----------------------------
+node_modules/

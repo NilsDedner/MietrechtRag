@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import os
 import subprocess
 import time
 
@@ -12,7 +13,7 @@ def main() -> None:
     ap = argparse.ArgumentParser(description="Benchmark embedding throughput by timing etl.embed_pgvector")
     ap.add_argument("--batch", type=int, default=1500)
     ap.add_argument("--encode-batch", type=int, default=512)
-    ap.add_argument("--model", default="sentence-transformers/all-MiniLM-L6-v2")
+    ap.add_argument("--model", default=os.getenv("RAG_EMBED_MODEL_PATH", "sentence-transformers/all-MiniLM-L6-v2"))
     ap.add_argument("--normalize", action="store_true")
     ap.add_argument("--only-missing", action="store_true")
     ap.add_argument("--index", choices=["none", "hnsw", "ivfflat"], default="none")

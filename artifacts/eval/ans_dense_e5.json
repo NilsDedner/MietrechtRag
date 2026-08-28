@@ -1,0 +1,1168 @@
+{
+  "run_id": "ans_dense_e5",
+  "params": {
+    "variant": "dense",
+    "k": 5,
+    "ef_search": 200,
+    "embedding_column": "embedding_e5",
+    "embedding_model": "intfloat/multilingual-e5-base",
+    "llm_model": "gpt-4o-mini",
+    "judge_model": "gpt-4o-mini",
+    "temperature": 0.0,
+    "corpus_run_id": "analysis_night_20260225_mietrecht_v9"
+  },
+  "metrics": {
+    "rag_korrektheit_mittel": 1.467,
+    "rag_korrekt_anteil": 0.617,
+    "rag_fundierung_mittel": 1.583,
+    "rag_erfunden_anteil": 0.05,
+    "rag_bewertet": 60,
+    "norag_korrektheit_mittel": 0.567,
+    "norag_korrekt_anteil": 0.017,
+    "norag_fundierung_mittel": null,
+    "norag_erfunden_anteil": 0.0,
+    "norag_bewertet": 60
+  },
+  "per_question": [
+    {
+      "question_id": "0196ae3b1e912e15",
+      "question": "Welche Arten von Wohnungen werden bei der Ermittlung des Mietwertes für Grundsicherung nicht berücksichtigt?",
+      "reference": "Wohnungen mit sehr niedrigem Ausstattungsgrad, Freundschaftsmieten, mietpreisreduzierte Werkswohnungen, Wohnungen in Wohn- und Pflegeheimen, gewerblich genutzte Wohnungen und Ferienwohnungen werden nicht berücksichtigt.",
+      "rag_answer": "Bei der Ermittlung des Mietwertes für Grundsicherung werden folgende Wohnungstypen nicht berücksichtigt: Substandardwohnungen ohne Bad und Sammelheizung, Wohnungen mit Freundschaftsmieten, mietpreisreduzierte Werkswohnungen, Wohnungen in Wohn- und Pflegeheimen, gewerblich oder teilgewerblich genutzte Wohnungen sowie Ferienwohnungen. Auch möblierte Wohnungen bleiben aufgrund ihrer speziellen Mietstruktur unberücksichtigt, da hier keine klare Trennung zwischen Nettokaltmiete und Möblierungskosten möglich ist [S1], [S4].",
+      "norag_answer": "Bei der Ermittlung des Mietwertes für Grundsicherung werden insbesondere folgende Arten von Wohnungen nicht berücksichtigt: Wohnungen, die über dem angemessenen Bedarf liegen, sowie Luxuswohnungen oder Wohnungen mit überdurchschnittlich hohen Mietpreisen. Auch möblierte Wohnungen können unter bestimmten Umständen nicht in die Berechnung einfließen. Zudem werden Wohnungen, die nicht den allgemeinen Wohnstandards entsprechen, wie z.B. unbewohnbare oder sanierungsbedürftige Wohnungen, nicht berücksichtigt. Es ist wichtig, die örtlichen Richtlinien und Angemessenheitsgrenzen zu beachten.",
+      "rag_verdict": {
+        "korrektheit": 2,
+        "fundierung": 2,
+        "erfunden": false,
+        "begruendung": "Die Antwort deckt die in der Referenz genannten Wohnungstypen vollständig ab und ist durch den Kontext gut fundiert."
+      },
+      "norag_verdict": {
+        "korrektheit": 0,
+        "fundierung": 0,
+        "erfunden": false,
+        "begruendung": "Die Antwort enthält zwar einige relevante Punkte, geht jedoch am Thema vorbei und berücksichtigt nicht die spezifischen Arten von Wohnungen, die in der Referenz genannt werden."
+      }
+    },
+    {
+      "question_id": "026265aa2a340b1e",
+      "question": "Welche Ziele kann die Zweitwohnungssteuer neben der Einnahmenerzielung verfolgen?",
+      "reference": "Die Zweitwohnungssteuer kann auch dazu dienen, Menschen zu motivieren, ihren Hauptwohnsitz zu verlegen.",
+      "rag_answer": "Die Zweitwohnungssteuer kann neben der Einnahmenerzielung auch Lenkungsziele verfolgen, wie beispielsweise die Verhinderung von \"Rollladensiedlungen\", die negative Auswirkungen auf die kommunale Infrastruktur haben könnten [S3]. Zudem kann sie dazu dienen, die Betroffenen zur Verlegung ihres Erstwohnsitzes zu bewegen [S5]. Diese Lenkungsziele müssen jedoch im Einklang mit den verfassungsrechtlichen Vorgaben stehen und dürfen nicht den eigentlichen Zweck der Steuererhebung, die Einnahmenerzielung, untergraben [S3].",
+      "norag_answer": "Die Zweitwohnungssteuer kann neben der Einnahmenerzielung auch folgende Ziele verfolgen: \n\n1. Regulierung des Wohnungsmarktes, um der Verknappung von Wohnraum entgegenzuwirken.\n2. Förderung der Nutzung von Hauptwohnungen, um die Ansiedlung von Hauptbewohnern zu unterstützen.\n3. Steuerung des Tourismus, indem Anreize für die Nutzung von Ferienwohnungen geschaffen werden.\n4. Finanzierung kommunaler Infrastruktur und Dienstleistungen, die durch Zweitwohnungen belastet werden.",
+      "rag_verdict": {
+        "korrektheit": 2,
+        "fundierung": 2,
+        "erfunden": false,
+        "begruendung": "Die bewertete Antwort deckt die in der Referenzantwort genannten Ziele der Zweitwohnungssteuer ab und wird durch den Kontext unterstützt."
+      },
+      "norag_verdict": {
+        "korrektheit": 1,
+        "fundierung": 0,
+        "erfunden": false,
+        "begruendung": "Die Antwort enthält teilweise richtige Ziele, die die Zweitwohnungssteuer verfolgen kann, geht jedoch über die in der Referenz genannten Ziele hinaus und ist nicht durch den Kontext gedeckt."
+      }
+    },
+    {
+      "question_id": "03596d4b4dee46e2",
+      "question": "Wie kann ich nachweisen, dass meine Wohnungen während der Hauptsaison tatsächlich oft vermietet waren?",
+      "reference": "Der Nachweis über die Vermietung sollte durch konkrete Belegungsdaten erfolgen, da die Auslastung der Betten nicht mit den Vermietungstagen gleichgesetzt werden kann.",
+      "rag_answer": "Um nachzuweisen, dass Ihre Wohnungen während der Hauptsaison oft vermietet waren, können Sie verschiedene Nachweise erbringen. Dazu zählen Buchungsbestätigungen, Mietverträge oder eine Übersicht über die Vermietungstage, die Sie beispielsweise durch eine Internetseite oder ein Buchungssystem dokumentieren können [S4]. Auch die Vorlage von Kontoauszügen, die Mietzahlungen belegen, kann hilfreich sein. Zudem können Sie die Anzahl der vermieteten Tage pro Jahr auflisten, um die Häufigkeit der Vermietung zu belegen [S4]. Es ist wichtig, diese Nachweise klar und nachvollziehbar zu präsentieren, um die Vermietungsaktivitäten zu untermauern.",
+      "norag_answer": "Um nachzuweisen, dass Ihre Wohnungen während der Hauptsaison oft vermietet waren, können Sie folgende Unterlagen vorlegen: Buchungsbestätigungen oder -verträge, Zahlungsnachweise von Gästen, eine Übersicht über die Belegungstage sowie Bewertungen auf Plattformen wie Airbnb oder Booking.com. Auch eine detaillierte Aufstellung der Einnahmen kann hilfreich sein. Zudem können Sie Zeugen benennen, die Ihre Vermietung bestätigen können. Achten Sie darauf, alle relevanten Dokumente gut zu archivieren.",
+      "rag_verdict": {
+        "korrektheit": 2,
+        "fundierung": 2,
+        "erfunden": false,
+        "begruendung": "Die Antwort deckt sich inhaltlich mit der Referenz und wird durch den Kontext unterstützt, da sie konkrete Nachweise für die Vermietung anführt."
+      },
+      "norag_verdict": {
+        "korrektheit": 1,
+        "fundierung": 0,
+        "erfunden": false,
+        "begruendung": "Die Antwort enthält teilweise korrekte Ansätze zur Nachweisführung, jedoch fehlt der spezifische Bezug auf die Belegungsdaten, die in der Referenz als entscheidend hervorgehoben werden."
+      }
+    },
+    {
+      "question_id": "08aaaec43874c99b",
+      "question": "Welche Gründe können dafür sprechen, dass eine sofortige Vollziehung einer Ordnungsverfügung notwendig ist?",
+      "reference": "Es müssen besondere Gründe genannt werden, die zeigen, dass ein öffentliches Interesse an der sofortigen Vollziehung besteht, um erhebliche Gefahren abzuwenden.",
+      "rag_answer": "Gründe für die sofortige Vollziehung einer Ordnungsverfügung können insbesondere in der Notwendigkeit liegen, erheblichen Gefahren für die öffentliche Sicherheit vorzubeugen. In Fällen besonderer Dringlichkeit genügt es, wenn die Behörde besondere Gründe benennt, die ein starkes öffentliches Interesse an der sofortigen Vollziehung belegen [S2], [S3]. Zudem muss das öffentliche Interesse an der sofortigen Vollziehung das private Interesse des Betroffenen am Aufschub der Maßnahme überwiegen [S1], [S4]. Eine rechtmäßige Anordnung der sofortigen Vollziehung ist erforderlich, um negative Folgen, wie etwa die Vernachlässigung von Tieren, zu verhindern [S5].",
+      "norag_answer": "Eine sofortige Vollziehung einer Ordnungsverfügung kann notwendig sein, wenn Gefahr im Verzug besteht, also eine unmittelbare Gefahr für die öffentliche Sicherheit oder Ordnung vorliegt. Zudem kann es erforderlich sein, um die Wirksamkeit der Verfügung nicht zu gefährden, etwa wenn ein Widerspruch die Umsetzung verzögern würde. Auch die Vermeidung von irreparablen Nachteilen für Dritte kann einen Grund darstellen. In bestimmten Fällen kann auch das öffentliche Interesse an einer schnellen Umsetzung entscheidend sein. Schließlich kann die Dringlichkeit der Maßnahme selbst einen Grund für die sofortige Vollziehung darstellen.",
+      "rag_verdict": {
+        "korrektheit": 2,
+        "fundierung": 2,
+        "erfunden": false,
+        "begruendung": "Die bewertete Antwort deckt die wesentlichen Aspekte der Referenzantwort ab und wird durch den Kontext ausreichend gestützt."
+      },
+      "norag_verdict": {
+        "korrektheit": 1,
+        "fundierung": 0,
+        "erfunden": false,
+        "begruendung": "Die Antwort enthält teilweise richtige Aspekte zur sofortigen Vollziehung, geht jedoch über die in der Referenz genannten Gründe hinaus und ist ohne Kontext nicht fundiert."
+      }
+    },
+    {
+      "question_id": "13c87eb8a85b3b8d",
+      "question": "Wie wird die ortsübliche Vergleichsmiete für eine Wohnung in einfacher Wohnlage ermittelt?",
+      "reference": "Die ortsübliche Vergleichsmiete wird anhand des einfachen Mietspiegels geschätzt und berücksichtigt die Wohnwertmerkmale der Wohnung.",
+      "rag_answer": "Die ortsübliche Vergleichsmiete für eine Wohnung in einfacher Wohnlage wird durch die Erstellung eines Mietspiegels ermittelt, der von der Gemeinde oder von Interessenvertretern der Vermieter und Mieter anerkannt sein muss [S1]. Dieser Mietspiegel basiert auf einer statistisch aufgearbeiteten Zusammenstellung der in den letzten vier Jahren vereinbarten Mieten für vergleichbare Wohnungen [S3]. Die Ermittlung erfolgt unter Berücksichtigung von Wohnwertmerkmalen und einer ausreichenden Anzahl an Vergleichswohnungen [S1]. Bei der Feststellung der Vergleichsmiete wird auch der Median der Mieten herangezogen [S3]. Ein einfacher Mietspiegel kann dabei als taugliches Kriterium dienen [S5].",
+      "norag_answer": "Die ortsübliche Vergleichsmiete wird durch den Mietspiegel der jeweiligen Stadt oder Gemeinde ermittelt, der die Mieten vergleichbarer Wohnungen in ähnlicher Lage und Ausstattung auflistet. Alternativ können auch Vergleichswohnungen herangezogen werden, die in den letzten vier Jahren neu vermietet wurden. Bei der Ermittlung werden Faktoren wie Größe, Baujahr, Ausstattung und Lage der Wohnung berücksichtigt. In einfachen Wohnlagen sind die Mieten in der Regel niedriger als in besseren Lagen. Vermieter müssen die Vergleichsmiete nachweisen, wenn sie eine Mieterhöhung anstreben.",
+      "rag_verdict": {
+        "korrektheit": 2,
+        "fundierung": 2,
+        "erfunden": false,
+        "begruendung": "Die Antwort deckt die wesentlichen Aspekte der Referenzantwort ab und wird durch den Kontext vollständig unterstützt."
+      },
+      "norag_verdict": {
+        "korrektheit": 1,
+        "fundierung": 0,
+        "erfunden": false,
+        "begruendung": "Die Antwort enthält teilweise korrekte Informationen zur Ermittlung der Vergleichsmiete, weicht jedoch in der Detailtiefe von der Referenzantwort ab."
+      }
+    },
+    {
+      "question_id": "1922752024cb8dff",
+      "question": "Wie viel Schulden hat die Beklagte für Miete und Nebenkosten zwischen Januar 1989 und August 1990 angesammelt?",
+      "reference": "Die Beklagte hat insgesamt 17.701,95 DM Schulden für Miete und Nebenkosten angesammelt.",
+      "rag_answer": "Die Beklagte hat zwischen Januar 1989 und August 1990 insgesamt Schulden in Höhe von 17.701,95 DM für Miete und Nebenkosten angesammelt. Davon entfallen 12.007,88 DM auf die Grundmietzinsen und 5.694,07 DM auf die Nebenkosten [S1]. Nach Berücksichtigung geleisteter Zahlungen verbleibt eine Restforderung von 4.337,95 DM [S5].",
+      "norag_answer": "Um die genaue Höhe der Schulden der Beklagten für Miete und Nebenkosten zwischen Januar 1989 und August 1990 zu bestimmen, sind die spezifischen Mietverträge, Zahlungsbelege und eventuell gerichtliche Unterlagen erforderlich. Ohne diese Informationen kann keine präzise Zahl genannt werden. Es wäre ratsam, die entsprechenden Dokumente zu prüfen oder rechtlichen Rat einzuholen.",
+      "rag_verdict": {
+        "korrektheit": 2,
+        "fundierung": 2,
+        "erfunden": false,
+        "begruendung": "Die zu bewertende Antwort stimmt inhaltlich mit der Referenzantwort überein und wird durch den Kontext vollständig unterstützt."
+      },
+      "norag_verdict": {
+        "korrektheit": 0,
+        "fundierung": 0,
+        "erfunden": false,
+        "begruendung": "Die Antwort geht am Thema vorbei, da sie keine konkrete Zahl nennt und stattdessen auf die Notwendigkeit von Dokumenten hinweist."
+      }
+    },
+    {
+      "question_id": "198669075d50a891",
+      "question": "Warum haben die Kläger keinen Anspruch auf einen Erlass der Grundsteuer für ihre leerstehenden Wohnungen?",
+      "reference": "Die Kläger haben keine individuellen Gründe vorgebracht, die ihre Leerstände von denen anderer Vermieter unterscheiden, und es gibt keine Anzeichen dafür, dass nur sie von Problemen betroffen sind.",
+      "rag_answer": "Die Kläger haben keinen Anspruch auf einen Erlass der Grundsteuer für ihre leerstehenden Wohnungen, da die Leerstände nicht auf außergewöhnliche Umstände zurückzuführen sind, die nur ihre Mietanlagen betreffen. Vielmehr sind die Ertragsminderungen strukturell bedingt und betreffen den gesamten Markt in E., was bedeutet, dass auch andere Vermieter ähnliche Probleme haben [S2]. Zudem haben die Kläger keine individuellen Gründe vorgebracht, die ihre Situation von der allgemeinen Marktlage abheben [S2]. Die durch Leerstand entstandenen Ertragsminderungen sind nicht vorübergehend und können daher nicht im Erlassverfahren berücksichtigt werden [S4]. Schließlich ist die Nachfrage nach den Wohnungen der Kläger aufgrund des Überangebots an Wohnraum in der Gemeinde nicht mehr gegeben [S5].",
+      "norag_answer": "Die Kläger haben keinen Anspruch auf einen Erlass der Grundsteuer für leerstehende Wohnungen, da die Grundsteuer an die Eigentümerschaft und nicht an die Nutzung der Immobilie gebunden ist. Leerstand allein rechtfertigt keinen Erlass, da die Steuerpflicht unabhängig von der Vermietung besteht. Zudem gibt es im deutschen Steuerrecht keine Regelung, die einen Erlass aufgrund von Leerstand vorsieht. Die Grundsteuer wird auch erhoben, um die kommunalen Aufgaben zu finanzieren, die unabhängig von der Nutzung der Immobilien sind. Daher bleibt die Steuerpflicht auch bei leerstehenden Wohnungen bestehen.",
+      "rag_verdict": {
+        "korrektheit": 2,
+        "fundierung": 2,
+        "erfunden": false,
+        "begruendung": "Die zu bewertende Antwort deckt die wesentlichen Punkte der Referenzantwort ab und ist durch den Kontext vollständig gestützt."
+      },
+      "norag_verdict": {
+        "korrektheit": 1,
+        "fundierung": 0,
+        "erfunden": false,
+        "begruendung": "Die Antwort enthält teilweise richtige Informationen zur Grundsteuer, geht jedoch nicht auf die spezifischen Gründe ein, warum die Kläger keinen Anspruch auf Erlass haben, und ist somit nicht vollständig fundiert."
+      }
+    },
+    {
+      "question_id": "1ad7f1bd0e36fecf",
+      "question": "Wie lange kann ich als Mieter meine Mietzeit verlängern, wenn der Vermieter nicht rechtzeitig widerspricht?",
+      "reference": "Du kannst die Mietzeit um fünf Jahre verlängern, wenn der Vermieter zwölf Monate vor Ablauf der Mietzeit nicht widersprochen hat.",
+      "rag_answer": "Als Mieter kannst du deine Mietzeit um fünf Jahre verlängern, wenn der Vermieter zwölf Monate vor Ablauf der Mietzeit nicht widerspricht [S1]. Hast du noch Optionsrechte, kannst du auch bis zu sechs Monate vor Ablauf der Mietzeit entscheiden, ob du das Mietverhältnis verlängern möchtest [S2]. Ein Widerspruch des Vermieters muss also rechtzeitig erfolgen, um die Verlängerung zu verhindern [S1]. Wenn der Vermieter nicht rechtzeitig widerspricht, gilt die Verlängerung automatisch [S1]. Es ist wichtig, die Fristen genau zu beachten, um rechtliche Nachteile zu vermeiden.",
+      "norag_answer": "Im deutschen Mietrecht gibt es keine gesetzliche Regelung, die eine automatische Verlängerung des Mietverhältnisses bei fehlendem Widerspruch des Vermieters vorsieht. Wenn im Mietvertrag eine bestimmte Laufzeit vereinbart ist, endet das Mietverhältnis in der Regel mit Ablauf dieser Frist. Eine Verlängerung kann nur durch eine einvernehmliche Vereinbarung zwischen Mieter und Vermieter erfolgen. Bei unbefristeten Mietverhältnissen kann der Mieter jedoch jederzeit kündigen, wobei die gesetzlichen Kündigungsfristen zu beachten sind. Es ist ratsam, im Zweifelsfall rechtlichen Rat einzuholen.",
+      "rag_verdict": {
+        "korrektheit": 2,
+        "fundierung": 2,
+        "erfunden": false,
+        "begruendung": "Die Antwort deckt die wesentlichen Punkte der Referenz ab und ist durch den Kontext vollständig gestützt."
+      },
+      "norag_verdict": {
+        "korrektheit": 0,
+        "fundierung": 0,
+        "erfunden": false,
+        "begruendung": "Die Antwort widerspricht der Referenz, da sie die Möglichkeit einer automatischen Verlängerung des Mietverhältnisses bei fehlendem Widerspruch des Vermieters nicht berücksichtigt."
+      }
+    },
+    {
+      "question_id": "1b5679fe4f9dd6a7",
+      "question": "Kann ich die Zweitwohnungssteuer als Werbungskosten absetzen, wenn ich die Wohnung nicht selbst genutzt habe?",
+      "reference": "Ja, die Zweitwohnungssteuer ist in vollem Umfang als Werbungskosten abzugsfähig, wenn die Wohnung ganzjährig zur Vermietung bereitstand.",
+      "rag_answer": "Ja, die Zweitwohnungssteuer kann als Werbungskosten abgesetzt werden, auch wenn die Wohnung nicht selbst genutzt wurde. Da die Steuer an das Vorhalten der Wohnung für persönliche Zwecke anknüpft und die Wohnung ganzjährig zur Vermietung zur Verfügung stand, ist die Zweitwohnungssteuer in vollem Umfang abziehbar [S1]. Eine Eigennutzung ist nicht erforderlich, um die Kosten als Werbungskosten geltend zu machen [S2].",
+      "norag_answer": "Die Zweitwohnungssteuer kann in der Regel nicht als Werbungskosten abgesetzt werden, wenn die Wohnung nicht selbst genutzt wird. Werbungskosten sind nur abzugsfähig, wenn sie in direktem Zusammenhang mit der Erzielung von Einkünften stehen. Bei einer ungenutzten Zweitwohnung fehlt dieser Zusammenhang. Es empfiehlt sich, im Einzelfall einen Steuerberater zu konsultieren, um mögliche Ausnahmen oder spezielle Regelungen zu prüfen.",
+      "rag_verdict": {
+        "korrektheit": 2,
+        "fundierung": 2,
+        "erfunden": false,
+        "begruendung": "Die bewertete Antwort stimmt inhaltlich mit der Referenzantwort überein und wird durch den Kontext vollständig unterstützt."
+      },
+      "norag_verdict": {
+        "korrektheit": 0,
+        "fundierung": 0,
+        "erfunden": false,
+        "begruendung": "Die Antwort widerspricht der Referenzantwort und ist nicht durch den Kontext gedeckt."
+      }
+    },
+    {
+      "question_id": "1d310838ea3314c8",
+      "question": "Was passiert mit meinem Genossenschaftsanteil, wenn ich insolvent werde und in einer Genossenschaftswohnung lebe?",
+      "reference": "Der Genossenschaftsanteil gehört nicht zur Insolvenzmasse, sodass der Insolvenzverwalter keinen Zugriff darauf hat.",
+      "rag_answer": "Im Falle einer Insolvenz gehört der Genossenschaftsanteil nicht zur Insolvenzmasse, was bedeutet, dass der Insolvenzverwalter keinen Zugriff darauf hat [S1]. Dies schützt das Mietverhältnis des Schuldners in der Genossenschaftswohnung, sodass er nicht durch den Verlust seiner Wohnung in eine besondere Notlage geraten soll [S2]. Der Genossenschaftsanteil bleibt somit im Besitz des Schuldners, auch wenn er insolvent ist.",
+      "norag_answer": "Im Falle einer Insolvenz kann der Genossenschaftsanteil Teil der Insolvenzmasse werden. Das bedeutet, dass der Insolvenzverwalter den Anteil verwerten kann, um Gläubiger zu befriedigen. Allerdings bleibt in der Regel das Wohnrecht bestehen, solange die Miete gezahlt wird. Es ist ratsam, sich frühzeitig mit dem Insolvenzverwalter und der Genossenschaft in Verbindung zu setzen, um die Situation zu klären. Eine rechtliche Beratung kann ebenfalls sinnvoll sein.",
+      "rag_verdict": {
+        "korrektheit": 2,
+        "fundierung": 2,
+        "erfunden": false,
+        "begruendung": "Die Antwort deckt die wesentlichen Punkte der Referenzantwort ab und ist durch den Kontext vollständig gestützt."
+      },
+      "norag_verdict": {
+        "korrektheit": 0,
+        "fundierung": 0,
+        "erfunden": false,
+        "begruendung": "Die Antwort widerspricht der Referenz, da sie fälschlicherweise behauptet, der Genossenschaftsanteil könne Teil der Insolvenzmasse werden."
+      }
+    },
+    {
+      "question_id": "206dc1c029b591cf",
+      "question": "Warum wurde die Berufung des Beklagten nicht erfolgreich?",
+      "reference": "Die Berufung wurde als zulässig, aber nicht begründet angesehen, da das Sozialgericht Oldenburg die Argumente der Kläger als zutreffend erachtete.",
+      "rag_answer": "Die Berufung des Beklagten wurde nicht erfolgreich, da der Berufungswert des § 144 Abs. 1 SGG nicht erreicht wurde und keine der Zulassungsgründe des § 144 Abs. 2 SGG vorlag [S1]. Zudem war die Berufung unzulässig, weil es an der Angabe einer ladungsfähigen Anschrift des Klägers fehlte, was eine grundlegende Voraussetzung für die Klageerhebung darstellt [S2]. Das Gericht stellte fest, dass keine Gesichtspunkte vorlagen, die eine mündliche Verhandlung rechtfertigen würden [S2].",
+      "norag_answer": "Die Berufung des Beklagten wurde nicht erfolgreich, weil die vorinstanzliche Entscheidung rechtlich korrekt war und die Beweise sowie die Argumentation des Beklagten nicht ausreichten, um die Entscheidung zu widerlegen. Zudem konnte der Beklagte keine neuen, entscheidungserheblichen Tatsachen oder Beweise vorlegen, die eine andere Entscheidung rechtfertigen würden. Auch die rechtlichen Grundlagen wurden nicht ausreichend angefochten. Daher blieb das Urteil der Vorinstanz bestehen.",
+      "rag_verdict": {
+        "korrektheit": 1,
+        "fundierung": 2,
+        "erfunden": false,
+        "begruendung": "Die Antwort enthält teilweise korrekte Informationen zur Unzulässigkeit der Berufung, jedoch wird nicht auf die zutreffende Begründung des Gerichts eingegangen."
+      },
+      "norag_verdict": {
+        "korrektheit": 1,
+        "fundierung": 0,
+        "erfunden": false,
+        "begruendung": "Die Antwort enthält teilweise richtige Informationen zur Berufung, jedoch fehlt der spezifische Bezug zur Argumentation des Sozialgerichts Oldenburg."
+      }
+    },
+    {
+      "question_id": "2224e631f463b763",
+      "question": "Wie kann ich die Höhe meiner Mietansprüche nach einem Unfall berechnen?",
+      "reference": "Die Mietansprüche können anhand des Modus-Tarifs des Schwacke-Automietpreisspiegels für das jeweilige Postleitzahlengebiet plus 20 % für betriebswirtschaftliche Mehrkosten berechnet werden, wobei auch tatsächlich angefallene Nebenleistungen hinzugerechnet werden dürfen.",
+      "rag_answer": "Um die Höhe Ihrer Mietansprüche nach einem Unfall zu berechnen, können Sie sich an der „Schwacke-Liste“ orientieren, die als Referenz für die Erstattung von Mietwagenkosten anerkannt ist. Die Berechnung erfolgt in der Regel auf Basis des Normaltarifs, der für die Dauer der Anmietung gilt, wobei auch Nebenkosten berücksichtigt werden können [S1], [S5]. Es ist wichtig, die Mietdauer und die Fahrzeugklasse zu beachten, da diese Faktoren die Höhe der Ansprüche beeinflussen [S5]. Bei der Berechnung können Sie auch einen Zuschlag auf den Normaltarif in Betracht ziehen, um zusätzliche Kosten abzudecken [S5].",
+      "norag_answer": "Um die Höhe Ihrer Mietansprüche nach einem Unfall zu berechnen, müssen Sie zunächst den Zeitraum ermitteln, in dem die Wohnung nicht nutzbar war. Dann multiplizieren Sie die monatliche Miete mit der Anzahl der Monate, in denen Sie die Wohnung nicht nutzen konnten. Zusätzlich können Sie gegebenenfalls Schadensersatz für weitere Kosten, wie Umzugskosten oder Hotelaufenthalte, geltend machen. Es ist ratsam, alle Belege und Nachweise zu sammeln. Bei Unsicherheiten kann die Konsultation eines Rechtsanwalts für Mietrecht sinnvoll sein.",
+      "rag_verdict": {
+        "korrektheit": 1,
+        "fundierung": 1,
+        "erfunden": false,
+        "begruendung": "Die Antwort bezieht sich auf die Schwacke-Liste und erwähnt die Berücksichtigung von Nebenkosten, was teilweise mit der Referenz übereinstimmt, jedoch der spezifische Zuschlag von 20 % für betriebswirtschaftliche Mehrkosten nicht explizit genannt wird."
+      },
+      "norag_verdict": {
+        "korrektheit": 0,
+        "fundierung": 0,
+        "erfunden": false,
+        "begruendung": "Die Antwort geht am Thema vorbei, da sie nicht die spezifische Berechnungsmethode für Mietansprüche nach einem Unfall gemäß der Referenzantwort behandelt."
+      }
+    },
+    {
+      "question_id": "23d30ae11e4729fe",
+      "question": "Wie hoch sind die insgesamt anerkannten Kosten für Hauswart, Winterdienst und Gartenpflege?",
+      "reference": "Die insgesamt anerkannten Kosten betragen 8.391,43 €.",
+      "rag_answer": "Die insgesamt anerkannten Kosten für Hauswart, Winterdienst und Gartenpflege betragen 8.391,43 €. Davon entfallen 4.320,00 € auf den Hauswart, 1.571,43 € auf den Winterdienst und 2.500,00 € auf die Gartenpflege [S1]. Diese Beträge sind brutto und beinhalten die Mehrwertsteuer [S1].",
+      "norag_answer": "Die insgesamt anerkannten Kosten für Hauswart, Winterdienst und Gartenpflege können variieren, da sie von den individuellen Mietverträgen und den jeweiligen Betriebskostenverordnungen abhängen. Grundsätzlich sind diese Kosten jedoch als umlagefähige Betriebskosten gemäß § 2 der Betriebskostenverordnung (BetrKV) anerkannt. Es gibt keine festen Höchstgrenzen, aber die Kosten müssen angemessen und marktüblich sein. Mieter haben das Recht, die Abrechnungen einzusehen und die Angemessenheit der Kosten zu überprüfen. Bei Unstimmigkeiten kann eine rechtliche Beratung in Anspruch genommen werden.",
+      "rag_verdict": {
+        "korrektheit": 2,
+        "fundierung": 2,
+        "erfunden": false,
+        "begruendung": "Die zu bewertende Antwort deckt sich vollständig mit der Referenzantwort und wird durch den Kontext unterstützt."
+      },
+      "norag_verdict": {
+        "korrektheit": 0,
+        "fundierung": 0,
+        "erfunden": false,
+        "begruendung": "Die Antwort geht am Thema vorbei, da sie keine konkreten Kosten nennt und stattdessen allgemeine Informationen zu Betriebskosten gibt."
+      }
+    },
+    {
+      "question_id": "29c04e7e6244009a",
+      "question": "Wie viel mehr müsste ich monatlich für die Miete zahlen, wenn die Kosten für Schönheitsreparaturen im Durchschnitt bei 6,50 EUR pro Quadratmeter liegen?",
+      "reference": "Der monatliche Erhöhungsbetrag beträgt 47,13 EUR bei einer Grundfläche von 87 qm.",
+      "rag_answer": "Um die monatlichen Mehrkosten für Schönheitsreparaturen zu berechnen, multiplizieren Sie die Wohnfläche in Quadratmetern mit dem Betrag von 6,50 EUR pro Quadratmeter. Bei einer Wohnfläche von beispielsweise 75 qm würden die zusätzlichen Kosten 487,50 EUR pro Monat betragen (75 qm * 6,50 EUR). Diese Kosten sind jedoch nicht direkt aus den bereitgestellten Quellen ableitbar, da sie keine spezifischen Informationen zu den monatlichen Mietzuschlägen für Schönheitsreparaturen enthalten. Daher kann ich keine genaue Antwort auf die Frage geben, wie viel mehr Sie zahlen müssten, basierend auf den vorliegenden Informationen.",
+      "norag_answer": "Um die monatliche Miete zu berechnen, die die Kosten für Schönheitsreparaturen von 6,50 EUR pro Quadratmeter berücksichtigt, müssen Sie die Wohnfläche in Quadratmetern mit diesem Betrag multiplizieren. Beispiel: Bei einer Wohnfläche von 70 m² würden die Kosten 70 m² x 6,50 EUR/m² = 455 EUR betragen. Diese Summe müsste dann zur aktuellen Miete addiert werden, um die neue monatliche Miete zu ermitteln. Beachten Sie, dass Schönheitsreparaturen in der Regel nicht direkt auf die Miete umgelegt werden können, es sei denn, dies ist vertraglich vereinbart.",
+      "rag_verdict": {
+        "korrektheit": 0,
+        "fundierung": 0,
+        "erfunden": true,
+        "begruendung": "Die Antwort enthält falsche Berechnungen und geht am Thema vorbei, da sie nicht die korrekte monatliche Erhöhung für Schönheitsreparaturen angibt."
+      },
+      "norag_verdict": {
+        "korrektheit": 0,
+        "fundierung": 0,
+        "erfunden": false,
+        "begruendung": "Die Antwort berechnet zwar die Kosten für Schönheitsreparaturen, geht jedoch nicht auf die spezifische Frage der monatlichen Mieterhöhung ein und widerspricht der Referenzantwort."
+      }
+    },
+    {
+      "question_id": "2c4ca8da2338c1e7",
+      "question": "Was passiert, wenn ich die Kosten für meine Wohnung nicht senke, obwohl ich dazu aufgefordert werde?",
+      "reference": "Eine Aufforderung zur Kostensenkung allein führt noch nicht zu einer verbindlichen Regelung oder Änderung Ihrer Rechte.",
+      "rag_answer": "Wenn Sie die Kosten für Ihre Wohnung nicht senken, obwohl Sie dazu aufgefordert wurden, kann dies Auswirkungen auf Ihre Leistungsansprüche haben. Es obliegt Ihnen, sich aktiv um eine kostengünstigere Unterkunft zu bemühen, und Sie müssen Ihre Bemühungen substantiiert darlegen [S2]. Sollten Sie dies nicht tun, könnte der Leistungsträger Ihre Unterkunftskosten nicht in vollem Umfang übernehmen [S5]. Es ist wichtig, kontinuierliche und nicht nur punktuelle Bemühungen nachzuweisen [S4]. Andernfalls riskieren Sie, dass Ihre Ansprüche auf Unterstützung eingeschränkt werden.",
+      "norag_answer": "Wenn Sie die Kosten für Ihre Wohnung nicht senken, obwohl Sie dazu aufgefordert werden, kann der Vermieter rechtliche Schritte einleiten. Dies könnte eine Abmahnung oder im schlimmsten Fall eine Kündigung des Mietverhältnisses zur Folge haben. Es ist wichtig, die Gründe für die Aufforderung zu prüfen, da diese möglicherweise auf eine unzulässige Mieterhöhung oder andere rechtliche Probleme hinweisen. Sie sollten sich rechtzeitig rechtlichen Rat einholen, um Ihre Optionen zu klären. Ignorieren Sie die Aufforderung nicht, da dies Ihre Position schwächen könnte.",
+      "rag_verdict": {
+        "korrektheit": 1,
+        "fundierung": 2,
+        "erfunden": false,
+        "begruendung": "Die Antwort enthält teilweise korrekte Informationen über die Auswirkungen der Nichterfüllung der Aufforderung zur Kostensenkung, jedoch wird nicht ausreichend betont, dass eine Aufforderung allein keine verbindliche Regelung darstellt."
+      },
+      "norag_verdict": {
+        "korrektheit": 0,
+        "fundierung": 0,
+        "erfunden": false,
+        "begruendung": "Die Antwort geht über die Informationen der Referenz hinaus und enthält falsche Annahmen über mögliche rechtliche Konsequenzen."
+      }
+    },
+    {
+      "question_id": "31d3155a9d60758d",
+      "question": "Wie kann die Eigenheimzulage meine monatlichen Kosten für die Wohnung beeinflussen?",
+      "reference": "Die Eigenheimzulage kann dazu führen, dass sich die tatsächlich anfallenden Schuldzinsen senken, was wiederum die Kosten für die Unterkunft reduzieren kann.",
+      "rag_answer": "Die Eigenheimzulage kann die monatlichen Kosten für die Wohnung beeinflussen, indem sie die finanziellen Belastungen durch Schuldzinsen verringert. Allerdings führt die Gewährung der Eigenheimzulage nicht automatisch zu einer Reduzierung der monatlichen Zahlungen, wenn diese nicht tatsächlich sinken [S5]. Die Zulage wird einmal jährlich ausgezahlt und kann nicht fiktiv auf die monatlichen Zahlungen umgelegt werden [S5]. Daher bleibt die tatsächliche Höhe der monatlichen Schuldzinsen entscheidend für die Kostenbelastung [S5]. Eine direkte Auswirkung auf die monatlichen Kosten ist nur gegeben, wenn die Zulage zu einer realen Senkung der Zinszahlungen führt [S5].",
+      "norag_answer": "Die Eigenheimzulage kann Ihre monatlichen Kosten für die Wohnung beeinflussen, indem sie Ihnen finanzielle Unterstützung beim Erwerb oder Bau einer Immobilie bietet. Diese Zulage kann die Belastung durch Hypothekenzinsen oder andere Finanzierungskosten verringern. Dadurch sinken Ihre monatlichen Ausgaben, was Ihnen mehr finanziellen Spielraum verschafft. Allerdings ist die Eigenheimzulage in Deutschland seit 2006 abgeschafft, sodass sie für neue Anträge nicht mehr relevant ist. Bei bestehenden Verträgen sollten Sie die genauen Bedingungen prüfen.",
+      "rag_verdict": {
+        "korrektheit": 2,
+        "fundierung": 2,
+        "erfunden": false,
+        "begruendung": "Die zu bewertende Antwort deckt sich inhaltlich mit der Referenzantwort und wird durch den Kontext unterstützt."
+      },
+      "norag_verdict": {
+        "korrektheit": 1,
+        "fundierung": 0,
+        "erfunden": false,
+        "begruendung": "Die Antwort enthält teilweise korrekte Informationen zur Eigenheimzulage, berücksichtigt jedoch nicht, dass sie seit 2006 abgeschafft ist, was die Relevanz für neue Anträge betrifft."
+      }
+    },
+    {
+      "question_id": "3725de403f44dcb0",
+      "question": "Warum ist die festgelegte Angemessenheitsgrenze für die Miete eines Zweipersonenhaushalts nicht verbindlich?",
+      "reference": "Die Angemessenheitsgrenze von 402,85 Euro ist nicht konkret angemessen, da kein schlüssiges Konzept vorliegt und die Durchschnittswerte möglicherweise Substandardwohnungen beinhalten.",
+      "rag_answer": "Die festgelegte Angemessenheitsgrenze für die Miete eines Zweipersonenhaushalts ist nicht verbindlich, da sie nicht garantiert, dass ausreichend geeignete Wohnungen innerhalb dieser Grenze verfügbar sind. Die Rechtsprechung hat festgestellt, dass die Angemessenheitsgrenze nicht in jedem Fall das existenzielle Grundbedürfnis „Wohnen“ sichert, was eine rechtliche Grundlage für eine Deckelung der Kosten entbehrt [S1]. Zudem fehlt es an klaren Regelungen, welche Bevölkerungs- oder Einkommenssegmente als Bezugsgröße für einen angemessenen Wohnstandard dienen sollen [S5]. Daher ist die Anwendung der Angemessenheitsgrenze stark von den konkreten örtlichen Gegebenheiten abhängig und nicht universell anwendbar.",
+      "norag_answer": "Die Angemessenheitsgrenze für die Miete eines Zweipersonenhaushalts ist nicht verbindlich, da sie lediglich als Richtwert dient und von den jeweiligen Umständen des Einzelfalls abhängt. Die tatsächliche Angemessenheit kann durch Faktoren wie Lage, Ausstattung und individuelle Bedürfnisse variieren. Zudem können unterschiedliche Kommunen unterschiedliche Regelungen und Kriterien anwenden. Letztlich entscheidet im Streitfall das zuständige Gericht über die Angemessenheit der Miete. Daher ist eine Einzelfallprüfung unerlässlich.",
+      "rag_verdict": {
+        "korrektheit": 2,
+        "fundierung": 2,
+        "erfunden": false,
+        "begruendung": "Die bewertete Antwort deckt die wesentlichen Punkte der Referenzantwort ab und wird durch den Kontext gestützt."
+      },
+      "norag_verdict": {
+        "korrektheit": 1,
+        "fundierung": 0,
+        "erfunden": false,
+        "begruendung": "Die Antwort enthält teilweise richtige Aspekte zur Variabilität der Angemessenheitsgrenze, jedoch fehlt der spezifische Bezug zur fehlenden Verbindlichkeit aufgrund des fehlenden schlüssigen Konzepts."
+      }
+    },
+    {
+      "question_id": "3c14264273ef8a18",
+      "question": "Warum könnte die Berechnung der Zweitwohnungssteuer auf einem so alten Stichtag wie dem 1. Januar 1964 problematisch sein?",
+      "reference": "Weil die Wertverhältnisse seitdem stark verändert haben und dies mit dem Gleichheitssatz nicht mehr vereinbar ist.",
+      "rag_answer": "Die Berechnung der Zweitwohnungssteuer auf Basis des Stichtags 1. Januar 1964 ist problematisch, da die zugrunde gelegten Mietwerte nicht mehr realitätsnah sind und somit die tatsächlichen Verhältnisse nicht widerspiegeln [S2], [S4]. Dies kann zu einer fehlerhaften Steuerveranlagung führen, da die Werte aus dieser Zeit nicht mehr den aktuellen Marktbedingungen entsprechen [S3]. Zudem könnte die Anwendung solcher alten Werte zu einer unverhältnismäßigen Steuerbelastung führen, die dem Zweck der Einnahmeerzielung widerspricht [S1]. Die Rechtsprechung hat bereits festgestellt, dass die Verwendung dieser alten Werte nicht mehr zulässig ist [S1]. Daher ist eine Anpassung an aktuelle Mietwerte erforderlich, um eine faire Besteuerung zu gewährleisten.",
+      "norag_answer": "Die Berechnung der Zweitwohnungssteuer auf einem Stichtag wie dem 1. Januar 1964 könnte problematisch sein, da sich seitdem die wirtschaftlichen Rahmenbedingungen, Immobilienwerte und Lebenshaltungskosten erheblich verändert haben. Ein solch alter Stichtag könnte zu einer Ungleichbehandlung führen, da aktuelle Marktwerte und Mietpreise nicht berücksichtigt werden. Zudem könnte dies gegen das Prinzip der Gleichmäßigkeit der Besteuerung verstoßen, da die Steuerlast nicht mehr den aktuellen Verhältnissen entspricht. Auch rechtliche Unsicherheiten könnten entstehen, wenn die Berechnung nicht transparent und nachvollziehbar ist. Schließlich könnte eine solche Regelung verfassungsrechtliche Bedenken aufwerfen, insbesondere im Hinblick auf das Eigentumsrecht.",
+      "rag_verdict": {
+        "korrektheit": 2,
+        "fundierung": 2,
+        "erfunden": false,
+        "begruendung": "Die zu bewertende Antwort deckt die wesentlichen Punkte der Referenzantwort ab und wird durch den Kontext unterstützt."
+      },
+      "norag_verdict": {
+        "korrektheit": 1,
+        "fundierung": 0,
+        "erfunden": false,
+        "begruendung": "Die Antwort thematisiert die Problematik der veränderten wirtschaftlichen Rahmenbedingungen, geht jedoch über die Kernpunkte der Referenzantwort hinaus und ist ohne Kontext nicht fundiert."
+      }
+    },
+    {
+      "question_id": "3c3d3c930f6591ad",
+      "question": "Wie viel Geld steht mir monatlich zur Verfügung, um meine Ausgaben für Krankenversicherung und andere Kosten zu decken, wenn ich BAföG erhalte?",
+      "reference": "Mit dem BAföG-Höchstsatz von 670,00 Euro habe ich einen ausreichenden Puffer, auch wenn meine Ausgaben für die Kranken- und Pflegeversicherung höher sind.",
+      "rag_answer": "Wenn Sie BAföG erhalten, steht Ihnen ein monatlicher Bedarf von 373,00 Euro zu, der sich um Unterkunftskosten von 224,00 Euro erhöht, wenn Sie nicht bei Ihren Eltern wohnen [S2]. Zudem erhalten Sie einen Zuschlag von 62,00 Euro für die gesetzliche Krankenversicherung [S2]. Insgesamt ergibt sich somit ein monatlicher Bedarf von 659,00 Euro, wenn Sie nicht bei Ihren Eltern wohnen und krankenversichert sind. Die durchschnittlichen Ausgaben für die eigene Krankenversicherung sind bereits in den BAföG-Beträgen berücksichtigt [S1]. Daher sollten Sie in der Lage sein, Ihre Ausgaben für Krankenversicherung und andere Kosten aus diesem Betrag zu decken.",
+      "norag_answer": "Die Höhe des BAföG hängt von verschiedenen Faktoren ab, wie dem Einkommen der Eltern, dem eigenen Einkommen und dem Wohnort. Grundsätzlich erhalten Studierende in der Regel einen monatlichen Betrag von bis zu 861 Euro (Stand 2023). Davon müssen die Ausgaben für Krankenversicherung und andere Lebenshaltungskosten gedeckt werden. Es ist ratsam, einen individuellen BAföG-Rechner zu nutzen, um die genaue Summe zu ermitteln. Bei Fragen zu spezifischen Ausgaben oder zur Berechnung kann das zuständige BAföG-Amt weiterhelfen.",
+      "rag_verdict": {
+        "korrektheit": 1,
+        "fundierung": 2,
+        "erfunden": false,
+        "begruendung": "Die Antwort enthält korrekte Informationen über den BAföG-Bedarf, weicht jedoch in der Gesamtsumme leicht von der Referenz ab."
+      },
+      "norag_verdict": {
+        "korrektheit": 0,
+        "fundierung": 0,
+        "erfunden": false,
+        "begruendung": "Die Antwort geht am Thema vorbei, da sie nicht den BAföG-Höchstsatz und die spezifischen Ausgaben für Krankenversicherung berücksichtigt."
+      }
+    },
+    {
+      "question_id": "3dac922141e3804b",
+      "question": "Warum wird der Kostenvoranschlag der Immobilienverwaltung als nicht vertrauenswürdig angesehen?",
+      "reference": "Der Kostenvoranschlag stammt von einem Unternehmen, dessen Sachkunde für die Ermittlung von Teppichreinigungskosten nicht erkennbar ist, und es handelt sich zudem um einen Eigenbeleg, da die Beklagte Gesellschafterin des Unternehmens ist.",
+      "rag_answer": "Der Kostenvoranschlag der Immobilienverwaltung wird als nicht vertrauenswürdig angesehen, weil der Mieter nicht darauf vertrauen darf, dass die Vorauszahlungen kostendeckend sind, ohne selbst Nachfragen zu stellen [S1]. Zudem kann eine unklare Nebenkostenregelung in Kombination mit zu niedrig angesetzten Vorauszahlungen dazu führen, dass die tatsächlichen Kosten für den Mieter nicht erkennbar sind [S2]. Der Vermieter ist nicht verpflichtet, die tatsächlichen Kosten anzugeben, was die Transparenz der Nebenkosten beeinträchtigt [S3]. Daher ist es für den Mieter entscheidend, sich umfassend zu informieren und aktiv Fragen zu stellen [S1].",
+      "norag_answer": "Ein Kostenvoranschlag der Immobilienverwaltung kann als nicht vertrauenswürdig angesehen werden, wenn er nicht transparent ist oder keine nachvollziehbaren Berechnungen enthält. Zudem könnte ein Interessenkonflikt bestehen, wenn die Verwaltung selbst von den Aufträgen profitiert. Fehlende Vergleichsangebote oder unklare Preisstrukturen können ebenfalls Zweifel an der Seriosität wecken. Mieter haben das Recht, die Angemessenheit der Kosten zu hinterfragen. Eine sorgfältige Prüfung und gegebenenfalls die Einholung unabhängiger Angebote sind ratsam.",
+      "rag_verdict": {
+        "korrektheit": 0,
+        "fundierung": 0,
+        "erfunden": false,
+        "begruendung": "Die Antwort geht am Thema vorbei, da sie sich auf die Informationspflicht des Mieters konzentriert, während die Referenzantwort spezifisch auf die Unzuverlässigkeit des Kostenvoranschlags aufgrund der Sachkunde des Unternehmens und der Eigenbelegproblematik eingeht."
+      },
+      "norag_verdict": {
+        "korrektheit": 1,
+        "fundierung": 0,
+        "erfunden": false,
+        "begruendung": "Die Antwort enthält teilweise richtige Aspekte zu Transparenz und Interessenkonflikten, geht jedoch nicht konkret auf die spezifischen Gründe ein, die im Urteil genannt werden."
+      }
+    },
+    {
+      "question_id": "44b91e50b159c550",
+      "question": "Was passiert, wenn die Kündigung eines Mietvertrags nicht schriftlich erfolgt?",
+      "reference": "Die Kündigung ist unwirksam, da das Gesetz eine schriftliche Form vorschreibt.",
+      "rag_answer": "Eine Kündigung eines Mietvertrags, die nicht schriftlich erfolgt, kann in der Regel unwirksam sein, insbesondere wenn der Mietvertrag eine Schriftform vorschreibt. In einem Fall wurde eine außerordentliche Kündigung in eine ordentliche Kündigung umgedeutet, weil die Schriftform nicht eingehalten wurde, was die Wirksamkeit der Kündigung beeinflusste [S3]. Es ist jedoch umstritten, ob eine formlos abgegebene Kündigung unter bestimmten Umständen wirksam sein kann, wenn die Vertragsparteien dies nicht ausdrücklich ausgeschlossen haben [S2]. Generell gilt, dass die Einhaltung der Schriftform für die Wirksamkeit der Kündigung entscheidend ist [S1].",
+      "norag_answer": "Eine Kündigung eines Mietvertrags muss gemäß § 568 BGB schriftlich erfolgen, um wirksam zu sein. Erfolgt die Kündigung nicht schriftlich, ist sie rechtlich unwirksam. Das bedeutet, dass der Mietvertrag weiterhin besteht und die Mietverhältnisse fortgeführt werden müssen. Mündliche Kündigungen oder Kündigungen per E-Mail sind nicht ausreichend. Es ist ratsam, die Kündigung immer schriftlich und mit eigenhändiger Unterschrift zu übermitteln.",
+      "rag_verdict": {
+        "korrektheit": 1,
+        "fundierung": 1,
+        "erfunden": false,
+        "begruendung": "Die Antwort ist teilweise korrekt, da sie die Möglichkeit der Unwirksamkeit einer nicht schriftlichen Kündigung anspricht, jedoch nicht klarstellt, dass die Schriftform gesetzlich vorgeschrieben ist."
+      },
+      "norag_verdict": {
+        "korrektheit": 2,
+        "fundierung": 0,
+        "erfunden": false,
+        "begruendung": "Die Antwort ist korrekt, da sie die gesetzliche Vorgabe zur Schriftform der Kündigung gemäß § 568 BGB wiedergibt, jedoch fehlt der Kontext."
+      }
+    },
+    {
+      "question_id": "50e1b5264eada568",
+      "question": "Wie wird der Bedarf an Warmwasser in Bezug auf die gewährte Pauschale berücksichtigt?",
+      "reference": "Der Bedarf an Warmwasser wird typisierend angenommen, dass die Pauschalen, die auf fundierten Statistiken basieren, auch die Kosten der Warmwasserbereitung abdecken.",
+      "rag_answer": "Der Bedarf an Warmwasser wird durch Pauschalen abgedeckt, die vom Gesetzgeber festgelegt sind, um die Kosten der dezentralen Warmwasserbereitung zu berücksichtigen. Diese Pauschalen sind typisierend und basieren auf statistischen Erhebungen, sodass sie auch die Kosten der Warmwasserbereitung umfassen sollten, solange keine spezifischen Messungen vorliegen [S1], [S2]. Ein abweichender Bedarf kann jedoch anerkannt werden, wenn der Leistungsberechtigte nachweisen kann, dass er tatsächlich höhere Kosten für die Warmwassererzeugung hat [S5]. In solchen Fällen können individuelle Mehrbedarfe geltend gemacht werden, die über die Pauschale hinausgehen [S1].",
+      "norag_answer": "Der Bedarf an Warmwasser wird in der Regel durch die Betriebskostenabrechnung berücksichtigt. Die Pauschale für Warmwasser kann entweder als Teil der Nebenkosten oder separat ausgewiesen sein. Vermieter müssen die tatsächlichen Kosten für Warmwasserverbrauch transparent darstellen. Bei einer Pauschale ist es wichtig, dass diese angemessen und nachvollziehbar ist. Mieter haben das Recht, Einsicht in die Abrechnungsunterlagen zu nehmen, um die Angemessenheit der Pauschale zu überprüfen.",
+      "rag_verdict": {
+        "korrektheit": 2,
+        "fundierung": 2,
+        "erfunden": false,
+        "begruendung": "Die bewertete Antwort deckt die wesentlichen Punkte der Referenzantwort ab und wird durch den Kontext vollständig unterstützt."
+      },
+      "norag_verdict": {
+        "korrektheit": 1,
+        "fundierung": 0,
+        "erfunden": false,
+        "begruendung": "Die Antwort enthält teilweise richtige Informationen zur Berücksichtigung von Warmwasser in der Betriebskostenabrechnung, geht jedoch nicht auf die typisierende Annahme der Pauschalen ein."
+      }
+    },
+    {
+      "question_id": "51a3a47920b76e47",
+      "question": "Welche rechtlichen Schwierigkeiten können bei einer Nutzungsänderung in einem Mehrfamilienhaus auftreten?",
+      "reference": "Es gibt keine besonderen rechtlichen oder tatsächlichen Schwierigkeiten bei der Rechtssache, die eine Nutzungsänderung betrifft.",
+      "rag_answer": "Bei einer Nutzungsänderung in einem Mehrfamilienhaus können verschiedene rechtliche Schwierigkeiten auftreten. Dazu zählen unter anderem die Unklarheit über die mietvertraglichen Regelungen zur Untervermietung und die Zustimmung der anderen Mieter, die durch eine mögliche Überbeanspruchung des Mietobjekts betroffen sein könnten [S3]. Zudem könnte die Änderung der Nutzung gegen bestehende Wettbewerbsverbote oder andere vertragliche Vereinbarungen verstoßen [S3]. Auch die Erforderlichkeit und Angemessenheit der neuen Nutzung im Vergleich zur bisherigen Wohnsituation sind rechtlich zu prüfen [S2]. Letztlich können auch Fragen zur rechtlichen Stellung von Nichteigentümern und deren Nutzungsrechten aufkommen, die bislang nicht abschließend geklärt sind [S1].",
+      "norag_answer": "Bei einer Nutzungsänderung in einem Mehrfamilienhaus können verschiedene rechtliche Schwierigkeiten auftreten, wie etwa die Notwendigkeit einer Genehmigung durch die zuständige Baubehörde. Zudem kann es zu Konflikten mit bestehenden Mietverträgen kommen, wenn die neue Nutzung nicht mit den vertraglichen Vereinbarungen übereinstimmt. Auch die Zustimmung der Mieter kann erforderlich sein, insbesondere wenn die Änderung ihre Wohnqualität beeinträchtigt. Darüber hinaus können nachbarrechtliche Aspekte und die Einhaltung von Brandschutz- und Sicherheitsvorschriften relevant sein. Schließlich können auch steuerliche Konsequenzen und Auswirkungen auf die Betriebskosten entstehen.",
+      "rag_verdict": {
+        "korrektheit": 0,
+        "fundierung": 0,
+        "erfunden": false,
+        "begruendung": "Die Antwort widerspricht der Referenzantwort, die besagt, dass es keine besonderen rechtlichen Schwierigkeiten bei einer Nutzungsänderung gibt."
+      },
+      "norag_verdict": {
+        "korrektheit": 0,
+        "fundierung": 0,
+        "erfunden": false,
+        "begruendung": "Die Antwort widerspricht der Referenz, da sie rechtliche Schwierigkeiten bei einer Nutzungsänderung beschreibt, die in der Referenz als nicht existent dargestellt werden."
+      }
+    },
+    {
+      "question_id": "56509c9cf6788bc5",
+      "question": "Wie viel Wohnfläche wird für eine alleinstehende Person als angemessen angesehen und was bedeutet das für meine Mietkosten?",
+      "reference": "Für eine alleinstehende Person wird eine Wohnfläche von maximal 47 qm als angemessen angesehen. Der monatliche Fehlbetrag beträgt 152,20 EUR, den der Antragsteller nicht aus seiner Regelleistung decken kann, was zu neuen Mietrückständen führen könnte.",
+      "rag_answer": "Für eine alleinstehende Person wird eine Wohnfläche von bis zu 45 qm als angemessen angesehen, wobei in einigen Regionen auch 50 qm akzeptiert werden können [S1], [S2]. Diese Angemessenheitsgrenze beeinflusst die Mietkosten, da übersteigende Mietaufwendungen als unangemessen gelten und möglicherweise nicht übernommen werden [S1]. Die tatsächlichen Mietkosten sollten sich also innerhalb dieser Grenzen bewegen, um als angemessen zu gelten [S3]. Bei höheren Mietkosten könnte eine Überprüfung durch das zuständige Amt erforderlich sein [S4]. Es ist wichtig, die spezifischen regionalen Bestimmungen zu beachten, da diese variieren können [S2].",
+      "norag_answer": "Für eine alleinstehende Person wird in Deutschland eine Wohnfläche von etwa 45 bis 60 Quadratmetern als angemessen angesehen, abhängig von der Region. Diese Angemessenheit kann Einfluss auf die Übernahme der Mietkosten durch das Jobcenter oder Sozialamt haben. Liegt die Miete über dem als angemessen geltenden Betrag, müssen die höheren Kosten in der Regel selbst getragen werden. Es ist ratsam, sich bei der zuständigen Behörde über die spezifischen Richtlinien in Ihrer Region zu informieren.",
+      "rag_verdict": {
+        "korrektheit": 1,
+        "fundierung": 1,
+        "erfunden": false,
+        "begruendung": "Die Antwort gibt eine teilweise korrekte Wohnflächenangabe für eine alleinstehende Person und verweist auf regionale Unterschiede, jedoch weicht sie von der Referenz ab."
+      },
+      "norag_verdict": {
+        "korrektheit": 0,
+        "fundierung": 0,
+        "erfunden": false,
+        "begruendung": "Die Antwort weicht von der Referenz ab und bietet keine fundierte Grundlage."
+      }
+    },
+    {
+      "question_id": "65add32b11fbb791",
+      "question": "Wie wird der Anteil für die Warmwasserbereitung in der Heizkostenabrechnung berücksichtigt, wenn ich weniger Kosten verursache als im Regelsatz vorgesehen?",
+      "reference": "Wenn aus der Heizkostenabrechnung ein konkreter Anteil für die Warmwasserbereitung entnommen werden kann, hat dieser Vorrang vor dem Abzug des im Regelsatz vorgesehenen Anteils.",
+      "rag_answer": "Wenn Sie weniger Kosten für die Warmwasserbereitung verursachen als im Regelsatz vorgesehen, können Sie den tatsächlichen Verbrauchsanteil abziehen, sofern dieser aus der Heizkostenabrechnung ersichtlich ist. Der Abzug des konkreten Verbrauchsanteils hat Vorrang vor den pauschalen Regelsätzen, da Sie nicht verpflichtet sind, den statistisch vorgesehenen Anteil tatsächlich auszugeben [S1]. Die Warmwasserkosten sind Teil der Regelleistung, und eine nicht auf dem tatsächlichen Verbrauch basierende Festlegung kann nicht zu einem Nachteil führen [S2]. Daher sollten Sie die tatsächlichen Kosten geltend machen, wenn diese unter dem Regelsatz liegen.",
+      "norag_answer": "In der Heizkostenabrechnung wird der Anteil für die Warmwasserbereitung in der Regel nach dem Verbrauch oder nach der Wohnfläche aufgeteilt. Wenn Sie weniger Kosten verursachen als im Regelsatz vorgesehen, können Sie dennoch nicht weniger zahlen, da die Abrechnung auf den Gesamtkosten basiert. Es ist jedoch möglich, dass Sie durch einen geringeren Verbrauch im Vergleich zu anderen Mietern einen niedrigeren Anteil an den Gesamtkosten haben. Eine genaue Berechnung hängt von den vertraglichen Regelungen und der Art der Abrechnung ab. Bei Unklarheiten sollten Sie die Abrechnung mit Ihrem Vermieter oder einem Mieterverein besprechen.",
+      "rag_verdict": {
+        "korrektheit": 2,
+        "fundierung": 2,
+        "erfunden": false,
+        "begruendung": "Die bewertete Antwort stimmt inhaltlich mit der Referenz überein und wird durch den Kontext vollständig unterstützt."
+      },
+      "norag_verdict": {
+        "korrektheit": 0,
+        "fundierung": 0,
+        "erfunden": false,
+        "begruendung": "Die Antwort widerspricht der Referenz, da sie nicht den Vorrang des konkreten Anteils für die Warmwasserbereitung berücksichtigt."
+      }
+    },
+    {
+      "question_id": "69c72900c0da22e8",
+      "question": "Wie wird das Wohngeld bei einem monatlichen Gesamteinkommen von 1.955,29 € und einer Miete von 450,00 € berechnet, wenn man 2 Haushaltsmitglieder hat?",
+      "reference": "Das Wohngeld wird mit der Formel 1,15 * (M - (a + b * M + c * Y)) berechnet, wobei a, b und c spezifische Werte für 2 Haushaltsmitglieder sind. In diesem Fall ergibt sich ein negatives Ergebnis, was bedeutet, dass kein Wohngeld gezahlt wird.",
+      "rag_answer": "Die Berechnung des Wohngeldes hängt von verschiedenen Faktoren ab, darunter das Gesamteinkommen und die Miete. Bei einem monatlichen Gesamteinkommen von 1.955,29 € und einer Miete von 450,00 € für einen Zweipersonenhaushalt könnte Wohngeld gewährt werden, da die Einkommensgrenze für zwei Haushaltsmitglieder in der Regel bei etwa 2.000 € liegt [S1]. Die angemessene Miete für einen Zweipersonenhaushalt liegt in der Mietenstufe IV bei 435 €, was durch einen Sicherheitszuschlag auf 478,50 € erhöht werden kann [S5]. Da die tatsächliche Miete von 450 € unter dieser Grenze liegt, könnte Wohngeld in voller Höhe gewährt werden, sofern alle anderen Voraussetzungen erfüllt sind. Eine genaue Berechnung erfordert jedoch weitere Informationen, die in den bereitgestellten Quellen nicht enthalten sind.",
+      "norag_answer": "Die Berechnung des Wohngeldes erfolgt anhand der Wohngeldtabelle, die das Einkommen, die Miete und die Anzahl der Haushaltsmitglieder berücksichtigt. Bei einem monatlichen Gesamteinkommen von 1.955,29 € und einer Miete von 450,00 € für zwei Haushaltsmitglieder wird das Wohngeld in der Regel anhand der festgelegten Einkommensgrenzen und Mietstufen ermittelt. Es ist wichtig, die genauen Werte aus der aktuellen Wohngeldtabelle zu entnehmen, da diese variieren können. Zudem können auch weitere Faktoren wie das Vermögen eine Rolle spielen. Für eine präzise Berechnung empfiehlt sich die Kontaktaufnahme mit der zuständigen Wohngeldstelle.",
+      "rag_verdict": {
+        "korrektheit": 1,
+        "fundierung": 1,
+        "erfunden": false,
+        "begruendung": "Die Antwort enthält teilweise korrekte Informationen zur Berechnung des Wohngeldes, geht jedoch nicht auf die spezifische Berechnungsformel ein und könnte zu Missverständnissen führen."
+      },
+      "norag_verdict": {
+        "korrektheit": 0,
+        "fundierung": 0,
+        "erfunden": false,
+        "begruendung": "Die Antwort geht am Thema vorbei, da sie keine spezifische Berechnung des Wohngeldes liefert und sich nicht an der Referenz orientiert."
+      }
+    },
+    {
+      "question_id": "6cf7e31de08e6342",
+      "question": "Wie hoch ist die neue Mietobergrenze für die Kosten der Unterkunft ab Oktober 2007?",
+      "reference": "Die neue Mietobergrenze beträgt 290,70 EUR.",
+      "rag_answer": "Die neue Mietobergrenze für die Kosten der Unterkunft ab Oktober 2007 beträgt 290,70 EUR. Diese Regelung wurde durch einen Änderungsbescheid vom 10. Dezember 2007 festgelegt [S1], [S3].",
+      "norag_answer": "Die Mietobergrenze für die Kosten der Unterkunft variiert je nach Bundesland und Kommune. Ab Oktober 2007 wurden die Obergrenzen im Rahmen der Hartz-IV-Reform festgelegt, jedoch sind diese Beträge regional unterschiedlich. Es ist wichtig, die spezifischen Richtlinien der jeweiligen Stadt oder des Landkreises zu konsultieren, um die genaue Obergrenze zu erfahren. Generell orientieren sich die Obergrenzen an den örtlichen Mietspiegeln.",
+      "rag_verdict": {
+        "korrektheit": 2,
+        "fundierung": 2,
+        "erfunden": false,
+        "begruendung": "Die Antwort gibt die korrekte Mietobergrenze von 290,70 EUR wieder und bezieht sich auf den Änderungsbescheid, der im Kontext erwähnt wird."
+      },
+      "norag_verdict": {
+        "korrektheit": 0,
+        "fundierung": 0,
+        "erfunden": false,
+        "begruendung": "Die Antwort geht am Thema vorbei, da sie keine konkrete Mietobergrenze nennt und stattdessen auf regionale Unterschiede hinweist."
+      }
+    },
+    {
+      "question_id": "6d1b7381e83fb36f",
+      "question": "Kann der Vermieter 13 Jahre nach Abschluss des Mietvertrags noch kündigen, wenn es Unklarheiten über die Zeichnungen gibt?",
+      "reference": "Nein, der Vermieter kann sich nicht auf ein Kündigungsrecht berufen, da dies gegen Treu und Glauben verstößt.",
+      "rag_answer": "Der Vermieter kann grundsätzlich auch nach 13 Jahren kündigen, sofern die vertraglichen und gesetzlichen Kündigungsfristen eingehalten werden. Unklarheiten über Zeichnungen oder Vertragsinhalte könnten jedoch die Auslegung des Mietvertrags beeinflussen, was zu rechtlichen Auseinandersetzungen führen kann. Eine ordentliche Kündigung ist gemäß § 573c BGB mit einer Frist von drei Monaten möglich, wenn keine besonderen vertraglichen Regelungen bestehen, die eine längere Frist vorsehen [S2]. Die genauen Umstände und die vertraglichen Vereinbarungen sind entscheidend für die Zulässigkeit der Kündigung. Eine spezifische Regelung zu Unklarheiten in den Zeichnungen ist in den bereitgestellten Quellen nicht enthalten.",
+      "norag_answer": "Ein Vermieter kann grundsätzlich auch nach 13 Jahren kündigen, jedoch müssen die gesetzlichen Kündigungsgründe vorliegen, wie z.B. Eigenbedarf oder Vertragsverletzungen des Mieters. Unklarheiten über Zeichnungen allein rechtfertigen keine Kündigung. Es ist wichtig, die genauen Umstände und den Inhalt des Mietvertrags zu prüfen. Zudem gelten für Kündigungen bestimmte Fristen und Formalien, die eingehalten werden müssen. Eine rechtliche Beratung kann in solchen Fällen sinnvoll sein.",
+      "rag_verdict": {
+        "korrektheit": 0,
+        "fundierung": 0,
+        "erfunden": false,
+        "begruendung": "Die Antwort widerspricht der Referenz, da sie die Möglichkeit einer Kündigung durch den Vermieter nach 13 Jahren bejaht, was gegen das Prinzip von Treu und Glauben verstößt."
+      },
+      "norag_verdict": {
+        "korrektheit": 0,
+        "fundierung": 0,
+        "erfunden": false,
+        "begruendung": "Die Antwort widerspricht der Referenz, da sie die Möglichkeit einer Kündigung nach 13 Jahren unter bestimmten Umständen anspricht, was nicht mit der Referenz übereinstimmt."
+      }
+    },
+    {
+      "question_id": "722f36365d0ac237",
+      "question": "Kann ich meine Stromschulden übernehmen lassen, wenn ich die Heizkosten selbst verursacht habe?",
+      "reference": "Der Antragsgegner sieht keinen Anspruch auf Übernahme der Heizkosten, da die Antragstellerin eigenverantwortlich für die hohen Heizkosten entschieden hat.",
+      "rag_answer": "Die Übernahme von Stromschulden durch das Jobcenter ist grundsätzlich nicht möglich, wenn die Schulden selbst verursacht wurden, da dies einer Erhöhung des Regelsatzes gleichkäme, was nach § 3 Abs. 3 SGB II ausgeschlossen ist [S1]. Bei exorbitanten Stromkosten kann jedoch ein Darlehen nach § 23 Abs. 1 SGB II beantragt werden, wenn ein unabweisbarer Bedarf besteht [S1]. Heizkosten werden nur übernommen, wenn sie angemessen sind und die tatsächlichen Kosten nachgewiesen werden [S2][S3]. Daher ist eine Übernahme der Stromschulden in der Regel nicht möglich, wenn diese durch eigenes Verhalten entstanden sind.",
+      "norag_answer": "Im deutschen Mietrecht sind Heizkosten in der Regel Teil der Betriebskosten, die der Vermieter auf den Mieter umlegen kann. Wenn Sie jedoch Stromschulden haben, die nicht direkt mit den Heizkosten zusammenhängen, sind diese nicht übernehmbar. Sie sind selbst für Ihre Stromverbindlichkeiten verantwortlich. Eine Übernahme durch den Vermieter ist nur in Ausnahmefällen und mit dessen Zustimmung möglich. Es empfiehlt sich, die Situation direkt mit dem Vermieter zu klären.",
+      "rag_verdict": {
+        "korrektheit": 2,
+        "fundierung": 2,
+        "erfunden": false,
+        "begruendung": "Die zu bewertende Antwort deckt die wesentlichen Punkte der Referenzantwort ab und ist durch den Kontext gut fundiert."
+      },
+      "norag_verdict": {
+        "korrektheit": 1,
+        "fundierung": 0,
+        "erfunden": false,
+        "begruendung": "Die Antwort enthält teilweise richtige Informationen zu den Heizkosten und der Verantwortung des Mieters, jedoch ist sie nicht direkt auf die Frage nach der Übernahme der Stromschulden bezogen."
+      }
+    },
+    {
+      "question_id": "731d5fad441262cb",
+      "question": "Was passiert mit der Kaution, wenn der Vermieter während des Mietverhältnisses Ansprüche geltend macht?",
+      "reference": "Der Vermieter kann sich aus der Kaution befriedigen, und der Mieter muss die Kaution wieder auf den ursprünglichen Betrag erhöhen.",
+      "rag_answer": "Wenn der Vermieter während des Mietverhältnisses Ansprüche geltend macht, kann er die Kaution nicht zur Befriedigung dieser Ansprüche verwenden. Die Mietkaution dient als Sicherheit für Ansprüche, die sich aus dem Mietverhältnis ergeben, und muss getrennt vom Vermögen des Vermieters angelegt werden [S4]. Der Vermieter darf die Kaution nur nach Beendigung des Mietverhältnisses und nach angemessener Abrechnung zurückhalten [S3]. Eine Inanspruchnahme der Kaution während des laufenden Mietverhältnisses ist nicht zulässig, um die Rechte des Mieters zu schützen [S4]. Daher bleibt die Kaution bis zur Beendigung des Mietverhältnisses unberührt [S5].",
+      "norag_answer": "Die Kaution dient als Sicherheit für Ansprüche des Vermieters, die während oder nach dem Mietverhältnis entstehen können. Wenn der Vermieter während des Mietverhältnisses Ansprüche geltend macht, kann er die Kaution nicht einbehalten oder verwenden, solange das Mietverhältnis besteht. Ansprüche müssen konkret und nachweisbar sein. Nach Beendigung des Mietverhältnisses kann der Vermieter die Kaution zur Begleichung offener Forderungen verwenden. Eine Rückzahlung der Kaution an den Mieter erfolgt erst, wenn alle Ansprüche geklärt sind.",
+      "rag_verdict": {
+        "korrektheit": 0,
+        "fundierung": 0,
+        "erfunden": false,
+        "begruendung": "Die Antwort widerspricht der Referenzantwort, da sie fälschlicherweise behauptet, der Vermieter könne die Kaution während des Mietverhältnisses nicht verwenden."
+      },
+      "norag_verdict": {
+        "korrektheit": 0,
+        "fundierung": 0,
+        "erfunden": false,
+        "begruendung": "Die Antwort widerspricht der Referenzantwort, da sie fälschlicherweise behauptet, der Vermieter könne die Kaution während des Mietverhältnisses nicht verwenden."
+      }
+    },
+    {
+      "question_id": "7488b5a94068c8ca",
+      "question": "Wie wird die Höhe einer Ertragsminderung bei leer stehenden Mieträumen bestimmt?",
+      "reference": "Die Höhe der Ertragsminderung wird anhand der üblichen Miete zu Beginn des Erlasszeitraums bestimmt, die auf vergleichbaren Räumen basiert.",
+      "rag_answer": "Die Höhe einer Ertragsminderung bei leer stehenden Mieträumen wird anhand der üblichen Miete bestimmt, die zu Beginn des Erlasszeitraums gilt. Diese übliche Miete ist nicht die Durchschnittsmiete der vermieteten Teile, sondern eine Schätzung basierend auf vergleichbaren Räumen hinsichtlich Art, Lage und Ausstattung [S1], [S2]. Bei leer stehenden Räumen, die bereits zu Beginn des Erlasszeitraums leer waren, ist die übliche Miete die relevante Bezugsgröße [S3]. Veränderungen der tatsächlich vereinnahmten Mieten während des Erlasszeitraums sind nur relevant, wenn die vereinbarten Mieten um mehr als 20% von der üblichen Miete abweichen [S4]. Daher können die Ertragsminderungen nur an dieser Bezugsgröße gemessen werden.",
+      "norag_answer": "Die Höhe der Ertragsminderung bei leer stehenden Mieträumen wird in der Regel durch den Vergleich der tatsächlichen Mieteinnahmen mit den potenziellen Mieteinnahmen bestimmt. Dabei wird die Marktmiete für vergleichbare Objekte herangezogen. Zudem können Faktoren wie die Dauer der Leerstandszeit und die Gründe für den Leerstand Einfluss auf die Ertragsminderung haben. In einigen Fällen kann auch eine pauschale Minderung in Betracht gezogen werden. Es ist ratsam, die genauen Umstände des Einzelfalls zu prüfen.",
+      "rag_verdict": {
+        "korrektheit": 2,
+        "fundierung": 2,
+        "erfunden": false,
+        "begruendung": "Die bewertende Antwort deckt die wesentlichen Punkte der Referenzantwort ab und wird durch den Kontext vollständig unterstützt."
+      },
+      "norag_verdict": {
+        "korrektheit": 1,
+        "fundierung": 0,
+        "erfunden": false,
+        "begruendung": "Die Antwort enthält teilweise richtige Informationen zur Ertragsminderung, weicht jedoch von der spezifischen Definition in der Referenzantwort ab."
+      }
+    },
+    {
+      "question_id": "8300a48fc06638a0",
+      "question": "Was kann ich tun, wenn ich keine Bestätigung für die Übernahme der Maklergebühren von der zuständigen Sachbearbeiterin erhalte?",
+      "reference": "Es ist wichtig, alle Kontaktversuche zu dokumentieren und gegebenenfalls rechtliche Schritte zu prüfen, wenn die zuständige Mitarbeiterin nicht reagiert oder keine Informationen bereitstellt.",
+      "rag_answer": "Wenn Sie keine Bestätigung für die Übernahme der Maklergebühren erhalten, sollten Sie zunächst versuchen, direkt mit der zuständigen Sachbearbeiterin Kontakt aufzunehmen, um die Angelegenheit zu klären. Es ist wichtig, dass Sie eine schriftliche Zusicherung gemäß § 22 Abs. 3 SGB II anfordern, da diese Voraussetzung für die Kostenübernahme ist [S2]. Sollte dies nicht erfolgreich sein, können Sie einen formellen Widerspruch gegen die Entscheidung einlegen, sofern Sie eine ablehnende Mitteilung erhalten haben [S4]. Dokumentieren Sie alle Ihre Kontaktversuche, um Ihre Bemühungen nachweisen zu können. Wenn nötig, ziehen Sie rechtlichen Rat in Betracht, um Ihre Ansprüche durchzusetzen.",
+      "norag_answer": "Wenn Sie keine Bestätigung für die Übernahme der Maklergebühren erhalten, sollten Sie zunächst schriftlich bei der zuständigen Sachbearbeiterin nachfragen und um eine zeitnahe Rückmeldung bitten. Dokumentieren Sie alle bisherigen Kommunikation. Falls keine Antwort erfolgt, können Sie eine Frist setzen und auf die rechtlichen Konsequenzen hinweisen. Gegebenenfalls sollten Sie rechtlichen Rat einholen oder sich an eine Mietervereinigung wenden. In schwerwiegenden Fällen könnte auch eine Beschwerde bei der Aufsichtsbehörde sinnvoll sein.",
+      "rag_verdict": {
+        "korrektheit": 2,
+        "fundierung": 2,
+        "erfunden": false,
+        "begruendung": "Die Antwort deckt sich inhaltlich mit der Referenz und wird durch den Kontext unterstützt."
+      },
+      "norag_verdict": {
+        "korrektheit": 1,
+        "fundierung": 0,
+        "erfunden": false,
+        "begruendung": "Die Antwort enthält teilweise korrekte Schritte, geht jedoch nicht vollständig auf die Notwendigkeit der Dokumentation und rechtlichen Schritte ein, wie in der Referenz erwähnt."
+      }
+    },
+    {
+      "question_id": "8738670fcea8ca8e",
+      "question": "Habe ich Anspruch auf Erstattung der Hauswartkosten, die in der Betriebskostenabrechnung angegeben sind?",
+      "reference": "Ja, der Kläger hat Anspruch auf Erstattung der Hauswartkosten gemäß § 535 BGB.",
+      "rag_answer": "Ob Sie Anspruch auf Erstattung der Hauswartkosten haben, hängt von der Nachvollziehbarkeit der abgerechneten Kosten ab. Grundsätzlich sind Hauswartkosten umlagefähig, wenn dies im Mietvertrag vereinbart wurde [S3]. Wenn die Kosten jedoch nicht schlüssig dargelegt oder nachvollziehbar sind, kann der Anspruch entfallen [S1]. Zudem muss die Abrechnung den gesetzlichen Anforderungen genügen, andernfalls könnte sie als unwirksam angesehen werden [S2]. Es ist wichtig, die genauen Umstände und die vertraglichen Vereinbarungen zu prüfen.",
+      "norag_answer": "Ob Sie Anspruch auf Erstattung der Hauswartkosten haben, hängt von den vertraglichen Vereinbarungen im Mietvertrag und der Rechtmäßigkeit der Betriebskostenabrechnung ab. Wenn die Kosten für den Hauswart im Mietvertrag als umlagefähig aufgeführt sind und die Abrechnung korrekt und nachvollziehbar ist, müssen Sie diese Kosten in der Regel tragen. Sollten die Kosten jedoch nicht im Mietvertrag aufgeführt sein oder die Abrechnung fehlerhaft sein, könnten Sie Anspruch auf Erstattung haben. Es empfiehlt sich, die Abrechnung genau zu prüfen und gegebenenfalls rechtlichen Rat einzuholen.",
+      "rag_verdict": {
+        "korrektheit": 1,
+        "fundierung": 1,
+        "erfunden": false,
+        "begruendung": "Die Antwort ist teilweise korrekt, da sie auf die Nachvollziehbarkeit der Kosten eingeht, jedoch nicht klarstellt, dass Hauswartkosten grundsätzlich umlagefähig sind, wenn dies im Mietvertrag vereinbart wurde."
+      },
+      "norag_verdict": {
+        "korrektheit": 1,
+        "fundierung": 0,
+        "erfunden": false,
+        "begruendung": "Die Antwort enthält teilweise richtige Informationen, da sie auf die vertraglichen Vereinbarungen hinweist, jedoch nicht klar den Anspruch auf Erstattung bejaht."
+      }
+    },
+    {
+      "question_id": "87d48012151228e2",
+      "question": "Wie lange kann ein Vermieter nach der Rückgabe einer Wohnung Ansprüche gegen den Mieter geltend machen?",
+      "reference": "Der Vermieter kann Ansprüche gegen den Mieter bereits ab dem Zeitpunkt der Rückgabe der Wohnung prüfen, nicht erst nach Beendigung des Mietverhältnisses.",
+      "rag_answer": "Ein Vermieter kann nach der Rückgabe einer Wohnung Ansprüche gegen den Mieter innerhalb einer Frist von sechs Monaten geltend machen. Diese Frist beginnt mit der Rückgabe der Mietsache, die eine vollständige und unzweideutige Besitzaufgabe durch den Mieter voraussetzt [S1]. Der Vermieter muss in der Lage sein, die Mietsache auf etwaige Mängel zu untersuchen [S1].",
+      "norag_answer": "Ein Vermieter kann Ansprüche gegen den Mieter in der Regel innerhalb von sechs Monaten nach der Rückgabe der Wohnung geltend machen, wenn es um Schadensersatzansprüche geht. Für Ansprüche auf Nachzahlung von Betriebskosten gilt eine Frist von 12 Monaten. Bei Mängeln, die erst später entdeckt werden, kann die Frist bis zu 30 Jahre betragen, wenn es sich um versteckte Mängel handelt. Es ist jedoch ratsam, alle Ansprüche so schnell wie möglich geltend zu machen. Die genauen Fristen können je nach Einzelfall variieren.",
+      "rag_verdict": {
+        "korrektheit": 2,
+        "fundierung": 2,
+        "erfunden": false,
+        "begruendung": "Die Antwort ist korrekt und wird durch den Kontext gestützt, da sie die sechsmonatige Frist für Ansprüche des Vermieters nach Rückgabe der Wohnung korrekt angibt."
+      },
+      "norag_verdict": {
+        "korrektheit": 1,
+        "fundierung": 0,
+        "erfunden": false,
+        "begruendung": "Die Antwort enthält teilweise korrekte Informationen zu Fristen, geht jedoch nicht direkt auf die Frage ein und ist nicht durch den Kontext gedeckt."
+      }
+    },
+    {
+      "question_id": "8c0c433816717f28",
+      "question": "Wie viel Geld kann ich von meinem Vermieter für die Heizkostenabrechnung zurückfordern?",
+      "reference": "Sie können 652,40 € für die Heizkostenabrechnung zurückfordern.",
+      "rag_answer": "Die Höhe des Rückforderungsanspruchs für Heizkosten hängt von der ordnungsgemäßen Abrechnung ab. Wenn die Heizkostenabrechnung nicht verbrauchsabhängig und nachvollziehbar ist, kann der Mieter die gesamte Abrechnung als nicht fällig betrachten [S2]. Ein Kürzungsrecht von 15 % besteht, wenn die Abrechnung nicht ordnungsgemäß ist, was jedoch nicht die allgemeinen Gegenansprüche des Mieters einschränkt [S2]. Die genaue Rückforderung kann daher variieren und muss im Einzelfall geprüft werden. Eine konkrete Summe kann aus den bereitgestellten Quellen nicht abgeleitet werden.",
+      "norag_answer": "Die Rückforderung von Heizkosten hängt von der Abrechnung ab. Wenn die Abrechnung fehlerhaft ist oder die Kosten überhöht erscheinen, können Sie die Differenz zurückfordern. In der Regel müssen die Heizkosten innerhalb von 12 Monaten nach Erhalt der Abrechnung geltend gemacht werden. Prüfen Sie die Abrechnung auf Unstimmigkeiten, wie z.B. falsche Verbrauchswerte oder nicht berücksichtigte Vorauszahlungen. Bei Unsicherheiten kann eine rechtliche Beratung sinnvoll sein.",
+      "rag_verdict": {
+        "korrektheit": 0,
+        "fundierung": 0,
+        "erfunden": false,
+        "begruendung": "Die Antwort geht am Thema vorbei, da sie keine konkrete Rückforderungsanspruchssumme nennt und die Referenz nicht korrekt wiedergibt."
+      },
+      "norag_verdict": {
+        "korrektheit": 0,
+        "fundierung": 0,
+        "erfunden": false,
+        "begruendung": "Die Antwort geht nicht konkret auf die Rückforderung von 652,40 € ein und bleibt vage, was die Korrektheit und Fundierung betrifft."
+      }
+    },
+    {
+      "question_id": "8c8fd58cfc698b78",
+      "question": "Wie wurde die Nutzung der Ferienwohnungen durch die Klägerin und ihren Ehemann in den Streitjahren bewertet?",
+      "reference": "Es wurde festgestellt, dass die Klägerin und ihr Ehemann die Ferienwohnungen nicht selbst genutzt haben und keine unentgeltliche Überlassung an Angehörige nachgewiesen werden konnte.",
+      "rag_answer": "Die Nutzung der Ferienwohnungen durch die Klägerin und ihren Ehemann wurde dahingehend bewertet, dass sie diese in den Streitjahren nicht selbst genutzt haben. Das Gericht konnte nicht feststellen, dass die Klägerin die Ferienwohnungen unentgeltlich an Angehörige überlassen hat, und das Finanzamt ging ebenfalls stillschweigend davon aus, dass keine Selbstnutzung stattfand [S1]. Zudem wurde festgestellt, dass die Klägerin die durchschnittlichen ortsüblichen Vermietungszeiten nicht um mehr als 25 % unterschritt, da sie ihre Ferienwohnungen an 97 Tagen (1994) und 96,3 Tagen (1995) vermietete [S3].",
+      "norag_answer": "Die Nutzung der Ferienwohnungen durch die Klägerin und ihren Ehemann wurde in den Streitjahren in der Regel als private Nutzung bewertet. Dies hat zur Folge, dass die damit verbundenen Kosten nicht steuerlich absetzbar sind. Eine gewerbliche Nutzung müsste nachgewiesen werden, um steuerliche Vorteile zu erhalten. In vielen Fällen wird die private Nutzung als nicht steuerlich relevant angesehen, wenn keine Einkünfte aus der Vermietung erzielt werden. Die genaue Bewertung hängt jedoch von den individuellen Umständen und der Art der Nutzung ab.",
+      "rag_verdict": {
+        "korrektheit": 2,
+        "fundierung": 2,
+        "erfunden": false,
+        "begruendung": "Die zu bewertende Antwort deckt sich inhaltlich mit der Referenzantwort und wird durch den Kontext vollständig unterstützt."
+      },
+      "norag_verdict": {
+        "korrektheit": 0,
+        "fundierung": 0,
+        "erfunden": false,
+        "begruendung": "Die Antwort widerspricht der Referenz, da sie eine private Nutzung annimmt, während die Referenz die Nichtnutzung durch die Klägerin und ihren Ehemann feststellt."
+      }
+    },
+    {
+      "question_id": "8d1d0618e91c175f",
+      "question": "Welche rechtlichen Grundlagen gibt es für die Erhebung der Hundesteuer in der Stadt N?",
+      "reference": "Die rechtlichen Grundlagen für die Erhebung der Hundesteuer in der Stadt N sind die Hundesteuersatzung der Stadt N vom 2. Dezember 1997 und der erste Nachtrag zur Satzung vom 20. Dezember 2001, ermächtigt durch das Grundgesetz und das Kommunalabgabengesetz.",
+      "rag_answer": "Die rechtlichen Grundlagen für die Erhebung der Hundesteuer in der Stadt N sind die Hundesteuersatzung der Stadt N vom 2. Dezember 1997 sowie der erste Nachtrag zur Satzung vom 20. Dezember 2001. Diese Satzung wurde auf Grundlage von Art. 105 Abs. 2a GG und den §§ 1, 2 und 3 des Kommunalabgabengesetzes (KAG) erlassen [S1]. Die Hundesteuer zählt zu den Aufwandsteuern, die die wirtschaftliche Leistungsfähigkeit der Hundehalter erfassen soll [S1]. Die Satzung ist rechtmäßig und verletzt keine höherrangigen Rechte [S1].",
+      "norag_answer": "Die Erhebung der Hundesteuer in der Stadt N basiert auf den kommunalen Satzungen, die auf der Grundlage des Kommunalabgabengesetzes (KAG) des jeweiligen Bundeslandes erlassen werden. Die Hundesteuersatzung regelt die Höhe der Steuer, die Fälligkeit und die Ausnahmen. Zudem muss die Satzung den Grundsatz der Gleichbehandlung beachten. Die Erhebung der Steuer dient der Finanzierung kommunaler Aufgaben und der Regulierung der Hundehaltung. Für spezifische Informationen sollte die Satzung der Stadt N konsultiert werden.",
+      "rag_verdict": {
+        "korrektheit": 2,
+        "fundierung": 2,
+        "erfunden": false,
+        "begruendung": "Die bewertete Antwort deckt die rechtlichen Grundlagen der Hundesteuererhebung in der Stadt N vollständig ab und ist durch den Kontext gestützt."
+      },
+      "norag_verdict": {
+        "korrektheit": 1,
+        "fundierung": 0,
+        "erfunden": false,
+        "begruendung": "Die Antwort enthält teilweise richtige Informationen zur Hundesteuer, erwähnt jedoch nicht die spezifischen Satzungen der Stadt N und ist daher unvollständig."
+      }
+    },
+    {
+      "question_id": "93b60cb0b024e914",
+      "question": "Was muss ich tun, um die Räumung meines Mietobjekts abzuwenden?",
+      "reference": "Die Beklagte kann die Vollstreckung der Räumung abwenden, indem sie eine Sicherheitsleistung in Höhe von 2.680,00 € leistet, sofern der Kläger nicht zuvor Sicherheit in gleicher Höhe leistet.",
+      "rag_answer": "Um die Räumung Ihres Mietobjekts abzuwenden, sollten Sie zunächst versuchen, die Mietrückstände zu begleichen, da eine berechtigte Kündigung aufgrund hoher Mietrückstände vorliegen kann [S1]. Zudem können Sie eine Räumungsfrist beantragen, insbesondere wenn Sie keine übermäßigen Mietrückstände haben und das Mietverhältnis lange besteht [S2]. Es ist auch ratsam, rechtzeitig rechtlichen Beistand zu suchen, um Ihre Interessen zu wahren und mögliche Fristen einzuhalten [S3]. Eine Sicherheitsleistung kann ebenfalls helfen, die Vollstreckung abzuwenden, wenn Sie diese leisten können [S5].",
+      "norag_answer": "Um die Räumung Ihres Mietobjekts abzuwenden, sollten Sie zunächst den Kontakt zu Ihrem Vermieter suchen und versuchen, eine einvernehmliche Lösung zu finden, beispielsweise durch eine Ratenzahlung oder Stundung von Mietschulden. Prüfen Sie, ob die Kündigung rechtmäßig war, insbesondere ob die Fristen und Formvorschriften eingehalten wurden. Bei einer fristlosen Kündigung können Sie gegebenenfalls Widerspruch einlegen, wenn Sie die Gründe anfechten können. Zudem können Sie rechtlichen Rat einholen, um Ihre Optionen zu klären. In vielen Fällen kann auch eine Mietschlichtungsstelle oder ein Anwalt helfen, um Ihre Interessen zu vertreten.",
+      "rag_verdict": {
+        "korrektheit": 1,
+        "fundierung": 1,
+        "erfunden": false,
+        "begruendung": "Die Antwort enthält teilweise korrekte Informationen zur Abwendung der Räumung, jedoch fehlt die spezifische Erwähnung der Sicherheitsleistung in der Höhe von 2.680,00 €, die in der Referenzantwort genannt wird."
+      },
+      "norag_verdict": {
+        "korrektheit": 0,
+        "fundierung": 0,
+        "erfunden": false,
+        "begruendung": "Die Antwort geht am Thema vorbei, da sie keine spezifischen Maßnahmen zur Abwendung der Räumung gemäß der Referenzantwort enthält."
+      }
+    },
+    {
+      "question_id": "a66f0ae5f10cf9c6",
+      "question": "Wie wird die Übernahme von Schönheitsreparaturen durch den Mieter rechtlich betrachtet, wenn er stattdessen eine höhere Miete zahlt?",
+      "reference": "Die Übernahme der Schönheitsreparaturen durch den Mieter hat Entgeltcharakter, was auch gilt, wenn der Mieter eine höhere Miete zahlt und die Verpflichtung beim Vermieter bleibt.",
+      "rag_answer": "Die Übernahme von Schönheitsreparaturen durch den Mieter wird rechtlich als Entgelt betrachtet, unabhängig davon, ob der Mieter die Arbeiten selbst ausführt oder stattdessen eine höhere Miete zahlt. In beiden Fällen bleibt die Verpflichtung zur Durchführung der Schönheitsreparaturen beim Vermieter, während der Mieter ein einheitliches Entgelt in Form der Miete entrichtet [S1]. Ein gesondert ausgewiesener Zuschlag für Schönheitsreparaturen hat rechtlich keine Bedeutung und wird wie eine höhere Grundmiete behandelt [S2]. Daher ist der Mieter in beiden Szenarien nicht benachteiligt, da er den Gesamtbetrag zu zahlen hat, unabhängig von den tatsächlichen Kosten der Schönheitsreparaturen [S2].",
+      "norag_answer": "Die Übernahme von Schönheitsreparaturen durch den Mieter kann rechtlich als Teil der Mietvertragsbedingungen betrachtet werden. Wenn der Mieter eine höhere Miete zahlt, könnte dies als Ausgleich für die Übernahme der Reparaturen angesehen werden. Allerdings müssen solche Regelungen klar im Mietvertrag festgehalten sein. Zudem dürfen die Klauseln zu Schönheitsreparaturen nicht unangemessen benachteiligend für den Mieter sein. Eine individuelle Prüfung des Mietvertrags ist daher ratsam.",
+      "rag_verdict": {
+        "korrektheit": 2,
+        "fundierung": 2,
+        "erfunden": false,
+        "begruendung": "Die zu bewertende Antwort deckt sich inhaltlich mit der Referenz und wird durch den Kontext vollständig gestützt."
+      },
+      "norag_verdict": {
+        "korrektheit": 1,
+        "fundierung": 0,
+        "erfunden": false,
+        "begruendung": "Die Antwort enthält teilweise richtige Aspekte zur rechtlichen Betrachtung, geht jedoch nicht ausreichend auf die Entgeltcharakteristik ein und ist ohne Kontext nicht fundiert."
+      }
+    },
+    {
+      "question_id": "ae637d6206b584f4",
+      "question": "Welche Kosten werden bei den Leistungen für Unterkunft berücksichtigt?",
+      "reference": "Es werden nur die tatsächlichen und angemessenen Aufwendungen für Unterkunft berücksichtigt, nicht jedoch die monatlichen Tilgungsraten für ein Eigenheim.",
+      "rag_answer": "Bei den Leistungen für Unterkunft werden die tatsächlichen Aufwendungen berücksichtigt, sofern sie angemessen sind [S3]. Übersteigen die Kosten den angemessenen Umfang, können sie unter bestimmten Bedingungen weiterhin anerkannt werden, solange es dem Berechtigten nicht möglich oder nicht zumutbar ist, die Kosten zu senken [S4]. Die Leistungen umfassen sowohl die Kosten der Unterkunft als auch die Heizkosten [S3]. Es erfolgt eine Prüfung in mehreren Stufen: Ermittlung der tatsächlichen Kosten, der angemessenen Kosten und der Zumutbarkeit einer Kostensenkung [S3].",
+      "norag_answer": "Bei den Leistungen für Unterkunft werden in der Regel die Kosten für die Miete, die Betriebskosten (wie Heizkosten, Wasser, Müllabfuhr) sowie gegebenenfalls die Kosten für die Kaution berücksichtigt. Auch Kosten für notwendige Renovierungen oder Instandhaltungen können unter bestimmten Umständen einbezogen werden. Es ist wichtig, dass die Unterkunft angemessen ist und den örtlichen Gegebenheiten entspricht. Die genauen Regelungen können je nach Sozialgesetzbuch (SGB) variieren. Bei Fragen zu spezifischen Fällen sollte rechtlicher Rat eingeholt werden.",
+      "rag_verdict": {
+        "korrektheit": 2,
+        "fundierung": 2,
+        "erfunden": false,
+        "begruendung": "Die zu bewertende Antwort deckt die wesentlichen Punkte der Referenzantwort ab und wird durch den Kontext unterstützt."
+      },
+      "norag_verdict": {
+        "korrektheit": 1,
+        "fundierung": 0,
+        "erfunden": false,
+        "begruendung": "Die Antwort enthält teilweise korrekte Informationen zu den Kosten für Unterkunft, geht jedoch über die in der Referenz genannten Punkte hinaus und berücksichtigt nicht, dass Tilgungsraten für ein Eigenheim nicht einbezogen werden."
+      }
+    },
+    {
+      "question_id": "b16e785124b47097",
+      "question": "Welche Informationen müssen in einer Nebenkostenabrechnung enthalten sein, damit sie gültig ist?",
+      "reference": "Eine Nebenkostenabrechnung muss eine Zusammenstellung der Gesamtkosten, den Verteilerschlüssel, die Berechnung des Anteils des Mieters und den Abzug der Vorauszahlungen des Mieters enthalten.",
+      "rag_answer": "Eine Nebenkostenabrechnung muss gemäß § 259 BGB eine geordnete Zusammenstellung der Einnahmen und Ausgaben enthalten. Sie sollte die Gesamtkosten, den Verteilerschlüssel, den Anteil des Mieters sowie die Abzüge der Vorauszahlungen aufweisen [S2]. Zudem muss die Abrechnung klar und übersichtlich sein, sodass der Mieter die Kosten nachvollziehen und überprüfen kann [S5]. Belege sind nicht zwingend beizufügen, der Mieter hat jedoch Anspruch auf Einsichtnahme [S3]. Fehlen diese Informationen, kann die Abrechnung als ungültig angesehen werden.",
+      "norag_answer": "Eine Nebenkostenabrechnung muss folgende Informationen enthalten: die Abrechnungsperiode, die Gesamtkosten der Nebenkosten, die Verteilungsschlüssel für die Kosten, die einzelnen Kostenarten (z.B. Heizkosten, Wasser, Müllabfuhr) sowie die Abrechnung der Vorauszahlungen des Mieters. Zudem sollte die Abrechnung nachvollziehbar und transparent sein. Der Mieter muss die Möglichkeit haben, die Abrechnung zu überprüfen. Eine Frist von 12 Monaten nach Ende der Abrechnungsperiode ist einzuhalten.",
+      "rag_verdict": {
+        "korrektheit": 2,
+        "fundierung": 2,
+        "erfunden": false,
+        "begruendung": "Die bewertete Antwort deckt die Anforderungen an eine Nebenkostenabrechnung gemäß § 259 BGB vollständig ab und wird durch den Kontext unterstützt."
+      },
+      "norag_verdict": {
+        "korrektheit": 1,
+        "fundierung": 0,
+        "erfunden": false,
+        "begruendung": "Die Antwort enthält relevante Informationen zur Nebenkostenabrechnung, weicht jedoch in einigen Details von der Referenz ab und ist nicht vollständig korrekt."
+      }
+    },
+    {
+      "question_id": "b2302cd442964c98",
+      "question": "Warum haben die Beklagten die Miete in verschiedenen Monaten unterschiedlich gesenkt?",
+      "reference": "Die Beklagten haben die Miete aufgrund von Beeinträchtigungen durch die Fenster in ihrer Wohnung gesenkt, die sie als Mangel betrachten.",
+      "rag_answer": "Die Beklagten haben die Miete in verschiedenen Monaten unterschiedlich gesenkt, weil sie jeweils unterschiedliche Mängel geltend gemacht haben. Im Zeitraum Dezember 2012 bis März 2013 minderten sie die Miete um 20,00 Euro aufgrund unzureichender Dämmung der Geschossdecke [S3]. Ab April 2013 erhöhten sie die Minderung auf 20,80 Euro, da die Tür zum Kinderzimmer defekt war [S3]. Diese unterschiedlichen Gründe führten zu variierenden Mietminderungen in den jeweiligen Monaten. Die Klägerin bestreitet die Berechtigung dieser Mängel und die Höhe der Minderung [S3].",
+      "norag_answer": "Die Beklagten könnten die Miete in verschiedenen Monaten unterschiedlich gesenkt haben, um auf unterschiedliche Umstände zu reagieren, wie z.B. Mängel in der Wohnung, die eine Mietminderung rechtfertigen. Zudem könnten saisonale Faktoren oder persönliche finanzielle Schwierigkeiten eine Rolle gespielt haben. Es ist auch möglich, dass sie sich auf mündliche oder schriftliche Vereinbarungen mit dem Vermieter berufen. Eine einheitliche Regelung zur Mietminderung ist jedoch rechtlich nicht zwingend erforderlich. Letztlich hängt die Rechtmäßigkeit der Mietminderung von den konkreten Umständen und der Begründung ab.",
+      "rag_verdict": {
+        "korrektheit": 2,
+        "fundierung": 2,
+        "erfunden": false,
+        "begruendung": "Die zu bewertende Antwort beschreibt die unterschiedlichen Gründe für die Mietminderungen und stimmt mit der Referenzantwort überein, während sie auch durch den Kontext gestützt wird."
+      },
+      "norag_verdict": {
+        "korrektheit": 1,
+        "fundierung": 0,
+        "erfunden": false,
+        "begruendung": "Die Antwort enthält teilweise richtige Überlegungen zu möglichen Gründen für die unterschiedliche Mietsenkung, geht jedoch nicht konkret auf die Beeinträchtigungen durch die Fenster ein, die in der Referenzantwort genannt werden."
+      }
+    },
+    {
+      "question_id": "bdfc6d0dac3881ed",
+      "question": "Wer ist für die Zahlung der Hundesteuer verantwortlich, wenn man mehrere Hunde hält?",
+      "reference": "Der Halter der Hunde ist für die Zahlung der Hundesteuer verantwortlich, es sei denn, es gibt eine Ausnahme wie bei dem Hund 'Dessy von B...'.",
+      "rag_answer": "Für die Zahlung der Hundesteuer sind die Halter der Hunde verantwortlich, die in einem gemeinsamen Haushalt leben. Halten mehrere Personen gemeinsam einen oder mehrere Hunde, gelten sie als Gesamtschuldner [S1], [S2]. Das bedeutet, dass alle Halter für die Steuer gemeinsam haften, unabhängig von der Anzahl der Hunde [S4]. Die Steuerpflicht beginnt mit dem Monat, in dem der Hund aufgenommen wird [S3]. Daher sind alle in einem Haushalt gehaltenen Hunde als von den Haltern gemeinsam gehalten zu betrachten [S1].",
+      "norag_answer": "Die Verantwortung für die Zahlung der Hundesteuer liegt in der Regel beim Halter der Hunde. Wenn mehrere Hunde gehalten werden, muss der Halter für jeden Hund die entsprechende Steuer entrichten. Die genauen Regelungen können jedoch je nach Gemeinde variieren. Es ist ratsam, sich bei der zuständigen Gemeindebehörde über die spezifischen Bestimmungen zu informieren. In einem Mietverhältnis kann auch der Mietvertrag Regelungen zur Hundehaltung enthalten, die beachtet werden sollten.",
+      "rag_verdict": {
+        "korrektheit": 1,
+        "fundierung": 2,
+        "erfunden": false,
+        "begruendung": "Die Antwort ist teilweise korrekt, da sie die Verantwortung der Halter für die Hundesteuer anspricht, jedoch nicht klarstellt, dass der Halter der Hunde grundsätzlich für die Zahlung verantwortlich ist."
+      },
+      "norag_verdict": {
+        "korrektheit": 1,
+        "fundierung": 0,
+        "erfunden": false,
+        "begruendung": "Die Antwort ist teilweise korrekt, da sie die Verantwortung des Halters für die Hundesteuer anspricht, jedoch nicht die spezifische Ausnahme aus der Referenz erwähnt."
+      }
+    },
+    {
+      "question_id": "c396a5ad3a1991d2",
+      "question": "Wie hoch ist die angemessene Miete für einen Zwei-Personen-Haushalt in Kettwig, wenn man die besonderen Umstände berücksichtigt?",
+      "reference": "Die angemessene Miete beträgt 382,74 EUR für einen Zwei-Personen-Haushalt in Kettwig.",
+      "rag_answer": "Die angemessene Miete für einen Zwei-Personen-Haushalt in Kettwig beträgt aufgrund besonderer Umstände 382,74 EUR, da das Mietniveau in Kettwig um 100 Euro über den allgemeinen Grenzen für die Stadt Essen liegt [S1]. Diese Angemessenheitsgrenze berücksichtigt die gesundheitlichen Einschränkungen der Betroffenen und den Erhalt des sozialen Umfelds [S1]. Eine spezifische Berechnung oder weitere Details zur Mietobergrenze in Kettwig sind in den bereitgestellten Quellen nicht enthalten [S2].",
+      "norag_answer": "Die angemessene Miete für einen Zwei-Personen-Haushalt in Kettwig hängt von verschiedenen Faktoren ab, wie der Lage, der Größe der Wohnung und dem Zustand des Objekts. In der Regel können die Mietpreise in Kettwig zwischen 8 und 12 Euro pro Quadratmeter liegen. Es ist ratsam, sich an den örtlichen Mietspiegel zu halten, um eine realistische Einschätzung zu erhalten. Besondere Umstände, wie z.B. eine gute Anbindung an öffentliche Verkehrsmittel oder die Nähe zu Schulen, können die Miete beeinflussen. Eine individuelle Beratung durch einen Immobilienexperten kann ebenfalls hilfreich sein.",
+      "rag_verdict": {
+        "korrektheit": 2,
+        "fundierung": 2,
+        "erfunden": false,
+        "begruendung": "Die zu bewertende Antwort stimmt inhaltlich mit der Referenzantwort überein und wird durch den Kontext ausreichend gestützt."
+      },
+      "norag_verdict": {
+        "korrektheit": 0,
+        "fundierung": 0,
+        "erfunden": false,
+        "begruendung": "Die Antwort geht am Thema vorbei, da sie keine konkrete Miete angibt und somit die Referenz nicht abdeckt."
+      }
+    },
+    {
+      "question_id": "c4137d5a7ea28f79",
+      "question": "Wie setzen sich die Kosten für Müllbeseitigung und Frisch- und Abwasser in der Nebenkostenabrechnung zusammen?",
+      "reference": "Die Kosten für Müllbeseitigung betragen 139,98 € und für Frisch- und Abwasser 754,75 €, basierend auf der Berechnung von Personenmonaten und den entsprechenden Preisen pro Personenmonat.",
+      "rag_answer": "Die Kosten für Müllbeseitigung und Frisch- und Abwasser in der Nebenkostenabrechnung setzen sich aus den Gesamtkosten für diese Dienstleistungen, die auf die Mieter umgelegt werden, und der Anzahl der Personenmonate zusammen. Bei der Müllbeseitigung wird der Gesamtbetrag durch die Anzahl der Personenmonate geteilt, um den Preis pro Personenmonat zu ermitteln [S2]. Ähnlich wird bei den Frisch- und Abwasserkosten verfahren, wobei auch hier die Gesamtkosten durch die Anzahl der Personenmonate geteilt werden [S2]. Diese Berechnungsmethode sorgt dafür, dass die Kosten fair auf die Mieter verteilt werden. Weitere Details zur genauen Berechnung können im Mietvertrag nachgelesen werden [S1].",
+      "norag_answer": "Die Kosten für Müllbeseitigung setzen sich aus den Gebühren für die Abfuhr und Entsorgung des Mülls zusammen, die von der Gemeinde oder einem Entsorgungsunternehmen erhoben werden. Die Kosten für Frisch- und Abwasser umfassen die Gebühren für den Wasserverbrauch sowie die Abwasserentsorgung, die in der Regel nach dem tatsächlichen Verbrauch oder einer festgelegten Umlage verteilt werden. In der Nebenkostenabrechnung werden diese Kosten anteilig auf die Mieter umgelegt, basierend auf der Wohnfläche oder dem Verbrauch. Die genauen Verteilungsschlüssel müssen im Mietvertrag oder in der Betriebskostenverordnung festgelegt sein. Mieter haben das Recht, die Abrechnungen einzusehen und zu überprüfen.",
+      "rag_verdict": {
+        "korrektheit": 2,
+        "fundierung": 2,
+        "erfunden": false,
+        "begruendung": "Die bewertete Antwort beschreibt korrekt die Berechnung der Kosten für Müllbeseitigung und Frisch- und Abwasser und ist durch den Kontext sowie die Referenz gedeckt."
+      },
+      "norag_verdict": {
+        "korrektheit": 1,
+        "fundierung": 0,
+        "erfunden": false,
+        "begruendung": "Die Antwort beschreibt die allgemeinen Kostenarten für Müllbeseitigung und Frisch- und Abwasser, geht jedoch nicht konkret auf die in der Referenz genannten Beträge ein."
+      }
+    },
+    {
+      "question_id": "d36f31a44014dfb8",
+      "question": "Wie viel Heizkosten kann ich für den Zeitraum vom 01.04.2009 bis 31.03.2010 zusätzlich beantragen, wenn ich mehr bezahlt habe als bewilligt wurde?",
+      "reference": "640,91 EUR",
+      "rag_answer": "Die bereitgestellten Quellen enthalten keine spezifischen Informationen darüber, wie viel Heizkosten für den Zeitraum vom 01.04.2009 bis 31.03.2010 zusätzlich beantragt werden können, wenn mehr bezahlt wurde als bewilligt. Es wird lediglich erwähnt, dass die Heizkosten in verschiedenen Bescheiden unterschiedlich bewertet wurden, jedoch keine konkreten Beträge für den genannten Zeitraum angegeben sind [S1], [S2], [S3], [S4], [S5]. Daher kann ich keine präzise Antwort auf die Frage geben.",
+      "norag_answer": "Um die zusätzlich beantragbaren Heizkosten zu ermitteln, müssen Sie die tatsächlichen Heizkosten, die Sie für den Zeitraum vom 01.04.2009 bis 31.03.2010 gezahlt haben, mit den bewilligten Heizkosten vergleichen. Der Differenzbetrag ist der Betrag, den Sie zusätzlich beantragen können. Achten Sie darauf, dass die Abrechnung der Heizkosten den gesetzlichen Vorgaben entspricht und alle relevanten Belege vorliegen. Bei Unklarheiten oder Streitigkeiten kann es sinnvoll sein, rechtlichen Rat einzuholen.",
+      "rag_verdict": {
+        "korrektheit": 0,
+        "fundierung": 0,
+        "erfunden": true,
+        "begruendung": "Die Antwort gibt keine präzisen Informationen zu den Heizkosten für den angegebenen Zeitraum und widerspricht somit der Referenz."
+      },
+      "norag_verdict": {
+        "korrektheit": 0,
+        "fundierung": null,
+        "erfunden": false,
+        "begruendung": "Die Antwort gibt keine konkrete Zahl an und weicht somit von der Referenzantwort ab."
+      }
+    },
+    {
+      "question_id": "d99140ffd33b82f4",
+      "question": "Was kann passieren, wenn ich mit meinem großen Hund gegen das Landeshundegesetz verstoße?",
+      "reference": "Es kann eine Untersagung der Haltung gefährlicher Hunde angeordnet werden, und der Hund kann entzogen werden.",
+      "rag_answer": "Wenn Sie mit Ihrem großen Hund gegen das Landeshundegesetz verstoßen, kann dies zu einem Untersagungsbescheid führen, der Ihnen das Halten des Hundes untersagt. Dies ist möglich, wenn schwerwiegende oder wiederholte Verstöße gegen die Vorschriften vorliegen oder die Haltungsvoraussetzungen nicht erfüllt sind [S2], [S4]. Zudem kann die Unzuverlässigkeit des Halters vermutet werden, was weitere rechtliche Konsequenzen nach sich ziehen kann [S3]. Im schlimmsten Fall kann die Behörde auch die Abgabe des Hundes anordnen [S4].",
+      "norag_answer": "Wenn Sie mit Ihrem großen Hund gegen das Landeshundegesetz verstoßen, können verschiedene rechtliche Konsequenzen eintreten. Dazu gehören Bußgelder, die Anordnung von Auflagen wie Maulkorb- oder Leinenpflicht sowie im schlimmsten Fall die Beschlagnahme des Hundes. Zudem kann es zu zivilrechtlichen Ansprüchen kommen, wenn Ihr Hund einen Dritten verletzt oder Schäden verursacht. Es ist ratsam, sich über die spezifischen Regelungen in Ihrem Bundesland zu informieren, da diese variieren können.",
+      "rag_verdict": {
+        "korrektheit": 2,
+        "fundierung": 2,
+        "erfunden": false,
+        "begruendung": "Die Antwort deckt die wesentlichen Punkte der Referenzantwort ab und wird durch den Kontext gestützt."
+      },
+      "norag_verdict": {
+        "korrektheit": 1,
+        "fundierung": 0,
+        "erfunden": false,
+        "begruendung": "Die Antwort enthält teilweise korrekte Informationen zu möglichen Konsequenzen, geht jedoch über die spezifische Referenz hinaus und ist nicht durch den Kontext gedeckt."
+      }
+    },
+    {
+      "question_id": "ddebeba0cd2ec7e6",
+      "question": "Warum darf ich meinen gefährlichen Hund nicht ohne Erlaubnis halten?",
+      "reference": "Weil es rechtsmissbräuchlich ist, einen gefährlichen Hund ohne die erforderliche Erlaubnis zu halten, und die Antragsgegnerin den Sofortvollzug angeordnet hat, um die Bevölkerung zu schützen.",
+      "rag_answer": "Die Haltung eines gefährlichen Hundes ohne Erlaubnis ist gesetzlich untersagt, da dies die öffentliche Sicherheit gefährden kann. Nach § 3 Abs. 1 LHundG ist eine Erlaubnis erforderlich, die nur erteilt wird, wenn der Halter die notwendige Sachkunde nachweist und keine Zuverlässigkeitszweifel bestehen [S1], [S2]. Zudem müssen bestimmte Voraussetzungen erfüllt sein, wie das Mindestalter von 18 Jahren und körperliche Eignung [S5]. Ein Verstoß gegen diese Regelungen kann zu einem Verbot der Hundehaltung führen [S2]. Daher ist die Erlaubnispflicht ein wichtiges Instrument zum Schutz der Allgemeinheit.",
+      "norag_answer": "Das Halten eines gefährlichen Hundes unterliegt in Deutschland strengen gesetzlichen Regelungen, um die öffentliche Sicherheit zu gewährleisten. Gemäß den jeweiligen Landesgesetzen ist oft eine Erlaubnis erforderlich, die an bestimmte Voraussetzungen geknüpft ist, wie z.B. einen Wesenstest oder Nachweise über die Sachkunde des Halters. Ohne diese Erlaubnis kann die Haltung als Ordnungswidrigkeit oder sogar als Straftat gewertet werden. Zudem können bei Verstößen Bußgelder oder die Anordnung der Abgabe des Hundes drohen. Es dient dem Schutz von Menschen und Tieren vor möglichen Gefahren.",
+      "rag_verdict": {
+        "korrektheit": 2,
+        "fundierung": 2,
+        "erfunden": false,
+        "begruendung": "Die Antwort deckt die wesentlichen Punkte der Referenzantwort ab und ist durch den Kontext vollständig gestützt."
+      },
+      "norag_verdict": {
+        "korrektheit": 1,
+        "fundierung": 0,
+        "erfunden": false,
+        "begruendung": "Die Antwort enthält teilweise korrekte Informationen über die gesetzlichen Regelungen, jedoch fehlt der spezifische Bezug zur Notwendigkeit der Erlaubnis und dem Schutz der Bevölkerung, wie in der Referenzantwort dargestellt."
+      }
+    },
+    {
+      "question_id": "df3ce91c1ce47f90",
+      "question": "Wer gilt als Inhaber einer Zweitwohnung, wenn mehrere Familienmitglieder dort wohnen?",
+      "reference": "Inhaber einer Zweitwohnung ist die Person, die die Verfügungsbefugnis über die Wohnung hat, nicht jedoch die anderen Familienmitglieder, wie zum Beispiel die Kinder.",
+      "rag_answer": "Inhaber einer Zweitwohnung sind die Personen, die rechtlich gesichert über die Nutzung der Wohnung verfügen, also Eigentümer, Mieter oder Nutzungsberechtigte sind [S1]. Wenn mehrere Familienmitglieder in einer Zweitwohnung wohnen, gilt derjenige als Inhaber, der die Wohnung für den persönlichen Lebensbedarf seiner Familie innehat [S2]. Die Steuerpflicht liegt bei demjenigen, der die Verfügungsbefugnis über die Wohnung hat, nicht bei den tatsächlich dort wohnenden Familienmitgliedern [S5]. Daher ist entscheidend, wer die Wohnung offiziell als Zweitwohnung führt und nicht nur wer dort wohnt.",
+      "norag_answer": "Inhaber einer Zweitwohnung ist in der Regel derjenige, der den Mietvertrag für die Wohnung unterzeichnet hat und die Hauptverantwortung trägt. Wenn mehrere Familienmitglieder dort wohnen, kann es jedoch auch zu einer gemeinsamen Nutzung kommen. In solchen Fällen ist entscheidend, wer die Wohnung tatsächlich nutzt und ob eine Hauptwohnung vorhanden ist. Bei Unklarheiten kann das zuständige Einwohnermeldeamt oder das Finanzamt zur Klärung herangezogen werden. Letztlich hängt die rechtliche Einordnung von den individuellen Umständen ab.",
+      "rag_verdict": {
+        "korrektheit": 2,
+        "fundierung": 2,
+        "erfunden": false,
+        "begruendung": "Die bewertete Antwort stimmt inhaltlich mit der Referenz überein und wird durch den Kontext vollständig unterstützt."
+      },
+      "norag_verdict": {
+        "korrektheit": 0,
+        "fundierung": 0,
+        "erfunden": false,
+        "begruendung": "Die Antwort widerspricht der Referenzantwort, da sie nicht klarstellt, dass nur die Person mit Verfügungsbefugnis als Inhaber gilt."
+      }
+    },
+    {
+      "question_id": "e3fe53daf8142ffe",
+      "question": "Wer ist für Streitigkeiten über die Miethöhe bei einem Mietvertrag für geförderten Wohnraum zuständig?",
+      "reference": "Die ordentlichen Gerichte sind zuständig.",
+      "rag_answer": "Für Streitigkeiten über die Miethöhe bei einem Mietvertrag für geförderten Wohnraum sind die ordentlichen Gerichte zuständig. Dies ergibt sich aus der Tatsache, dass die entsprechenden Regelungen zur Miethöhe im Rahmen eines privatrechtlichen Mietvertrags nach § 535 BGB stehen und somit in die Zuständigkeit der Zivilgerichte fallen [S2], [S4]. Die Ermittlung der ortsüblichen Vergleichsmiete und die Durchsetzbarkeit privatrechtlicher Mieterhöhungsansprüche sind ebenfalls Angelegenheiten, die von den Zivilgerichten entschieden werden [S3].",
+      "norag_answer": "Für Streitigkeiten über die Miethöhe bei einem Mietvertrag für geförderten Wohnraum ist in der Regel das zuständige Amtsgericht zuständig. Dies ergibt sich aus den allgemeinen Vorschriften der Zivilprozessordnung. Zudem können auch Schlichtungsstellen oder Mediationsverfahren in Betracht gezogen werden, je nach den spezifischen Regelungen des jeweiligen Bundeslandes. Es ist ratsam, sich über die genauen Zuständigkeiten vor Ort zu informieren.",
+      "rag_verdict": {
+        "korrektheit": 2,
+        "fundierung": 2,
+        "erfunden": false,
+        "begruendung": "Die bewertete Antwort stimmt inhaltlich mit der Referenz überein und wird durch den Kontext vollständig unterstützt."
+      },
+      "norag_verdict": {
+        "korrektheit": 0,
+        "fundierung": 0,
+        "erfunden": false,
+        "begruendung": "Die Antwort ist ungenau, da sie die Zuständigkeit der ordentlichen Gerichte nicht korrekt wiedergibt und zusätzliche Informationen zu Schlichtungsstellen nicht relevant sind."
+      }
+    },
+    {
+      "question_id": "e70a5797e1d8fa90",
+      "question": "Was passiert, wenn ich eine Wohnung gemietet habe, die ich nicht bewohne, und mein Vermieter mir fristlos kündigt?",
+      "reference": "Die fristlose Kündigung führt nicht zu einer existenziellen Notlage, wenn die Wohnung nicht bewohnt wird, und es besteht kein Anordnungsgrund für weitere rechtliche Schritte.",
+      "rag_answer": "Wenn Ihr Vermieter Ihnen fristlos kündigt, hängt die Wirksamkeit der Kündigung von den Gründen ab. Eine fristlose Kündigung ist in der Regel nur bei schwerwiegenden Vertragsverletzungen, wie z.B. wiederholtem Zahlungsverzug, zulässig [S4]. Wenn Sie die Wohnung nicht bewohnen, könnte dies möglicherweise als Vertragsverletzung gewertet werden, wenn dies im Mietvertrag nicht erlaubt ist. Allerdings sind die genauen Umstände entscheidend, und es gibt keine spezifischen Informationen in den bereitgestellten Quellen zu diesem speziellen Fall. Daher kann ich keine abschließende Antwort geben.",
+      "norag_answer": "Eine fristlose Kündigung durch den Vermieter ist nur unter bestimmten Voraussetzungen zulässig, z.B. bei Zahlungsverzug oder schwerwiegenden Vertragsverletzungen. Wenn Sie die Wohnung nicht bewohnen, könnte der Vermieter argumentieren, dass Sie Ihre Pflichten aus dem Mietvertrag nicht erfüllen. Sie sollten die Kündigung umgehend prüfen und gegebenenfalls Widerspruch einlegen. Es ist ratsam, rechtlichen Rat einzuholen, um Ihre Optionen zu klären. Eine fristlose Kündigung kann auch rechtlich angefochten werden, wenn die Gründe nicht ausreichend sind.",
+      "rag_verdict": {
+        "korrektheit": 1,
+        "fundierung": 1,
+        "erfunden": false,
+        "begruendung": "Die Antwort enthält teilweise korrekte Informationen zur fristlosen Kündigung, geht jedoch nicht ausreichend auf die spezifische Situation der unbewohnten Wohnung ein."
+      },
+      "norag_verdict": {
+        "korrektheit": 1,
+        "fundierung": 0,
+        "erfunden": false,
+        "begruendung": "Die Antwort enthält teilweise korrekte Informationen zur fristlosen Kündigung, geht jedoch nicht ausreichend auf die spezifische Situation der unbewohnten Wohnung ein."
+      }
+    },
+    {
+      "question_id": "e7ef6b3517a02bbf",
+      "question": "Wie wird die ortsübliche Vergleichsmiete bestimmt und welche Rolle spielt dabei der einfache Mietspiegel?",
+      "reference": "Die ortsübliche Vergleichsmiete wird durch den einfachen Mietspiegel bestimmt, der auch nach der Einführung des qualifizierten Mietspiegels weiterhin als Erkenntnismittel dient. Die Qualität des Mietspiegels ist entscheidend, und die ortsübliche Vergleichsmiete darf nicht mit der Marktmiete gleichgesetzt werden.",
+      "rag_answer": "Die ortsübliche Vergleichsmiete wird gemäß § 558 BGB aus den üblichen Entgelten für vergleichbaren Wohnraum in der Gemeinde oder einer vergleichbaren Gemeinde ermittelt. Der einfache Mietspiegel dient dabei als Übersicht, die von der Gemeinde oder von Interessenvertretern erstellt oder anerkannt wird und muss auf einer statistisch fundierten Erhebung basieren [S1], [S2]. Er ist ein wichtiges Instrument zur Feststellung der ortsüblichen Vergleichsmiete, auch wenn er nicht die gleiche rechtliche Vermutung wie ein qualifizierter Mietspiegel hat [S4]. Die Qualität des einfachen Mietspiegels ist entscheidend für seine Verwendbarkeit in Einzelfällen [S4]. Letztlich muss die konkrete Wohnung innerhalb der im Mietspiegel ausgewiesenen Spanne eingeordnet werden, um die Einzelvergleichsmiete zu bestimmen [S3].",
+      "norag_answer": "Die ortsübliche Vergleichsmiete wird durch den Mietspiegel, Vergleichswohnungen oder Gutachten ermittelt. Der einfache Mietspiegel bietet eine Übersicht über die durchschnittlichen Mieten in einer bestimmten Region und ist eine wichtige Orientierungshilfe. Er berücksichtigt Faktoren wie Lage, Größe und Ausstattung der Wohnungen. Vermieter und Mieter können sich auf den einfachen Mietspiegel berufen, um die Angemessenheit der Miete zu prüfen. In Gebieten ohne Mietspiegel können Vergleichsmieten aus ähnlichen Wohnungen herangezogen werden.",
+      "rag_verdict": {
+        "korrektheit": 2,
+        "fundierung": 2,
+        "erfunden": false,
+        "begruendung": "Die Antwort deckt die wesentlichen Aspekte der Referenz ab und wird durch den Kontext vollständig unterstützt."
+      },
+      "norag_verdict": {
+        "korrektheit": 1,
+        "fundierung": 0,
+        "erfunden": false,
+        "begruendung": "Die Antwort enthält teilweise richtige Informationen zur ortsüblichen Vergleichsmiete und dem Mietspiegel, geht jedoch nicht ausreichend auf die Rolle des einfachen Mietspiegels im Vergleich zum qualifizierten Mietspiegel ein."
+      }
+    },
+    {
+      "question_id": "ea30711f3b61054d",
+      "question": "Wie wird die ausreichende Temperatur in einer Mietwohnung definiert und was können Mieter dagegen tun, wenn es zu kalt ist?",
+      "reference": "Eine nächtliche Raumtemperatur von 15° C wird als ausreichend angesehen, und Mieter können sich mit geeigneten Decken und Bettwäsche gegen die Kälte schützen.",
+      "rag_answer": "Die ausreichende Temperatur in einer Mietwohnung wird nicht gesetzlich definiert, jedoch wird allgemein eine Raumtemperatur von mindestens 15 bis 18 Grad Celsius als erforderlich angesehen, wobei 15 Grad für die Nachtstunden als ausreichend gilt [S1], [S2]. Mieter können bei unzureichender Heizleistung den Vermieter auffordern, die Heizungsanlage instand zu setzen oder gegebenenfalls eine Mietminderung geltend machen, wenn die Temperaturen unter den akzeptablen Bereich fallen [S3]. In einigen Fällen kann auch eine vertraglich festgelegte Temperatur von 21 Grad Celsius für die Heizperiode relevant sein [S4]. Bei anhaltenden Problemen sollten Mieter rechtliche Schritte in Erwägung ziehen, um ihre Ansprüche durchzusetzen.",
+      "norag_answer": "Die ausreichende Temperatur in einer Mietwohnung wird in der Regel als mindestens 20 Grad Celsius in Wohnräumen und 18 Grad Celsius in Schlafzimmern definiert. Bei Unterschreitung dieser Werte können Mieter den Vermieter schriftlich auffordern, die Heizung zu reparieren oder die Temperatur zu erhöhen. Kommt der Vermieter dieser Pflicht nicht nach, können Mieter eine Mietminderung geltend machen. Zudem besteht die Möglichkeit, die zuständigen Behörden zu informieren, wenn die Heizungsprobleme anhalten. In extremen Fällen kann auch eine fristlose Kündigung des Mietverhältnisses in Betracht gezogen werden.",
+      "rag_verdict": {
+        "korrektheit": 1,
+        "fundierung": 2,
+        "erfunden": false,
+        "begruendung": "Die Antwort enthält teilweise korrekte Informationen zur ausreichenden Temperatur, jedoch weicht sie in der Definition der Temperatur für die Nachtstunden von der Referenz ab."
+      },
+      "norag_verdict": {
+        "korrektheit": 0,
+        "fundierung": 0,
+        "erfunden": false,
+        "begruendung": "Die Antwort widerspricht der Referenzantwort bezüglich der definierten Temperaturen und enthält zusätzliche Informationen, die nicht im Kontext der Frage stehen."
+      }
+    },
+    {
+      "question_id": "f1e7291b5525d306",
+      "question": "Wie wird die Zweitwohnungssteuer berechnet und welche Faktoren spielen dabei eine Rolle?",
+      "reference": "Die Zweitwohnungssteuer wird auf Basis eines Bodenrichtwerts, der Wohnfläche, einem Baujahresfaktor und einem Steuersatz berechnet.",
+      "rag_answer": "Die Zweitwohnungssteuer wird auf Grundlage des jährlichen Mietaufwands berechnet, der der vertraglich geschuldeten Nettokaltmiete entspricht. Für Eigentumswohnungen wird die Nettokaltmiete in ortsüblicher Höhe geschätzt, basierend auf vergleichbaren Wohnungen [S1]. Die Steuerstaffelung erfolgt in verschiedenen Stufen, abhängig vom Mietaufwand [S1]. Faktoren wie Lage, Gebäudeart und Ausstattung können den Mietaufwand beeinflussen, wobei das Alter des Gebäudes ebenfalls berücksichtigt wird [S4]. Eine genaue Ermittlung des Mietaufwands ist nicht immer erforderlich, da Schätzungen auf Basis der genannten Faktoren vorgenommen werden können [S5].",
+      "norag_answer": "Die Zweitwohnungssteuer wird in Deutschland von den Kommunen erhoben und variiert je nach Gemeinde. Die Berechnung erfolgt in der Regel auf Basis der jährlichen Nettokaltmiete oder des Einheitswerts der Wohnung. Wichtige Faktoren sind die Höhe der Miete, die Größe der Wohnung und der Hebesatz der jeweiligen Gemeinde. Zudem können Freibeträge oder Ausnahmen für bestimmte Personengruppen gelten. Es ist ratsam, sich direkt bei der zuständigen Gemeinde über die spezifischen Regelungen zu informieren.",
+      "rag_verdict": {
+        "korrektheit": 1,
+        "fundierung": 2,
+        "erfunden": false,
+        "begruendung": "Die Antwort enthält teilweise korrekte Informationen zur Berechnung der Zweitwohnungssteuer, bezieht sich jedoch nicht auf die in der Referenz genannten Faktoren wie Bodenrichtwert und Baujahresfaktor."
+      },
+      "norag_verdict": {
+        "korrektheit": 1,
+        "fundierung": 0,
+        "erfunden": false,
+        "begruendung": "Die Antwort enthält teilweise richtige Informationen zur Berechnung der Zweitwohnungssteuer, weicht jedoch von der Referenzantwort ab und ist nicht durch den Kontext gedeckt."
+      }
+    },
+    {
+      "question_id": "f5faefebf4a0e905",
+      "question": "Was muss ein Gutachten enthalten, damit ich die Mieterhöhung nachvollziehen kann?",
+      "reference": "Das Gutachten muss Angaben über Tatsachen enthalten, die die Mieterhöhung begründen, und eine Einschätzung der ortsüblichen Vergleichsmiete für die Wohnung liefern.",
+      "rag_answer": "Ein Gutachten zur Nachvollziehbarkeit einer Mieterhöhung muss Angaben über Tatsachen enthalten, aus denen die geforderte Mieterhöhung hergeleitet wird. Es sollte dem Mieter ermöglichen, die Berechtigung des Erhöhungsverlangens zu überprüfen [S1], [S5]. Der Sachverständige muss eine Aussage zur ortsüblichen Vergleichsmiete treffen und die Wohnung im örtlichen Preisgefüge einordnen [S5]. Das Gutachten muss also detaillierte Informationen liefern, die eine eigenständige Prüfung durch den Mieter ermöglichen [S5].",
+      "norag_answer": "Ein Gutachten zur Mieterhöhung sollte folgende Elemente enthalten: \n\n1. Eine detaillierte Beschreibung der Wohnung und ihrer Ausstattung.\n2. Eine Marktanalyse, die vergleichbare Mietpreise in der Umgebung berücksichtigt.\n3. Eine Begründung für die angestrebte Mieterhöhung, einschließlich der Berechnungsmethode.\n4. Informationen über durchgeführte Modernisierungen oder Instandhaltungsmaßnahmen.\n5. Eine rechtliche Grundlage, die die Mieterhöhung gemäß den Vorschriften des Mietrechts stützt.",
+      "rag_verdict": {
+        "korrektheit": 2,
+        "fundierung": 2,
+        "erfunden": false,
+        "begruendung": "Die bewertete Antwort deckt die Anforderungen an ein Gutachten zur Nachvollziehbarkeit einer Mieterhöhung vollständig ab und wird durch den Kontext gestützt."
+      },
+      "norag_verdict": {
+        "korrektheit": 1,
+        "fundierung": 0,
+        "erfunden": false,
+        "begruendung": "Die Antwort enthält teilweise relevante Elemente, die für ein Gutachten zur Mieterhöhung wichtig sind, geht jedoch nicht vollständig auf die spezifischen Anforderungen der Referenzantwort ein."
+      }
+    },
+    {
+      "question_id": "f79d4cb6ffcf9d51",
+      "question": "Wie kann ich nachweisen, dass die Heizkosten zu hoch sind, wenn die Heizung nicht richtig funktioniert hat?",
+      "reference": "Sie müssen präzise Belege und Vergleichsrechnungen aus früheren Jahren vorlegen, um Ihre Ansprüche zu untermauern.",
+      "rag_answer": "Um nachzuweisen, dass die Heizkosten zu hoch sind, wenn die Heizung nicht richtig funktioniert hat, sollten Sie zunächst die tatsächlichen Heizkosten mit den Werten aus den \"Kommunalen Heizspiegeln\" oder dem \"Bundesweiten Heizspiegel\" vergleichen, um festzustellen, ob die Kosten unangemessen hoch sind [S2]. Es ist wichtig, konkrete Beweise für die Defekte der Heizung zu sammeln und darzulegen, wie diese die Heizkosten beeinflusst haben [S1]. Zudem könnte eine Mietminderung gemäß § 536 BGB in Betracht gezogen werden, wenn die Heizung nicht ordnungsgemäß funktioniert hat [S1]. Eine detaillierte Dokumentation der Heizkosten und der Heizungsprobleme ist entscheidend, um Ihre Ansprüche zu untermauern.",
+      "norag_answer": "Um nachzuweisen, dass die Heizkosten zu hoch sind, sollten Sie zunächst die Heizkostenabrechnung und die entsprechenden Verbrauchsdaten sammeln. Dokumentieren Sie die Probleme mit der Heizung, z.B. durch Fotos oder schriftliche Mitteilungen an den Vermieter. Es kann hilfreich sein, einen Fachmann zu beauftragen, der die Heizungsanlage überprüft und ein Gutachten erstellt. Zudem können Sie Vergleichswerte von ähnlichen Wohnungen einholen. Bei Bedarf sollten Sie rechtlichen Rat einholen, um Ihre Ansprüche durchzusetzen.",
+      "rag_verdict": {
+        "korrektheit": 2,
+        "fundierung": 2,
+        "erfunden": false,
+        "begruendung": "Die zu bewertende Antwort deckt sich inhaltlich mit der Referenzantwort und wird durch den Kontext unterstützt."
+      },
+      "norag_verdict": {
+        "korrektheit": 1,
+        "fundierung": 0,
+        "erfunden": false,
+        "begruendung": "Die Antwort enthält teilweise richtige Ansätze zur Nachweisführung, geht jedoch nicht konkret auf die geforderten Belege und Vergleichsrechnungen ein."
+      }
+    },
+    {
+      "question_id": "f7a0abf0bc738c2f",
+      "question": "Wie wird der Wert eines Mietstreits berechnet, wenn es um ein unbefristetes Mietverhältnis geht?",
+      "reference": "Der Wert wird nach dem dreieinhalbfachen Jahresbetrag der Nettomiete bemessen.",
+      "rag_answer": "Der Wert eines Mietstreits in einem unbefristeten Mietverhältnis wird in der Regel anhand der Bruttomiete berechnet, die für den streitigen Zeitraum gilt. Bei Streitigkeiten über die Mietminderung wird die Höhe der Minderung in der Regel prozentual von der Bruttomiete abgezogen, abhängig von der Schwere des Mangels [S2]. Der Streitwert kann auch nach dem wirtschaftlichen Interesse des Klägers an dem angestrebten Vertragsschluss bemessen werden, insbesondere wenn es um den Abschluss eines neuen Mietvertrags geht [S3]. Nebenkosten sind nur dann streitwerterhöhend, wenn sie als Pauschale vereinbart wurden [S5]. Eine spezifische Berechnungsmethode für unbefristete Mietverhältnisse ist in den bereitgestellten Quellen nicht detailliert beschrieben.",
+      "norag_answer": "Der Wert eines Mietstreits bei einem unbefristeten Mietverhältnis wird in der Regel anhand der jährlichen Miete berechnet. Hierbei wird die Jahresmiete ermittelt, indem die monatliche Miete mit 12 multipliziert wird. Der Streitwert beträgt in der Regel das 12-fache der monatlichen Miete, wenn es um Kündigungen oder Mietminderungen geht. Bei anderen Streitigkeiten kann der Wert variieren, je nach Gegenstand des Streits. Es ist ratsam, im Einzelfall rechtlichen Rat einzuholen, um die genaue Berechnung zu klären.",
+      "rag_verdict": {
+        "korrektheit": 0,
+        "fundierung": 0,
+        "erfunden": false,
+        "begruendung": "Die Antwort widerspricht der Referenzantwort, da sie die Bruttomiete anstelle der Nettomiete als Grundlage für die Streitwertberechnung angibt und keine spezifische Berechnungsmethode für unbefristete Mietverhältnisse nennt."
+      },
+      "norag_verdict": {
+        "korrektheit": 0,
+        "fundierung": 0,
+        "erfunden": false,
+        "begruendung": "Die Antwort gibt eine falsche Berechnung des Streitwerts an und weicht von der Referenz ab."
+      }
+    },
+    {
+      "question_id": "fb526ce86e0dff98",
+      "question": "Warum sind die Nebenkosten, die die Klägerin verlangt, nicht rechtmäßig?",
+      "reference": "Die Nebenkosten sind nicht rechtmäßig, weil die Klägerin Kosten einbezieht, die der Vermieter nicht schuldet, und die Arbeitskosten einen zu geringen Anteil an den Gesamtkosten ausmachen.",
+      "rag_answer": "Die Nebenkostenforderung der Klägerin ist nicht rechtmäßig, da sie eine rechnerisch nicht nachvollziehbare Differenz von ca. 400 Euro zu ihrer Klageforderung von 6.507,68 Euro aufweist, die nicht ausreichend begründet ist [S2]. Zudem wurde im Mietvertrag eine hälftige Kostentragung für bestimmte Nebenkosten vereinbart, was bedeutet, dass die Klägerin nur einen Teil der geforderten Summe rechtmäßig verlangen kann [S1]. Das Gericht hat die Klage abgewiesen, weil die Nebenkostenforderung nicht fällig ist und die Klägerin die Abrechnung nicht korrekt dargestellt hat [S3].",
+      "norag_answer": "Die Nebenkosten sind möglicherweise nicht rechtmäßig, wenn sie nicht im Mietvertrag klar definiert sind oder wenn die Klägerin keine ordnungsgemäße Abrechnung gemäß der Betriebskostenverordnung (BetrKV) vorgelegt hat. Zudem müssen die Kosten angemessen und nach dem tatsächlichen Verbrauch oder der tatsächlichen Nutzung verteilt werden. Fehlt eine transparente Aufschlüsselung oder sind die Kosten überhöht, kann dies ebenfalls zur Unrechtmäßigkeit führen. Auch eine Fristüberschreitung bei der Abrechnung kann die Forderung ungültig machen. Schließlich müssen alle abgerechneten Positionen im Mietvertrag als umlagefähig aufgeführt sein.",
+      "rag_verdict": {
+        "korrektheit": 1,
+        "fundierung": 2,
+        "erfunden": false,
+        "begruendung": "Die Antwort ist teilweise korrekt, da sie auf die Differenz zwischen der Klageforderung und der Nebenkostenforderung eingeht, jedoch nicht explizit auf die nicht geschuldeten Kosten und die geringe Arbeitskostenquote eingeht, die in der Referenz genannt werden."
+      },
+      "norag_verdict": {
+        "korrektheit": 1,
+        "fundierung": 0,
+        "erfunden": false,
+        "begruendung": "Die Antwort enthält teilweise richtige Aspekte zur Rechtmäßigkeit der Nebenkosten, geht jedoch nicht konkret auf die im Urteil genannten Gründe ein."
+      }
+    },
+    {
+      "question_id": "fbde7e1536726531",
+      "question": "Warum konnte die Vermietung der Parkplätze als eigenständige Leistung betrachtet werden?",
+      "reference": "Die Vermietung der Parkplätze war unabhängig von der Anmietung der Büros, da es keine rechtlichen oder faktischen Zwänge gab, die Parkplätze nur an die Büro-Mieter zu vermieten.",
+      "rag_answer": "Die Vermietung der Parkplätze konnte als eigenständige Leistung betrachtet werden, da es für die Mieter der Büroflächen einen eigenständigen Markt für Parkplätze gibt, der unabhängig von der Anmietung der Büros ist [S2]. Zudem war die Vermietung der Parkplätze nicht zwingend an die Vermietung der Büros gebunden, da die Klägerin die Parkplätze auch an Dritte hätte vermieten können [S3]. Die Nachfrage nach Parkraum war im Innenstadtbereich hoch, was die eigenständige Bedeutung der Parkplatzvermietung unterstreicht [S1]. Daher wurde die Vermietung der Parkflächen als eigenständige, umsatzsteuerpflichtige Leistung behandelt [S3].",
+      "norag_answer": "Die Vermietung der Parkplätze kann als eigenständige Leistung betrachtet werden, weil sie unabhängig von der Wohnraummiete angeboten wird und spezifische vertragliche Regelungen erfordert. Zudem können Parkplätze separate Kosten verursachen und unterschiedliche Nutzungsbedingungen haben. Diese Trennung ermöglicht es, die Parkplatznutzung gesondert zu regeln und zu bepreisen. Auch rechtlich können Parkplätze als eigenständige Mietobjekte gelten, wenn sie nicht zwingend mit der Wohnung verbunden sind. Daher ist eine separate Vermietung rechtlich zulässig und sinnvoll.",
+      "rag_verdict": {
+        "korrektheit": 2,
+        "fundierung": 2,
+        "erfunden": false,
+        "begruendung": "Die bewertete Antwort deckt die Argumentation der Referenzantwort vollständig ab und ist durch den Kontext gut fundiert."
+      },
+      "norag_verdict": {
+        "korrektheit": 1,
+        "fundierung": 0,
+        "erfunden": false,
+        "begruendung": "Die Antwort enthält teilweise richtige Aspekte zur eigenständigen Vermietung von Parkplätzen, jedoch fehlt der spezifische Bezug zur Unabhängigkeit von der Anmietung der Büros, was die Fundierung beeinträchtigt."
+      }
+    },
+    {
+      "question_id": "fd0b54f0701536df",
+      "question": "Welche Mängel wurden in der Wohnung vom Beklagten beanstandet?",
+      "reference": "Der Beklagte hat unter anderem schadhafte Fußleisten, ein zerbrochenes Türschild, beschädigte Fliesen im Bad, eine defekte Balkontür, eine verzogene Wohnungseingangstür und einen unbenutzbaren Parkettboden in der Küche beanstandet.",
+      "rag_answer": "Die beanstandeten Mängel in der Wohnung des Beklagten umfassen massive Feuchtigkeits- und Schimmelschäden in mehreren Räumen, darunter das Kinderzimmer, Elternschlafzimmer, Flur und Badezimmer. Im Badezimmer sind Schimmelbildung in der Dusche und an der Wand sowie eine undichte Wasserzufuhr zur Toilette dokumentiert. Zudem sind im Flur Glasbausteine verschimmelt und die Außenwände in mehreren Zimmern weisen Feuchtigkeit und Schimmel auf. Weitere Mängel sind ein defekter Durchlauferhitzer und ein nicht vorschriftsmäßiger Sicherungskasten [S1], [S2].",
+      "norag_answer": "Um die beanstandeten Mängel in der Wohnung zu ermitteln, müsste man die spezifischen Angaben des Beklagten kennen. Typische Mängel können beispielsweise Feuchtigkeit, Schimmel, defekte Heizungen oder undichte Fenster sein. Diese Mängel müssen dem Vermieter in der Regel schriftlich mitgeteilt werden. Der Vermieter hat dann die Möglichkeit, die Mängel zu beheben. Bei gravierenden Mängeln kann der Mieter unter Umständen die Miete mindern.",
+      "rag_verdict": {
+        "korrektheit": 0,
+        "fundierung": 0,
+        "erfunden": true,
+        "begruendung": "Die Antwort beschreibt Mängel, die nicht in der Referenzantwort oder im Kontext erwähnt werden, und enthält somit erfundene Informationen."
+      },
+      "norag_verdict": {
+        "korrektheit": 0,
+        "fundierung": 0,
+        "erfunden": false,
+        "begruendung": "Die Antwort geht am Thema vorbei und enthält keine spezifischen Informationen zu den beanstandeten Mängeln."
+      }
+    }
+  ]
+}

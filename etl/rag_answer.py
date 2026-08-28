@@ -43,6 +43,7 @@ def retrieve_chunks(
     min_year: Optional[int] = None,
     max_year: Optional[int] = None,
     only_has_date: bool = False,
+    ef_search: Optional[int] = None,
 ) -> List[Dict[str, Any]]:
     where = ["cc.embedding IS NOT NULL"]
     params: List[Any] = []
@@ -68,16 +69,20 @@ def retrieve_chunks(
       cc.updated_date,
       cc.meta_json,
       LEFT(cc.chunk_text, %s) AS chunk_text,
-      (cc.embedding <-> %s::vector) AS distance
+      (cc.embedding <=> %s::vector) AS distance
     FROM case_chunks cc
     WHERE {where_sql}
-    ORDER BY cc.embedding <-> %s::vector
+    ORDER BY cc.embedding <=> %s::vector
     LIMIT %s
     """
 
     sql_params = [chunk_chars, q_vec] + params + [q_vec, k]
 
     with conn.cursor(cursor_factory=pgx.RealDictCursor) as cur:
+        if ef_search is not None:
+            # Extension-Modul laden, damit hnsw.* als GUC bekannt ist
+            cur.execute("SELECT '[1]'::vector;")
+            cur.execute(f"SET LOCAL hnsw.ef_search = {int(ef_search)};")
         cur.execute(sql, sql_params)
         return list(cur.fetchall())
 
@@ -212,12 +217,13 @@ def main():
     ap = argparse.ArgumentParser(description="RAG QA: Query -> Retrieve pgvector -> LLM answer with citations")
     ap.add_argument("question", help="Frage in natürlicher Sprache")
     ap.add_argument("--k", type=int, default=10, help="Top-k Retrieval (Default 10)")
-    ap.add_argument("--model", default="sentence-transformers/all-MiniLM-L6-v2", help="Embedding model")
+    ap.add_argument("--model", default=os.getenv("RAG_EMBED_MODEL_PATH", "sentence-transformers/all-MiniLM-L6-v2"), help="Embedding model")
     ap.add_argument("--chunk-chars", type=int, default=1600, help="Max chars pro Chunk im Retrieval (Default 1600)")
     ap.add_argument("--max-context-chars", type=int, default=12000, help="Max chars für LLM-Kontext (Default 12000)")
     ap.add_argument("--min-year", type=int, default=None, help="Filter: min Entscheidungsjahr")
     ap.add_argument("--max-year", type=int, default=None, help="Filter: max Entscheidungsjahr")
     ap.add_argument("--only-has-date", action="store_true", help="Nur Chunks mit decision_date")
+    ap.add_argument("--ef-search", type=int, default=None, help="hnsw.ef_search (Default des Servers: 40; höher = genauer, langsamer)")
 
     ap.add_argument("--llm-api-url", default=os.getenv("RAG_LLM_API_URL", "https://api.openai.com/v1/chat/completions"), help="Chat Completions URL")
     ap.add_argument("--llm-api-key", default=os.getenv("RAG_LLM_API_KEY"), help="API key (optional for local endpoints)")
@@ -246,6 +252,7 @@ def main():
         min_year=args.min_year,
         max_year=args.max_year,
         only_has_date=args.only_has_date,
+        ef_search=args.ef_search,
     )
     conn.close()
 

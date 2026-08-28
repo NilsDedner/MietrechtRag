@@ -1,0 +1,6 @@
+Variante,hit@1,hit@3,hit@10,case_hit@10,mrr,ndcg@10,latency_p50_ms
+"Dense (MiniLM, englisch)",0.033,0.117,0.167,0.267,0.078,0.1,3.56
+"Dense (E5, mehrsprachig)",0.167,0.283,0.467,0.65,0.254,0.305,5.75
+"Lexikalisch (BM25, deutsch)",0.067,0.133,0.183,0.333,0.1,0.119,292.52
+Hybrid (MiniLM + BM25),0.1,0.183,0.25,0.433,0.147,0.172,284.71
+Hybrid (E5 + BM25),0.217,0.367,0.483,0.6,0.3,0.344,282.8

@@ -28,7 +28,11 @@ from .rag_answer import (
 DEFAULT_MODEL_ID = os.getenv("RAG_API_MODEL_ID", "mietrecht-rag")
 PASSTHROUGH_MODEL_ID = os.getenv("RAG_API_PASSTHROUGH_MODEL_ID", "openai-direct")
 ENABLE_PASSTHROUGH = os.getenv("RAG_API_ENABLE_PASSTHROUGH", "1") not in ("0", "false", "False")
-EMBED_MODEL_NAME = os.getenv("RAG_EMBED_MODEL", "sentence-transformers/all-MiniLM-L6-v2")
+EMBED_MODEL_NAME = (
+    os.getenv("RAG_EMBED_MODEL")
+    or os.getenv("RAG_EMBED_MODEL_PATH")  # gepinnter lokaler Snapshot aus env.sh
+    or "sentence-transformers/all-MiniLM-L6-v2"
+)
 
 UPSTREAM_API_URL = os.getenv("RAG_LLM_API_URL", "https://api.openai.com/v1/chat/completions")
 if not os.getenv("RAG_LLM_API_URL"):

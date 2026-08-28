@@ -1,0 +1,1292 @@
+{
+  "run_id": "eval_dense_ef40",
+  "params": {
+    "variant": "dense",
+    "corpus_run_id": "analysis_night_20260225_mietrecht_v9",
+    "table": "eval_chunks",
+    "k": 10,
+    "ef_search": null,
+    "candidate_k": null,
+    "rrf_k": 60,
+    "embedding_model": "/home/dedner/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/c9745ed1d9f207416be6d2e6f8de32d1f16199bf",
+    "query_encode_ms_total": 132.49
+  },
+  "metrics": {
+    "hit@1": 0.0333,
+    "case_hit@1": 0.0833,
+    "hit@3": 0.1,
+    "case_hit@3": 0.1667,
+    "hit@5": 0.1167,
+    "case_hit@5": 0.2,
+    "hit@10": 0.15,
+    "case_hit@10": 0.25,
+    "mrr": 0.0727,
+    "case_mrr": 0.1352,
+    "ndcg@10": 0.0913,
+    "latency_p50_ms": 2.06,
+    "latency_mean_ms": 2.39,
+    "questions": 60
+  },
+  "per_question": [
+    {
+      "question_id": "0196ae3b1e912e15",
+      "question": "Welche Arten von Wohnungen werden bei der Ermittlung des Mietwertes für Grundsicherung nicht berücksichtigt?",
+      "gold": [
+        87257,
+        28
+      ],
+      "metrics": {
+        "hit@1": 0.0,
+        "case_hit@1": 0.0,
+        "hit@3": 0.0,
+        "case_hit@3": 0.0,
+        "hit@5": 0.0,
+        "case_hit@5": 0.0,
+        "hit@10": 0.0,
+        "case_hit@10": 0.0,
+        "mrr": 0.0,
+        "case_mrr": 0.0,
+        "ndcg@10": 0.0
+      }
+    },
+    {
+      "question_id": "026265aa2a340b1e",
+      "question": "Welche Ziele kann die Zweitwohnungssteuer neben der Einnahmenerzielung verfolgen?",
+      "gold": [
+        244104,
+        13
+      ],
+      "metrics": {
+        "hit@1": 0.0,
+        "case_hit@1": 0.0,
+        "hit@3": 0.0,
+        "case_hit@3": 0.0,
+        "hit@5": 0.0,
+        "case_hit@5": 0.0,
+        "hit@10": 0.0,
+        "case_hit@10": 0.0,
+        "mrr": 0.0,
+        "case_mrr": 0.0,
+        "ndcg@10": 0.0
+      }
+    },
+    {
+      "question_id": "03596d4b4dee46e2",
+      "question": "Wie kann ich nachweisen, dass meine Wohnungen während der Hauptsaison tatsächlich oft vermietet waren?",
+      "gold": [
+        163447,
+        15
+      ],
+      "metrics": {
+        "hit@1": 0.0,
+        "case_hit@1": 0.0,
+        "hit@3": 0.0,
+        "case_hit@3": 0.0,
+        "hit@5": 0.0,
+        "case_hit@5": 0.0,
+        "hit@10": 0.0,
+        "case_hit@10": 0.0,
+        "mrr": 0.0,
+        "case_mrr": 0.0,
+        "ndcg@10": 0.0
+      }
+    },
+    {
+      "question_id": "08aaaec43874c99b",
+      "question": "Welche Gründe können dafür sprechen, dass eine sofortige Vollziehung einer Ordnungsverfügung notwendig ist?",
+      "gold": [
+        328181,
+        2
+      ],
+      "metrics": {
+        "hit@1": 0.0,
+        "case_hit@1": 0.0,
+        "hit@3": 0.0,
+        "case_hit@3": 0.0,
+        "hit@5": 0.0,
+        "case_hit@5": 0.0,
+        "hit@10": 1.0,
+        "case_hit@10": 1.0,
+        "mrr": 0.1111111111111111,
+        "case_mrr": 0.1111111111111111,
+        "ndcg@10": 0.3010299956639812
+      }
+    },
+    {
+      "question_id": "13c87eb8a85b3b8d",
+      "question": "Wie wird die ortsübliche Vergleichsmiete für eine Wohnung in einfacher Wohnlage ermittelt?",
+      "gold": [
+        205055,
+        11
+      ],
+      "metrics": {
+        "hit@1": 0.0,
+        "case_hit@1": 0.0,
+        "hit@3": 0.0,
+        "case_hit@3": 0.0,
+        "hit@5": 0.0,
+        "case_hit@5": 0.0,
+        "hit@10": 0.0,
+        "case_hit@10": 0.0,
+        "mrr": 0.0,
+        "case_mrr": 0.0,
+        "ndcg@10": 0.0
+      }
+    },
+    {
+      "question_id": "1922752024cb8dff",
+      "question": "Wie viel Schulden hat die Beklagte für Miete und Nebenkosten zwischen Januar 1989 und August 1990 angesammelt?",
+      "gold": [
+        313446,
+        7
+      ],
+      "metrics": {
+        "hit@1": 0.0,
+        "case_hit@1": 0.0,
+        "hit@3": 0.0,
+        "case_hit@3": 0.0,
+        "hit@5": 0.0,
+        "case_hit@5": 0.0,
+        "hit@10": 0.0,
+        "case_hit@10": 0.0,
+        "mrr": 0.0,
+        "case_mrr": 0.0,
+        "ndcg@10": 0.0
+      }
+    },
+    {
+      "question_id": "198669075d50a891",
+      "question": "Warum haben die Kläger keinen Anspruch auf einen Erlass der Grundsteuer für ihre leerstehenden Wohnungen?",
+      "gold": [
+        287436,
+        11
+      ],
+      "metrics": {
+        "hit@1": 0.0,
+        "case_hit@1": 0.0,
+        "hit@3": 0.0,
+        "case_hit@3": 1.0,
+        "hit@5": 0.0,
+        "case_hit@5": 1.0,
+        "hit@10": 0.0,
+        "case_hit@10": 1.0,
+        "mrr": 0.0,
+        "case_mrr": 0.3333333333333333,
+        "ndcg@10": 0.0
+      }
+    },
+    {
+      "question_id": "1ad7f1bd0e36fecf",
+      "question": "Wie lange kann ich als Mieter meine Mietzeit verlängern, wenn der Vermieter nicht rechtzeitig widerspricht?",
+      "gold": [
+        291822,
+        9
+      ],
+      "metrics": {
+        "hit@1": 0.0,
+        "case_hit@1": 1.0,
+        "hit@3": 1.0,
+        "case_hit@3": 1.0,
+        "hit@5": 1.0,
+        "case_hit@5": 1.0,
+        "hit@10": 1.0,
+        "case_hit@10": 1.0,
+        "mrr": 0.5,
+        "case_mrr": 1.0,
+        "ndcg@10": 0.6309297535714575
+      }
+    },
+    {
+      "question_id": "1b5679fe4f9dd6a7",
+      "question": "Kann ich die Zweitwohnungssteuer als Werbungskosten absetzen, wenn ich die Wohnung nicht selbst genutzt habe?",
+      "gold": [
+        255644,
+        5
+      ],
+      "metrics": {
+        "hit@1": 0.0,
+        "case_hit@1": 0.0,
+        "hit@3": 0.0,
+        "case_hit@3": 0.0,
+        "hit@5": 0.0,
+        "case_hit@5": 0.0,
+        "hit@10": 0.0,
+        "case_hit@10": 0.0,
+        "mrr": 0.0,
+        "case_mrr": 0.0,
+        "ndcg@10": 0.0
+      }
+    },
+    {
+      "question_id": "1d310838ea3314c8",
+      "question": "Was passiert mit meinem Genossenschaftsanteil, wenn ich insolvent werde und in einer Genossenschaftswohnung lebe?",
+      "gold": [
+        265421,
+        0
+      ],
+      "metrics": {
+        "hit@1": 0.0,
+        "case_hit@1": 1.0,
+        "hit@3": 0.0,
+        "case_hit@3": 1.0,
+        "hit@5": 0.0,
+        "case_hit@5": 1.0,
+        "hit@10": 0.0,
+        "case_hit@10": 1.0,
+        "mrr": 0.0,
+        "case_mrr": 1.0,
+        "ndcg@10": 0.0
+      }
+    },
+    {
+      "question_id": "206dc1c029b591cf",
+      "question": "Warum wurde die Berufung des Beklagten nicht erfolgreich?",
+      "gold": [
+        191078,
+        9
+      ],
+      "metrics": {
+        "hit@1": 0.0,
+        "case_hit@1": 0.0,
+        "hit@3": 0.0,
+        "case_hit@3": 0.0,
+        "hit@5": 0.0,
+        "case_hit@5": 0.0,
+        "hit@10": 0.0,
+        "case_hit@10": 0.0,
+        "mrr": 0.0,
+        "case_mrr": 0.0,
+        "ndcg@10": 0.0
+      }
+    },
+    {
+      "question_id": "2224e631f463b763",
+      "question": "Wie kann ich die Höhe meiner Mietansprüche nach einem Unfall berechnen?",
+      "gold": [
+        239778,
+        4
+      ],
+      "metrics": {
+        "hit@1": 0.0,
+        "case_hit@1": 0.0,
+        "hit@3": 0.0,
+        "case_hit@3": 0.0,
+        "hit@5": 0.0,
+        "case_hit@5": 0.0,
+        "hit@10": 0.0,
+        "case_hit@10": 0.0,
+        "mrr": 0.0,
+        "case_mrr": 0.0,
+        "ndcg@10": 0.0
+      }
+    },
+    {
+      "question_id": "23d30ae11e4729fe",
+      "question": "Wie hoch sind die insgesamt anerkannten Kosten für Hauswart, Winterdienst und Gartenpflege?",
+      "gold": [
+        233406,
+        8
+      ],
+      "metrics": {
+        "hit@1": 0.0,
+        "case_hit@1": 0.0,
+        "hit@3": 0.0,
+        "case_hit@3": 0.0,
+        "hit@5": 0.0,
+        "case_hit@5": 0.0,
+        "hit@10": 0.0,
+        "case_hit@10": 0.0,
+        "mrr": 0.0,
+        "case_mrr": 0.0,
+        "ndcg@10": 0.0
+      }
+    },
+    {
+      "question_id": "29c04e7e6244009a",
+      "question": "Wie viel mehr müsste ich monatlich für die Miete zahlen, wenn die Kosten für Schönheitsreparaturen im Durchschnitt bei 6,50 EUR pro Quadratmeter liegen?",
+      "gold": [
+        277269,
+        9
+      ],
+      "metrics": {
+        "hit@1": 0.0,
+        "case_hit@1": 0.0,
+        "hit@3": 0.0,
+        "case_hit@3": 0.0,
+        "hit@5": 0.0,
+        "case_hit@5": 0.0,
+        "hit@10": 0.0,
+        "case_hit@10": 0.0,
+        "mrr": 0.0,
+        "case_mrr": 0.0,
+        "ndcg@10": 0.0
+      }
+    },
+    {
+      "question_id": "2c4ca8da2338c1e7",
+      "question": "Was passiert, wenn ich die Kosten für meine Wohnung nicht senke, obwohl ich dazu aufgefordert werde?",
+      "gold": [
+        64843,
+        13
+      ],
+      "metrics": {
+        "hit@1": 0.0,
+        "case_hit@1": 0.0,
+        "hit@3": 0.0,
+        "case_hit@3": 0.0,
+        "hit@5": 0.0,
+        "case_hit@5": 0.0,
+        "hit@10": 0.0,
+        "case_hit@10": 0.0,
+        "mrr": 0.0,
+        "case_mrr": 0.0,
+        "ndcg@10": 0.0
+      }
+    },
+    {
+      "question_id": "31d3155a9d60758d",
+      "question": "Wie kann die Eigenheimzulage meine monatlichen Kosten für die Wohnung beeinflussen?",
+      "gold": [
+        82709,
+        12
+      ],
+      "metrics": {
+        "hit@1": 0.0,
+        "case_hit@1": 0.0,
+        "hit@3": 0.0,
+        "case_hit@3": 0.0,
+        "hit@5": 0.0,
+        "case_hit@5": 0.0,
+        "hit@10": 0.0,
+        "case_hit@10": 0.0,
+        "mrr": 0.0,
+        "case_mrr": 0.0,
+        "ndcg@10": 0.0
+      }
+    },
+    {
+      "question_id": "3725de403f44dcb0",
+      "question": "Warum ist die festgelegte Angemessenheitsgrenze für die Miete eines Zweipersonenhaushalts nicht verbindlich?",
+      "gold": [
+        319273,
+        22
+      ],
+      "metrics": {
+        "hit@1": 0.0,
+        "case_hit@1": 0.0,
+        "hit@3": 0.0,
+        "case_hit@3": 0.0,
+        "hit@5": 0.0,
+        "case_hit@5": 0.0,
+        "hit@10": 0.0,
+        "case_hit@10": 0.0,
+        "mrr": 0.0,
+        "case_mrr": 0.0,
+        "ndcg@10": 0.0
+      }
+    },
+    {
+      "question_id": "3c14264273ef8a18",
+      "question": "Warum könnte die Berechnung der Zweitwohnungssteuer auf einem so alten Stichtag wie dem 1. Januar 1964 problematisch sein?",
+      "gold": [
+        68813,
+        9
+      ],
+      "metrics": {
+        "hit@1": 0.0,
+        "case_hit@1": 0.0,
+        "hit@3": 0.0,
+        "case_hit@3": 1.0,
+        "hit@5": 0.0,
+        "case_hit@5": 1.0,
+        "hit@10": 0.0,
+        "case_hit@10": 1.0,
+        "mrr": 0.0,
+        "case_mrr": 0.3333333333333333,
+        "ndcg@10": 0.0
+      }
+    },
+    {
+      "question_id": "3c3d3c930f6591ad",
+      "question": "Wie viel Geld steht mir monatlich zur Verfügung, um meine Ausgaben für Krankenversicherung und andere Kosten zu decken, wenn ich BAföG erhalte?",
+      "gold": [
+        92360,
+        10
+      ],
+      "metrics": {
+        "hit@1": 0.0,
+        "case_hit@1": 0.0,
+        "hit@3": 0.0,
+        "case_hit@3": 0.0,
+        "hit@5": 0.0,
+        "case_hit@5": 0.0,
+        "hit@10": 0.0,
+        "case_hit@10": 0.0,
+        "mrr": 0.0,
+        "case_mrr": 0.0,
+        "ndcg@10": 0.0
+      }
+    },
+    {
+      "question_id": "3dac922141e3804b",
+      "question": "Warum wird der Kostenvoranschlag der Immobilienverwaltung als nicht vertrauenswürdig angesehen?",
+      "gold": [
+        248937,
+        17
+      ],
+      "metrics": {
+        "hit@1": 0.0,
+        "case_hit@1": 0.0,
+        "hit@3": 0.0,
+        "case_hit@3": 0.0,
+        "hit@5": 0.0,
+        "case_hit@5": 0.0,
+        "hit@10": 0.0,
+        "case_hit@10": 0.0,
+        "mrr": 0.0,
+        "case_mrr": 0.0,
+        "ndcg@10": 0.0
+      }
+    },
+    {
+      "question_id": "44b91e50b159c550",
+      "question": "Was passiert, wenn die Kündigung eines Mietvertrags nicht schriftlich erfolgt?",
+      "gold": [
+        286133,
+        3
+      ],
+      "metrics": {
+        "hit@1": 0.0,
+        "case_hit@1": 0.0,
+        "hit@3": 0.0,
+        "case_hit@3": 0.0,
+        "hit@5": 0.0,
+        "case_hit@5": 0.0,
+        "hit@10": 0.0,
+        "case_hit@10": 0.0,
+        "mrr": 0.0,
+        "case_mrr": 0.0,
+        "ndcg@10": 0.0
+      }
+    },
+    {
+      "question_id": "50e1b5264eada568",
+      "question": "Wie wird der Bedarf an Warmwasser in Bezug auf die gewährte Pauschale berücksichtigt?",
+      "gold": [
+        174647,
+        13
+      ],
+      "metrics": {
+        "hit@1": 0.0,
+        "case_hit@1": 0.0,
+        "hit@3": 1.0,
+        "case_hit@3": 1.0,
+        "hit@5": 1.0,
+        "case_hit@5": 1.0,
+        "hit@10": 1.0,
+        "case_hit@10": 1.0,
+        "mrr": 0.5,
+        "case_mrr": 0.5,
+        "ndcg@10": 0.6309297535714575
+      }
+    },
+    {
+      "question_id": "51a3a47920b76e47",
+      "question": "Welche rechtlichen Schwierigkeiten können bei einer Nutzungsänderung in einem Mehrfamilienhaus auftreten?",
+      "gold": [
+        214453,
+        4
+      ],
+      "metrics": {
+        "hit@1": 0.0,
+        "case_hit@1": 0.0,
+        "hit@3": 0.0,
+        "case_hit@3": 0.0,
+        "hit@5": 0.0,
+        "case_hit@5": 0.0,
+        "hit@10": 0.0,
+        "case_hit@10": 0.0,
+        "mrr": 0.0,
+        "case_mrr": 0.0,
+        "ndcg@10": 0.0
+      }
+    },
+    {
+      "question_id": "56509c9cf6788bc5",
+      "question": "Wie viel Wohnfläche wird für eine alleinstehende Person als angemessen angesehen und was bedeutet das für meine Mietkosten?",
+      "gold": [
+        249373,
+        4
+      ],
+      "metrics": {
+        "hit@1": 0.0,
+        "case_hit@1": 0.0,
+        "hit@3": 0.0,
+        "case_hit@3": 0.0,
+        "hit@5": 1.0,
+        "case_hit@5": 1.0,
+        "hit@10": 1.0,
+        "case_hit@10": 1.0,
+        "mrr": 0.25,
+        "case_mrr": 0.25,
+        "ndcg@10": 0.43067655807339306
+      }
+    },
+    {
+      "question_id": "65add32b11fbb791",
+      "question": "Wie wird der Anteil für die Warmwasserbereitung in der Heizkostenabrechnung berücksichtigt, wenn ich weniger Kosten verursache als im Regelsatz vorgesehen?",
+      "gold": [
+        143028,
+        18
+      ],
+      "metrics": {
+        "hit@1": 0.0,
+        "case_hit@1": 0.0,
+        "hit@3": 0.0,
+        "case_hit@3": 0.0,
+        "hit@5": 0.0,
+        "case_hit@5": 0.0,
+        "hit@10": 0.0,
+        "case_hit@10": 0.0,
+        "mrr": 0.0,
+        "case_mrr": 0.0,
+        "ndcg@10": 0.0
+      }
+    },
+    {
+      "question_id": "69c72900c0da22e8",
+      "question": "Wie wird das Wohngeld bei einem monatlichen Gesamteinkommen von 1.955,29 € und einer Miete von 450,00 € berechnet, wenn man 2 Haushaltsmitglieder hat?",
+      "gold": [
+        82082,
+        7
+      ],
+      "metrics": {
+        "hit@1": 0.0,
+        "case_hit@1": 0.0,
+        "hit@3": 0.0,
+        "case_hit@3": 0.0,
+        "hit@5": 0.0,
+        "case_hit@5": 0.0,
+        "hit@10": 0.0,
+        "case_hit@10": 0.0,
+        "mrr": 0.0,
+        "case_mrr": 0.0,
+        "ndcg@10": 0.0
+      }
+    },
+    {
+      "question_id": "6cf7e31de08e6342",
+      "question": "Wie hoch ist die neue Mietobergrenze für die Kosten der Unterkunft ab Oktober 2007?",
+      "gold": [
+        162330,
+        6
+      ],
+      "metrics": {
+        "hit@1": 0.0,
+        "case_hit@1": 0.0,
+        "hit@3": 0.0,
+        "case_hit@3": 0.0,
+        "hit@5": 0.0,
+        "case_hit@5": 0.0,
+        "hit@10": 0.0,
+        "case_hit@10": 0.0,
+        "mrr": 0.0,
+        "case_mrr": 0.0,
+        "ndcg@10": 0.0
+      }
+    },
+    {
+      "question_id": "6d1b7381e83fb36f",
+      "question": "Kann der Vermieter 13 Jahre nach Abschluss des Mietvertrags noch kündigen, wenn es Unklarheiten über die Zeichnungen gibt?",
+      "gold": [
+        279301,
+        5
+      ],
+      "metrics": {
+        "hit@1": 0.0,
+        "case_hit@1": 0.0,
+        "hit@3": 0.0,
+        "case_hit@3": 0.0,
+        "hit@5": 0.0,
+        "case_hit@5": 0.0,
+        "hit@10": 0.0,
+        "case_hit@10": 0.0,
+        "mrr": 0.0,
+        "case_mrr": 0.0,
+        "ndcg@10": 0.0
+      }
+    },
+    {
+      "question_id": "722f36365d0ac237",
+      "question": "Kann ich meine Stromschulden übernehmen lassen, wenn ich die Heizkosten selbst verursacht habe?",
+      "gold": [
+        106152,
+        9
+      ],
+      "metrics": {
+        "hit@1": 0.0,
+        "case_hit@1": 0.0,
+        "hit@3": 0.0,
+        "case_hit@3": 0.0,
+        "hit@5": 0.0,
+        "case_hit@5": 0.0,
+        "hit@10": 0.0,
+        "case_hit@10": 0.0,
+        "mrr": 0.0,
+        "case_mrr": 0.0,
+        "ndcg@10": 0.0
+      }
+    },
+    {
+      "question_id": "731d5fad441262cb",
+      "question": "Was passiert mit der Kaution, wenn der Vermieter während des Mietverhältnisses Ansprüche geltend macht?",
+      "gold": [
+        113886,
+        0
+      ],
+      "metrics": {
+        "hit@1": 0.0,
+        "case_hit@1": 0.0,
+        "hit@3": 0.0,
+        "case_hit@3": 0.0,
+        "hit@5": 0.0,
+        "case_hit@5": 0.0,
+        "hit@10": 1.0,
+        "case_hit@10": 1.0,
+        "mrr": 0.16666666666666666,
+        "case_mrr": 0.16666666666666666,
+        "ndcg@10": 0.3562071871080222
+      }
+    },
+    {
+      "question_id": "7488b5a94068c8ca",
+      "question": "Wie wird die Höhe einer Ertragsminderung bei leer stehenden Mieträumen bestimmt?",
+      "gold": [
+        232619,
+        23
+      ],
+      "metrics": {
+        "hit@1": 0.0,
+        "case_hit@1": 0.0,
+        "hit@3": 0.0,
+        "case_hit@3": 0.0,
+        "hit@5": 0.0,
+        "case_hit@5": 1.0,
+        "hit@10": 0.0,
+        "case_hit@10": 1.0,
+        "mrr": 0.0,
+        "case_mrr": 0.25,
+        "ndcg@10": 0.0
+      }
+    },
+    {
+      "question_id": "8300a48fc06638a0",
+      "question": "Was kann ich tun, wenn ich keine Bestätigung für die Übernahme der Maklergebühren von der zuständigen Sachbearbeiterin erhalte?",
+      "gold": [
+        253264,
+        6
+      ],
+      "metrics": {
+        "hit@1": 0.0,
+        "case_hit@1": 0.0,
+        "hit@3": 0.0,
+        "case_hit@3": 0.0,
+        "hit@5": 0.0,
+        "case_hit@5": 0.0,
+        "hit@10": 0.0,
+        "case_hit@10": 0.0,
+        "mrr": 0.0,
+        "case_mrr": 0.0,
+        "ndcg@10": 0.0
+      }
+    },
+    {
+      "question_id": "8738670fcea8ca8e",
+      "question": "Habe ich Anspruch auf Erstattung der Hauswartkosten, die in der Betriebskostenabrechnung angegeben sind?",
+      "gold": [
+        258968,
+        14
+      ],
+      "metrics": {
+        "hit@1": 0.0,
+        "case_hit@1": 0.0,
+        "hit@3": 0.0,
+        "case_hit@3": 0.0,
+        "hit@5": 0.0,
+        "case_hit@5": 0.0,
+        "hit@10": 0.0,
+        "case_hit@10": 0.0,
+        "mrr": 0.0,
+        "case_mrr": 0.0,
+        "ndcg@10": 0.0
+      }
+    },
+    {
+      "question_id": "87d48012151228e2",
+      "question": "Wie lange kann ein Vermieter nach der Rückgabe einer Wohnung Ansprüche gegen den Mieter geltend machen?",
+      "gold": [
+        68596,
+        4
+      ],
+      "metrics": {
+        "hit@1": 0.0,
+        "case_hit@1": 0.0,
+        "hit@3": 1.0,
+        "case_hit@3": 1.0,
+        "hit@5": 1.0,
+        "case_hit@5": 1.0,
+        "hit@10": 1.0,
+        "case_hit@10": 1.0,
+        "mrr": 0.5,
+        "case_mrr": 0.5,
+        "ndcg@10": 0.6309297535714575
+      }
+    },
+    {
+      "question_id": "8c0c433816717f28",
+      "question": "Wie viel Geld kann ich von meinem Vermieter für die Heizkostenabrechnung zurückfordern?",
+      "gold": [
+        125328,
+        3
+      ],
+      "metrics": {
+        "hit@1": 0.0,
+        "case_hit@1": 0.0,
+        "hit@3": 0.0,
+        "case_hit@3": 0.0,
+        "hit@5": 0.0,
+        "case_hit@5": 0.0,
+        "hit@10": 0.0,
+        "case_hit@10": 0.0,
+        "mrr": 0.0,
+        "case_mrr": 0.0,
+        "ndcg@10": 0.0
+      }
+    },
+    {
+      "question_id": "8c8fd58cfc698b78",
+      "question": "Wie wurde die Nutzung der Ferienwohnungen durch die Klägerin und ihren Ehemann in den Streitjahren bewertet?",
+      "gold": [
+        213106,
+        12
+      ],
+      "metrics": {
+        "hit@1": 1.0,
+        "case_hit@1": 1.0,
+        "hit@3": 1.0,
+        "case_hit@3": 1.0,
+        "hit@5": 1.0,
+        "case_hit@5": 1.0,
+        "hit@10": 1.0,
+        "case_hit@10": 1.0,
+        "mrr": 1.0,
+        "case_mrr": 1.0,
+        "ndcg@10": 1.0
+      }
+    },
+    {
+      "question_id": "8d1d0618e91c175f",
+      "question": "Welche rechtlichen Grundlagen gibt es für die Erhebung der Hundesteuer in der Stadt N?",
+      "gold": [
+        290490,
+        3
+      ],
+      "metrics": {
+        "hit@1": 0.0,
+        "case_hit@1": 0.0,
+        "hit@3": 0.0,
+        "case_hit@3": 0.0,
+        "hit@5": 0.0,
+        "case_hit@5": 0.0,
+        "hit@10": 0.0,
+        "case_hit@10": 0.0,
+        "mrr": 0.0,
+        "case_mrr": 0.0,
+        "ndcg@10": 0.0
+      }
+    },
+    {
+      "question_id": "93b60cb0b024e914",
+      "question": "Was muss ich tun, um die Räumung meines Mietobjekts abzuwenden?",
+      "gold": [
+        233990,
+        0
+      ],
+      "metrics": {
+        "hit@1": 0.0,
+        "case_hit@1": 0.0,
+        "hit@3": 0.0,
+        "case_hit@3": 0.0,
+        "hit@5": 0.0,
+        "case_hit@5": 0.0,
+        "hit@10": 0.0,
+        "case_hit@10": 0.0,
+        "mrr": 0.0,
+        "case_mrr": 0.0,
+        "ndcg@10": 0.0
+      }
+    },
+    {
+      "question_id": "a66f0ae5f10cf9c6",
+      "question": "Wie wird die Übernahme von Schönheitsreparaturen durch den Mieter rechtlich betrachtet, wenn er stattdessen eine höhere Miete zahlt?",
+      "gold": [
+        227035,
+        3
+      ],
+      "metrics": {
+        "hit@1": 0.0,
+        "case_hit@1": 0.0,
+        "hit@3": 0.0,
+        "case_hit@3": 0.0,
+        "hit@5": 0.0,
+        "case_hit@5": 0.0,
+        "hit@10": 0.0,
+        "case_hit@10": 0.0,
+        "mrr": 0.0,
+        "case_mrr": 0.0,
+        "ndcg@10": 0.0
+      }
+    },
+    {
+      "question_id": "ae637d6206b584f4",
+      "question": "Welche Kosten werden bei den Leistungen für Unterkunft berücksichtigt?",
+      "gold": [
+        267641,
+        2
+      ],
+      "metrics": {
+        "hit@1": 0.0,
+        "case_hit@1": 0.0,
+        "hit@3": 0.0,
+        "case_hit@3": 0.0,
+        "hit@5": 0.0,
+        "case_hit@5": 0.0,
+        "hit@10": 0.0,
+        "case_hit@10": 0.0,
+        "mrr": 0.0,
+        "case_mrr": 0.0,
+        "ndcg@10": 0.0
+      }
+    },
+    {
+      "question_id": "b16e785124b47097",
+      "question": "Welche Informationen müssen in einer Nebenkostenabrechnung enthalten sein, damit sie gültig ist?",
+      "gold": [
+        307108,
+        0
+      ],
+      "metrics": {
+        "hit@1": 0.0,
+        "case_hit@1": 0.0,
+        "hit@3": 0.0,
+        "case_hit@3": 0.0,
+        "hit@5": 0.0,
+        "case_hit@5": 0.0,
+        "hit@10": 0.0,
+        "case_hit@10": 0.0,
+        "mrr": 0.0,
+        "case_mrr": 0.0,
+        "ndcg@10": 0.0
+      }
+    },
+    {
+      "question_id": "b2302cd442964c98",
+      "question": "Warum haben die Beklagten die Miete in verschiedenen Monaten unterschiedlich gesenkt?",
+      "gold": [
+        222088,
+        1
+      ],
+      "metrics": {
+        "hit@1": 0.0,
+        "case_hit@1": 0.0,
+        "hit@3": 0.0,
+        "case_hit@3": 0.0,
+        "hit@5": 0.0,
+        "case_hit@5": 0.0,
+        "hit@10": 0.0,
+        "case_hit@10": 0.0,
+        "mrr": 0.0,
+        "case_mrr": 0.0,
+        "ndcg@10": 0.0
+      }
+    },
+    {
+      "question_id": "bdfc6d0dac3881ed",
+      "question": "Wer ist für die Zahlung der Hundesteuer verantwortlich, wenn man mehrere Hunde hält?",
+      "gold": [
+        135994,
+        31
+      ],
+      "metrics": {
+        "hit@1": 0.0,
+        "case_hit@1": 0.0,
+        "hit@3": 0.0,
+        "case_hit@3": 1.0,
+        "hit@5": 0.0,
+        "case_hit@5": 1.0,
+        "hit@10": 0.0,
+        "case_hit@10": 1.0,
+        "mrr": 0.0,
+        "case_mrr": 0.5,
+        "ndcg@10": 0.0
+      }
+    },
+    {
+      "question_id": "c396a5ad3a1991d2",
+      "question": "Wie hoch ist die angemessene Miete für einen Zwei-Personen-Haushalt in Kettwig, wenn man die besonderen Umstände berücksichtigt?",
+      "gold": [
+        255319,
+        28
+      ],
+      "metrics": {
+        "hit@1": 0.0,
+        "case_hit@1": 0.0,
+        "hit@3": 0.0,
+        "case_hit@3": 0.0,
+        "hit@5": 0.0,
+        "case_hit@5": 0.0,
+        "hit@10": 0.0,
+        "case_hit@10": 0.0,
+        "mrr": 0.0,
+        "case_mrr": 0.0,
+        "ndcg@10": 0.0
+      }
+    },
+    {
+      "question_id": "c4137d5a7ea28f79",
+      "question": "Wie setzen sich die Kosten für Müllbeseitigung und Frisch- und Abwasser in der Nebenkostenabrechnung zusammen?",
+      "gold": [
+        112481,
+        0
+      ],
+      "metrics": {
+        "hit@1": 0.0,
+        "case_hit@1": 0.0,
+        "hit@3": 0.0,
+        "case_hit@3": 0.0,
+        "hit@5": 0.0,
+        "case_hit@5": 0.0,
+        "hit@10": 0.0,
+        "case_hit@10": 0.0,
+        "mrr": 0.0,
+        "case_mrr": 0.0,
+        "ndcg@10": 0.0
+      }
+    },
+    {
+      "question_id": "d36f31a44014dfb8",
+      "question": "Wie viel Heizkosten kann ich für den Zeitraum vom 01.04.2009 bis 31.03.2010 zusätzlich beantragen, wenn ich mehr bezahlt habe als bewilligt wurde?",
+      "gold": [
+        209987,
+        0
+      ],
+      "metrics": {
+        "hit@1": 0.0,
+        "case_hit@1": 0.0,
+        "hit@3": 0.0,
+        "case_hit@3": 0.0,
+        "hit@5": 0.0,
+        "case_hit@5": 0.0,
+        "hit@10": 0.0,
+        "case_hit@10": 0.0,
+        "mrr": 0.0,
+        "case_mrr": 0.0,
+        "ndcg@10": 0.0
+      }
+    },
+    {
+      "question_id": "d99140ffd33b82f4",
+      "question": "Was kann passieren, wenn ich mit meinem großen Hund gegen das Landeshundegesetz verstoße?",
+      "gold": [
+        218319,
+        3
+      ],
+      "metrics": {
+        "hit@1": 0.0,
+        "case_hit@1": 0.0,
+        "hit@3": 0.0,
+        "case_hit@3": 0.0,
+        "hit@5": 0.0,
+        "case_hit@5": 0.0,
+        "hit@10": 0.0,
+        "case_hit@10": 0.0,
+        "mrr": 0.0,
+        "case_mrr": 0.0,
+        "ndcg@10": 0.0
+      }
+    },
+    {
+      "question_id": "ddebeba0cd2ec7e6",
+      "question": "Warum darf ich meinen gefährlichen Hund nicht ohne Erlaubnis halten?",
+      "gold": [
+        96516,
+        3
+      ],
+      "metrics": {
+        "hit@1": 0.0,
+        "case_hit@1": 0.0,
+        "hit@3": 0.0,
+        "case_hit@3": 0.0,
+        "hit@5": 0.0,
+        "case_hit@5": 0.0,
+        "hit@10": 0.0,
+        "case_hit@10": 0.0,
+        "mrr": 0.0,
+        "case_mrr": 0.0,
+        "ndcg@10": 0.0
+      }
+    },
+    {
+      "question_id": "df3ce91c1ce47f90",
+      "question": "Wer gilt als Inhaber einer Zweitwohnung, wenn mehrere Familienmitglieder dort wohnen?",
+      "gold": [
+        107015,
+        29
+      ],
+      "metrics": {
+        "hit@1": 0.0,
+        "case_hit@1": 0.0,
+        "hit@3": 0.0,
+        "case_hit@3": 0.0,
+        "hit@5": 0.0,
+        "case_hit@5": 0.0,
+        "hit@10": 0.0,
+        "case_hit@10": 1.0,
+        "mrr": 0.0,
+        "case_mrr": 0.16666666666666666,
+        "ndcg@10": 0.0
+      }
+    },
+    {
+      "question_id": "e3fe53daf8142ffe",
+      "question": "Wer ist für Streitigkeiten über die Miethöhe bei einem Mietvertrag für geförderten Wohnraum zuständig?",
+      "gold": [
+        172661,
+        16
+      ],
+      "metrics": {
+        "hit@1": 0.0,
+        "case_hit@1": 0.0,
+        "hit@3": 0.0,
+        "case_hit@3": 0.0,
+        "hit@5": 0.0,
+        "case_hit@5": 0.0,
+        "hit@10": 0.0,
+        "case_hit@10": 0.0,
+        "mrr": 0.0,
+        "case_mrr": 0.0,
+        "ndcg@10": 0.0
+      }
+    },
+    {
+      "question_id": "e70a5797e1d8fa90",
+      "question": "Was passiert, wenn ich eine Wohnung gemietet habe, die ich nicht bewohne, und mein Vermieter mir fristlos kündigt?",
+      "gold": [
+        98692,
+        24
+      ],
+      "metrics": {
+        "hit@1": 0.0,
+        "case_hit@1": 0.0,
+        "hit@3": 0.0,
+        "case_hit@3": 0.0,
+        "hit@5": 0.0,
+        "case_hit@5": 0.0,
+        "hit@10": 0.0,
+        "case_hit@10": 0.0,
+        "mrr": 0.0,
+        "case_mrr": 0.0,
+        "ndcg@10": 0.0
+      }
+    },
+    {
+      "question_id": "e7ef6b3517a02bbf",
+      "question": "Wie wird die ortsübliche Vergleichsmiete bestimmt und welche Rolle spielt dabei der einfache Mietspiegel?",
+      "gold": [
+        282548,
+        1
+      ],
+      "metrics": {
+        "hit@1": 1.0,
+        "case_hit@1": 1.0,
+        "hit@3": 1.0,
+        "case_hit@3": 1.0,
+        "hit@5": 1.0,
+        "case_hit@5": 1.0,
+        "hit@10": 1.0,
+        "case_hit@10": 1.0,
+        "mrr": 1.0,
+        "case_mrr": 1.0,
+        "ndcg@10": 1.0
+      }
+    },
+    {
+      "question_id": "ea30711f3b61054d",
+      "question": "Wie wird die ausreichende Temperatur in einer Mietwohnung definiert und was können Mieter dagegen tun, wenn es zu kalt ist?",
+      "gold": [
+        211108,
+        1
+      ],
+      "metrics": {
+        "hit@1": 0.0,
+        "case_hit@1": 0.0,
+        "hit@3": 0.0,
+        "case_hit@3": 0.0,
+        "hit@5": 0.0,
+        "case_hit@5": 0.0,
+        "hit@10": 0.0,
+        "case_hit@10": 0.0,
+        "mrr": 0.0,
+        "case_mrr": 0.0,
+        "ndcg@10": 0.0
+      }
+    },
+    {
+      "question_id": "f1e7291b5525d306",
+      "question": "Wie wird die Zweitwohnungssteuer berechnet und welche Faktoren spielen dabei eine Rolle?",
+      "gold": [
+        341405,
+        23
+      ],
+      "metrics": {
+        "hit@1": 0.0,
+        "case_hit@1": 0.0,
+        "hit@3": 0.0,
+        "case_hit@3": 0.0,
+        "hit@5": 0.0,
+        "case_hit@5": 0.0,
+        "hit@10": 0.0,
+        "case_hit@10": 0.0,
+        "mrr": 0.0,
+        "case_mrr": 0.0,
+        "ndcg@10": 0.0
+      }
+    },
+    {
+      "question_id": "f5faefebf4a0e905",
+      "question": "Was muss ein Gutachten enthalten, damit ich die Mieterhöhung nachvollziehen kann?",
+      "gold": [
+        60382,
+        8
+      ],
+      "metrics": {
+        "hit@1": 0.0,
+        "case_hit@1": 0.0,
+        "hit@3": 0.0,
+        "case_hit@3": 0.0,
+        "hit@5": 0.0,
+        "case_hit@5": 0.0,
+        "hit@10": 0.0,
+        "case_hit@10": 0.0,
+        "mrr": 0.0,
+        "case_mrr": 0.0,
+        "ndcg@10": 0.0
+      }
+    },
+    {
+      "question_id": "f79d4cb6ffcf9d51",
+      "question": "Wie kann ich nachweisen, dass die Heizkosten zu hoch sind, wenn die Heizung nicht richtig funktioniert hat?",
+      "gold": [
+        285229,
+        4
+      ],
+      "metrics": {
+        "hit@1": 0.0,
+        "case_hit@1": 0.0,
+        "hit@3": 0.0,
+        "case_hit@3": 0.0,
+        "hit@5": 0.0,
+        "case_hit@5": 0.0,
+        "hit@10": 0.0,
+        "case_hit@10": 0.0,
+        "mrr": 0.0,
+        "case_mrr": 0.0,
+        "ndcg@10": 0.0
+      }
+    },
+    {
+      "question_id": "f7a0abf0bc738c2f",
+      "question": "Wie wird der Wert eines Mietstreits berechnet, wenn es um ein unbefristetes Mietverhältnis geht?",
+      "gold": [
+        101819,
+        0
+      ],
+      "metrics": {
+        "hit@1": 0.0,
+        "case_hit@1": 0.0,
+        "hit@3": 0.0,
+        "case_hit@3": 0.0,
+        "hit@5": 0.0,
+        "case_hit@5": 0.0,
+        "hit@10": 0.0,
+        "case_hit@10": 0.0,
+        "mrr": 0.0,
+        "case_mrr": 0.0,
+        "ndcg@10": 0.0
+      }
+    },
+    {
+      "question_id": "fb526ce86e0dff98",
+      "question": "Warum sind die Nebenkosten, die die Klägerin verlangt, nicht rechtmäßig?",
+      "gold": [
+        264365,
+        5
+      ],
+      "metrics": {
+        "hit@1": 0.0,
+        "case_hit@1": 0.0,
+        "hit@3": 0.0,
+        "case_hit@3": 0.0,
+        "hit@5": 0.0,
+        "case_hit@5": 0.0,
+        "hit@10": 0.0,
+        "case_hit@10": 0.0,
+        "mrr": 0.0,
+        "case_mrr": 0.0,
+        "ndcg@10": 0.0
+      }
+    },
+    {
+      "question_id": "fbde7e1536726531",
+      "question": "Warum konnte die Vermietung der Parkplätze als eigenständige Leistung betrachtet werden?",
+      "gold": [
+        227982,
+        8
+      ],
+      "metrics": {
+        "hit@1": 0.0,
+        "case_hit@1": 1.0,
+        "hit@3": 1.0,
+        "case_hit@3": 1.0,
+        "hit@5": 1.0,
+        "case_hit@5": 1.0,
+        "hit@10": 1.0,
+        "case_hit@10": 1.0,
+        "mrr": 0.3333333333333333,
+        "case_mrr": 1.0,
+        "ndcg@10": 0.5
+      }
+    },
+    {
+      "question_id": "fd0b54f0701536df",
+      "question": "Welche Mängel wurden in der Wohnung vom Beklagten beanstandet?",
+      "gold": [
+        315139,
+        1
+      ],
+      "metrics": {
+        "hit@1": 0.0,
+        "case_hit@1": 0.0,
+        "hit@3": 0.0,
+        "case_hit@3": 0.0,
+        "hit@5": 0.0,
+        "case_hit@5": 0.0,
+        "hit@10": 0.0,
+        "case_hit@10": 0.0,
+        "mrr": 0.0,
+        "case_mrr": 0.0,
+        "ndcg@10": 0.0
+      }
+    }
+  ]
+}
