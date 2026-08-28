@@ -9,6 +9,7 @@ Retriever: Textquery -> Top-k Chunks (pgvector) -> JSON Output
 """
 
 import argparse
+import os
 import datetime as dt
 import json
 from typing import Any, Dict, List, Optional
@@ -44,10 +45,11 @@ def main():
     ap = argparse.ArgumentParser(description="Retrieve top-k chunks via pgvector (JSON output)")
     ap.add_argument("query", help="Freitext-Suchanfrage")
     ap.add_argument("--k", type=int, default=10, help="Top-k (Default 10)")
-    ap.add_argument("--model", default="sentence-transformers/all-MiniLM-L6-v2", help="Embedding model")
+    ap.add_argument("--model", default=os.getenv("RAG_EMBED_MODEL_PATH", "sentence-transformers/all-MiniLM-L6-v2"), help="Embedding model")
     ap.add_argument("--min-year", type=int, default=None, help="Filter: min Entscheidungsjahr")
     ap.add_argument("--max-year", type=int, default=None, help="Filter: max Entscheidungsjahr")
     ap.add_argument("--only-has-date", action="store_true", help="Nur Chunks mit decision_date")
+    ap.add_argument("--ef-search", type=int, default=None, help="hnsw.ef_search (Default des Servers: 40; höher = genauer, langsamer)")
     ap.add_argument("--pretty", action="store_true", help="JSON pretty-print")
     ap.add_argument("--out", help="Optional: JSON in Datei schreiben")
     ap.add_argument("--with-case-text", action="store_true", help="Zusätzlich case clean_text (gekürzt) joinen")
@@ -92,12 +94,12 @@ def main():
       cc.decision_date,
       cc.updated_date,
       LEFT(cc.chunk_text, {int(args.chunk_chars)}) AS chunk_text_preview,
-      (cc.embedding <-> %s::vector) AS distance
+      (cc.embedding <=> %s::vector) AS distance
       {select_case}
     FROM case_chunks cc
     {join_case}
     WHERE {where_sql}
-    ORDER BY cc.embedding <-> %s::vector
+    ORDER BY cc.embedding <=> %s::vector
     LIMIT {int(args.k)}
     """
 
@@ -105,6 +107,10 @@ def main():
     params2 = params + [q_vec]
 
     with conn.cursor(cursor_factory=pgx.RealDictCursor) as cur:
+        if args.ef_search is not None:
+            # Extension-Modul laden, damit hnsw.* als GUC bekannt ist
+            cur.execute("SELECT '[1]'::vector;")
+            cur.execute(f"SET LOCAL hnsw.ef_search = {int(args.ef_search)};")
         cur.execute(sql, params2)
         rows = cur.fetchall()
 

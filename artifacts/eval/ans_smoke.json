@@ -1,0 +1,85 @@
+{
+  "run_id": "ans_smoke",
+  "params": {
+    "variant": "dense",
+    "k": 5,
+    "ef_search": 200,
+    "embedding_column": "embedding",
+    "embedding_model": "/home/dedner/.cache/huggingface/hub/models--sentence-transformers--all-MiniLM-L6-v2/snapshots/c9745ed1d9f207416be6d2e6f8de32d1f16199bf",
+    "llm_model": "gpt-4o-mini",
+    "judge_model": "gpt-4o-mini",
+    "temperature": 0.0,
+    "corpus_run_id": "analysis_night_20260225_mietrecht_v9"
+  },
+  "metrics": {
+    "rag_korrektheit_mittel": 1.333,
+    "rag_korrekt_anteil": 0.333,
+    "rag_fundierung_mittel": 1.333,
+    "rag_erfunden_anteil": 0.0,
+    "rag_bewertet": 3,
+    "norag_korrektheit_mittel": 0.667,
+    "norag_korrekt_anteil": 0.0,
+    "norag_fundierung_mittel": 0,
+    "norag_erfunden_anteil": 0.0,
+    "norag_bewertet": 3
+  },
+  "per_question": [
+    {
+      "question_id": "0196ae3b1e912e15",
+      "question": "Welche Arten von Wohnungen werden bei der Ermittlung des Mietwertes für Grundsicherung nicht berücksichtigt?",
+      "reference": "Wohnungen mit sehr niedrigem Ausstattungsgrad, Freundschaftsmieten, mietpreisreduzierte Werkswohnungen, Wohnungen in Wohn- und Pflegeheimen, gewerblich genutzte Wohnungen und Ferienwohnungen werden nicht berücksichtigt.",
+      "rag_answer": "Bei der Ermittlung des Mietwertes für Grundsicherung werden insbesondere folgende Arten von Wohnungen nicht berücksichtigt: Wohnungen, die über dem angemessenen Maß liegen, sowie solche, die nicht den allgemeinen Standards des örtlichen Mietmarktes entsprechen. Zudem dürfen keine Wohnungen in sozial benachteiligten Gebieten (Ghettobildung) einbezogen werden, um eine faire Vergleichsbasis zu gewährleisten [S1], [S2]. Es ist entscheidend, dass die Erhebung der Daten systematisch und planmäßig erfolgt, um die Angemessenheit der Unterkunftskosten nachvollziehbar zu begrenzen [S2].",
+      "norag_answer": "Bei der Ermittlung des Mietwertes für Grundsicherung werden insbesondere folgende Arten von Wohnungen nicht berücksichtigt: Wohnungen, die über dem angemessenen Bedarf liegen, möblierte Wohnungen, sowie Wohnungen, die von Angehörigen oder in einem besonderen Wohnverhältnis (z.B. Wohngemeinschaften) bewohnt werden. Auch Luxuswohnungen oder Wohnungen mit überdurchschnittlich hohen Mietpreisen können ausgeschlossen werden. Zudem werden Wohnungen, die nicht den allgemeinen Wohnstandards entsprechen, nicht berücksichtigt. Es ist wichtig, die örtlichen Richtlinien und Angemessenheitsgrenzen zu beachten.",
+      "rag_verdict": {
+        "korrektheit": 1,
+        "fundierung": 1,
+        "erfunden": false,
+        "begruendung": "Die Antwort erwähnt zwar einige relevante Aspekte, geht jedoch nicht konkret auf die spezifischen Arten von Wohnungen ein, die in der Referenz genannt werden."
+      },
+      "norag_verdict": {
+        "korrektheit": 0,
+        "fundierung": 0,
+        "erfunden": false,
+        "begruendung": "Die Antwort enthält falsche Informationen und weicht von der Referenzantwort ab, da sie nicht die spezifischen Arten von Wohnungen nennt, die nicht berücksichtigt werden."
+      }
+    },
+    {
+      "question_id": "026265aa2a340b1e",
+      "question": "Welche Ziele kann die Zweitwohnungssteuer neben der Einnahmenerzielung verfolgen?",
+      "reference": "Die Zweitwohnungssteuer kann auch dazu dienen, Menschen zu motivieren, ihren Hauptwohnsitz zu verlegen.",
+      "rag_answer": "Die Zweitwohnungssteuer kann neben der Einnahmenerzielung auch das Ziel verfolgen, die wirtschaftliche Leistungsfähigkeit der Zweitwohnungsinhaber zu erfassen, da sie an den finanziellen Aufwand für das Innehaben einer Zweitwohnung anknüpft [S1]. Zudem dient sie der lückenlosen Erfassung aller Steuerpflichtigen, um eine gerechte Besteuerung sicherzustellen [S2]. Ein weiteres Ziel könnte die Regulierung des Wohnungsmarktes sein, indem Anreize geschaffen werden, Zweitwohnungen nicht als reine Kapitalanlagen zu halten [S4]. Die Steuer kann auch dazu beitragen, die Nutzung von Wohnraum für den persönlichen Lebensbedarf zu fördern [S5].",
+      "norag_answer": "Die Zweitwohnungssteuer kann neben der Einnahmenerzielung auch folgende Ziele verfolgen: \n\n1. Regulierung des Wohnungsmarktes, um die Verfügbarkeit von Wohnraum für Hauptmieter zu erhöhen.\n2. Förderung der Ansiedlung von Hauptbewohnern in bestimmten Regionen.\n3. Verringerung der Spekulation mit Immobilien und der damit verbundenen Preissteigerungen.\n4. Unterstützung kommunaler Projekte und Infrastruktur durch zusätzliche Einnahmen.",
+      "rag_verdict": {
+        "korrektheit": 1,
+        "fundierung": 2,
+        "erfunden": false,
+        "begruendung": "Die Antwort enthält teilweise korrekte Ziele der Zweitwohnungssteuer, jedoch sind einige Aspekte nicht in der Referenz erwähnt, während die Fundierung durch den Kontext gestützt wird."
+      },
+      "norag_verdict": {
+        "korrektheit": 1,
+        "fundierung": 0,
+        "erfunden": false,
+        "begruendung": "Die Antwort enthält teilweise richtige Ziele, die die Zweitwohnungssteuer verfolgen kann, geht jedoch über die in der Referenz genannten Ziele hinaus und ist nicht durch den Kontext gedeckt."
+      }
+    },
+    {
+      "question_id": "03596d4b4dee46e2",
+      "question": "Wie kann ich nachweisen, dass meine Wohnungen während der Hauptsaison tatsächlich oft vermietet waren?",
+      "reference": "Der Nachweis über die Vermietung sollte durch konkrete Belegungsdaten erfolgen, da die Auslastung der Betten nicht mit den Vermietungstagen gleichgesetzt werden kann.",
+      "rag_answer": "Um nachzuweisen, dass Ihre Wohnungen während der Hauptsaison oft vermietet waren, sollten Sie Dokumente wie Mietverträge, Buchungsbestätigungen oder Zahlungsnachweise sammeln. Auch Anzeigen in Zeitungen oder Online-Plattformen, die Ihre Vermietungsaktivitäten belegen, können hilfreich sein [S2]. Es ist wichtig, dass Sie Ihre ernsthaften und nachhaltigen Vermietungsbemühungen darlegen, um Ihre Einkünfteerzielungsabsicht zu untermauern [S2]. Zudem können Sie auch die Resonanz auf Ihre Vermietungsangebote dokumentieren, um die Nachfrage zu belegen [S2]. Eine umfassende Dokumentation stärkt Ihre Position im Falle von Streitigkeiten.",
+      "norag_answer": "Um nachzuweisen, dass Ihre Wohnungen während der Hauptsaison oft vermietet waren, können Sie folgende Unterlagen vorlegen: Buchungsbestätigungen oder -verträge, Zahlungsnachweise von Gästen, eine Übersicht über die Belegungstage sowie Bewertungen auf Plattformen wie Airbnb oder Booking.com. Auch eine detaillierte Aufstellung der Einnahmen kann hilfreich sein. Zudem können Sie Zeugen, wie wiederkehrende Gäste oder Nachbarn, benennen, die Ihre Vermietung bestätigen können. Achten Sie darauf, alle Dokumente gut zu organisieren und gegebenenfalls zu kopieren.",
+      "rag_verdict": {
+        "korrektheit": 2,
+        "fundierung": 1,
+        "erfunden": false,
+        "begruendung": "Die Antwort deckt die Referenz inhaltlich ab, indem sie konkrete Nachweismöglichkeiten für die Vermietung aufzeigt, ist jedoch nur teilweise durch den Kontext gedeckt."
+      },
+      "norag_verdict": {
+        "korrektheit": 1,
+        "fundierung": 0,
+        "erfunden": false,
+        "begruendung": "Die Antwort enthält teilweise korrekte Informationen zur Nachweisführung, jedoch fehlt der Kontext, um die Fundierung zu bewerten."
+      }
+    }
+  ]
+}

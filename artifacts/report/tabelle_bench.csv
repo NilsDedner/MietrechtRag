@@ -1,0 +1,19 @@
+Lauf,Modus,p50 (ms),p95 (ms),Recall@10
+baseline_default_config,exact,6864.27,7151.47,
+baseline_default_config,l2_operator,6858.05,7228.85,1.0
+baseline_default_config,hnsw_ef40,1.5,2.64,0.38
+baseline_default_config,hnsw_ef100,2.36,4.13,0.48
+baseline_default_config,hnsw_ef200,4.11,5.7,0.625
+baseline_default_config,hnsw_ef400,7.24,14.25,0.755
+tuned_full_restart,exact,4043.12,4069.24,
+tuned_full_restart,l2_operator,4044.96,4059.98,1.0
+tuned_full_restart,hnsw_ef40,1.24,1.68,0.38
+tuned_full_restart,hnsw_ef100,2.03,2.84,0.48
+tuned_full_restart,hnsw_ef200,3.75,4.47,0.625
+tuned_full_restart,hnsw_ef400,6.76,8.61,0.755
+tuned_reload_only,exact,4445.32,4582.73,
+tuned_reload_only,l2_operator,4445.69,4574.63,0.995
+tuned_reload_only,hnsw_ef40,1.34,1.77,0.38
+tuned_reload_only,hnsw_ef100,2.21,2.71,0.48
+tuned_reload_only,hnsw_ef200,3.43,4.3,0.625
+tuned_reload_only,hnsw_ef400,6.0,12.96,0.755

@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import os
 import statistics
 import time
 from typing import Any, List
@@ -24,7 +25,7 @@ def run_query(conn, q_vec: str, k: int) -> int:
     SELECT case_id, chunk_id
     FROM case_chunks
     WHERE embedding IS NOT NULL
-    ORDER BY embedding <-> %s::vector
+    ORDER BY embedding <=> %s::vector
     LIMIT %s
     """
     with conn.cursor(cursor_factory=pgx.RealDictCursor) as cur:
@@ -41,7 +42,7 @@ def main() -> None:
         "Wann ist eine Betriebskostenabrechnung formell wirksam?",
     ])
     ap.add_argument("--k", type=int, default=10)
-    ap.add_argument("--model", default="sentence-transformers/all-MiniLM-L6-v2")
+    ap.add_argument("--model", default=os.getenv("RAG_EMBED_MODEL_PATH", "sentence-transformers/all-MiniLM-L6-v2"))
     ap.add_argument("--rounds", type=int, default=1, help="Repeat complete query set N times")
     args = ap.parse_args()
 

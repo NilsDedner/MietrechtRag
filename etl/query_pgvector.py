@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import argparse
+import os
 import datetime as dt
 from typing import Any, Dict, List, Optional
 
@@ -21,7 +22,7 @@ def main():
     ap = argparse.ArgumentParser(description="Query pgvector index (local embedding) -> top-k chunks")
     ap.add_argument("query", help="Freitext-Frage / Suchanfrage")
     ap.add_argument("--k", type=int, default=8, help="Top-k (Default 8)")
-    ap.add_argument("--model", default="sentence-transformers/all-MiniLM-L6-v2", help="Embedding model")
+    ap.add_argument("--model", default=os.getenv("RAG_EMBED_MODEL_PATH", "sentence-transformers/all-MiniLM-L6-v2"), help="Embedding model")
     ap.add_argument("--min-year", type=int, default=None, help="Optional: mind. Entscheidungsjahr")
     ap.add_argument("--max-year", type=int, default=None, help="Optional: max. Entscheidungsjahr")
     ap.add_argument("--only-has-date", action="store_true", help="Nur Fälle mit decision_date")
@@ -53,10 +54,10 @@ def main():
     SELECT
       case_id, chunk_id, decision_date, updated_date,
       LEFT(chunk_text, 1200) AS chunk_preview,
-      (embedding <-> %s::vector) AS distance
+      (embedding <=> %s::vector) AS distance
     FROM case_chunks
     WHERE {where_sql}
-    ORDER BY embedding <-> %s::vector
+    ORDER BY embedding <=> %s::vector
     LIMIT {args.k}
     """
 

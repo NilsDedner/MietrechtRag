@@ -1,0 +1,21 @@
+# Mietrechtliche Testfragen für Retrieval-Benchmarks (eine Frage pro Zeile)
+Wann ist eine Eigenbedarfskündigung wirksam?
+Welche Formvorschriften gelten für eine Mieterhöhung?
+Wann ist eine Betriebskostenabrechnung formell ordnungsgemäß?
+Unter welchen Voraussetzungen ist eine fristlose Kündigung wegen Zahlungsverzugs zulässig?
+Wie hoch darf eine Mietkaution sein und wie ist sie anzulegen?
+Wann ist eine Mietminderung wegen Schimmel gerechtfertigt?
+Welche Fristen gelten für die Abrechnung von Nebenkosten?
+Wann sind Schönheitsreparaturklauseln unwirksam?
+Welche Anforderungen gelten für eine Modernisierungsmieterhöhung?
+Wann verjähren Schadensersatzansprüche des Vermieters nach Rückgabe der Wohnung?
+Ist die Grundsteuer auf den Mieter umlagefähig?
+Wann liegt ein Härtefall gegen eine Kündigung vor?
+Welche Rechte hat der Mieter bei unterlassenen Reparaturen?
+Wann ist eine Untervermietung ohne Erlaubnis ein Kündigungsgrund?
+Welche Kündigungsfristen gelten für Mieter und Vermieter?
+Wann ist eine Staffelmiete unwirksam?
+Wie wird die ortsübliche Vergleichsmiete bestimmt?
+Welche Pflichten treffen den Mieter bei Auszug?
+Wann darf der Vermieter die Wohnung betreten?
+Welche Folgen hat eine verspätete Betriebskostenabrechnung?

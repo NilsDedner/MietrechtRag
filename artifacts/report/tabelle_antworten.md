@@ -1,0 +1,4 @@
+| Lauf | Bedingung | Korrektheit (0-2) | Anteil voll korrekt | Fundierung (0-2) | Anteil erfunden |
+|---|---|---|---|---|---|
+| ans_dense_e5 | mit Retrieval | 1.467 | 0.617 | 1.583 | 0.05 |
+| ans_dense_e5 | ohne Retrieval | 0.567 | 0.017 |  | 0.0 |
